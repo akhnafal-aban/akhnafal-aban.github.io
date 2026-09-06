@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #121212;
+  --color-surface: #161614;
+  --color-elevated: #1b1d25;
+  --color-accent: #60e5a0;
+  --color-line: #3c3c3c;
+  --color-body: #c9c9c9;
+
+  /* shadcn semantic tokens (for liquid-glass-button) */
+  --color-primary: #60e5a0;
+  --color-primary-foreground: #121212;
+  --color-secondary: #1b1d25;
+  --color-secondary-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-background: #121212;
+  --color-foreground: #ffffff;
+  --color-input: #3c3c3c;
+  --color-accent-foreground: #ffffff;
+  --color-ring: #60e5a0;
+  --color-muted: #a8a8a8;
+  --color-muted-foreground: #a8a8a8;
+
+  --font-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #121212;
+}
+
+/* Floating glass nav */
+.nav-glass {
+  background: rgba(18, 18, 18, 0.45);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(96, 229, 160, 0.12);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
