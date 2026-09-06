@@ -1,32 +1,39 @@
-# React + TypeScript + Vite
+# Noor Akhnafal Aban — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio website. Live: **https://akhnafal-aban.github.io/**
 
-Currently, two official plugins are available:
+Dark terminal aesthetic — System B tokens: `#121212` base, `#60E5A0` accent, Roboto Mono + Inter.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- Vite + React + TypeScript
+- Tailwind CSS v4 (CSS-first `@theme`)
+- Liquid glass navbar + buttons (`src/components/ui/liquid-glass-button.tsx`)
+- ASCII particle hero + handwriting text (21st.dev components, self-hosted font)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Structure
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  App.tsx                      home page: hero + proof strip (one 100svh screen),
+                               work, about, publications, contact
+  index.css                    tokens + glass utilities
+  components/ui/               particle-drift, handwriting-text, liquid-glass-button
+  lib/utils.ts                 cn()
+public/fonts/handwriting.ttf   self-hosted TTF for the handwriting animation
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Dev
+
+```bash
+npm install
+npm run dev
+```
+
+## Deploy
+
+```bash
+./scripts/deploy.sh
+```
+
+Builds `dist/` and pushes it to the `gh-pages` branch (GitHub Pages source: branch `gh-pages`, root). No CI needed.
