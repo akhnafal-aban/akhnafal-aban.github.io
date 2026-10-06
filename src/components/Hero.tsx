@@ -5,7 +5,7 @@ import profilePhoto from '@/assets/profile.webp'
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b-4 border-ink bg-grid">
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20">
         <div className="grid items-start gap-8 md:grid-cols-12">
           {/* Left: positioning + name + one-liner + chips + CTAs */}
           <div className="md:col-span-8">

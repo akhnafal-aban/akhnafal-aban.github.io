@@ -4,7 +4,7 @@ import { cn } from '@/lib/cn'
 export function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b-4 border-ink bg-paper/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <a
           href="#top"
           className="flex items-baseline gap-2 font-display text-sm font-black uppercase tracking-tight"
