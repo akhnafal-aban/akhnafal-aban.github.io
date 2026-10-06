@@ -36,9 +36,8 @@ export const positioning = {
   oneLiner:
     'Final-year engineer in Jakarta. Shipped a production platform for a paying business, run my own Linux servers, and build native iOS on the side.',
   location: 'Jakarta, Indonesia',
-  // [PLACEHOLDER] confirm exact graduation month + full-time availability date
-  graduation: '2027 (expected)',
-  availability: 'Open to backend roles; part-time/freelance now, full-time after graduation',
+  graduation: '2026',
+  availability: 'Open to backend roles; full-time available',
   email: 'akhnafal03@gmail.com',
   // [PLACEHOLDER] must match CV exactly — red-team found CV used +62 812-4193-5780
   phone: '+62 812-4193-5780',
@@ -335,7 +334,7 @@ export const education = {
   school: 'Universitas Islam Indonesia',
   place: 'Yogyakarta, Indonesia',
   degree: 'Bachelor of Informatics — Faculty of Industrial Technology',
-  years: '2022 – present (final year)',
+  years: '2022 – 2026',
   gpa: '3.84 / 4.00',
 }
 
