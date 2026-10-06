@@ -1,27 +1,14 @@
 import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
-import { Marquee } from '@/components/Marquee'
 import { Work } from '@/components/Work'
-import { About } from '@/components/About'
-import { Publications } from '@/components/Publications'
-import { Skills } from '@/components/Skills'
+import { CaseStudies } from '@/components/CaseStudies'
+import { Writing } from '@/components/Writing'
+import { Recommendations } from '@/components/Recommendations'
+import { Experience } from '@/components/Experience'
+import { Publication } from '@/components/Publication'
+import { Education } from '@/components/Education'
 import { Contact } from '@/components/Contact'
 import { Footer } from '@/components/Footer'
-
-const marqueeItems = [
-  'SwiftUI',
-  'Laravel',
-  'Linux ops',
-  'Foundation Models',
-  'CloudKit',
-  'RealityKit',
-  'REST APIs',
-  'Docker',
-  'VPS',
-  'BERTopic',
-  'GEMASTIK 2025 finalist',
-  'Published author 2026',
-]
 
 export default function App() {
   return (
@@ -29,11 +16,13 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Marquee items={marqueeItems} />
         <Work />
-        <About />
-        <Publications />
-        <Skills />
+        <CaseStudies />
+        <Writing />
+        <Recommendations />
+        <Experience />
+        <Publication />
+        <Education />
         <Contact />
       </main>
       <Footer />
