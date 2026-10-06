@@ -12,7 +12,7 @@ const accentBg: Record<string, string> = {
 
 export function Education() {
   return (
-    <section id="education" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="education" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
       <SectionHeader number="07" title="Education & skills" />
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
         <div>

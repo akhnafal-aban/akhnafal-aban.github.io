@@ -71,7 +71,7 @@ export function CaseStudies() {
   if (withCase.length === 0) return null
   return (
     <section id="case-studies" className="border-t-4 border-ink bg-paper-2">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
         <SectionHeader number="02" title="Case studies" />
         <p className="mt-3 max-w-2xl text-sm text-ink/70">
           The detail a recruiter or hiring manager reads in 5–10 minutes. Each follows the same

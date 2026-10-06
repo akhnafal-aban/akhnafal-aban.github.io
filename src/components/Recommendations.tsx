@@ -4,7 +4,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 export function Recommendations() {
   return (
     <section id="recommendations" className="border-t-4 border-ink bg-paper-2">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
         <SectionHeader number="04" title="Recommendations" />
         <p className="mt-3 max-w-2xl text-sm text-ink/70">
           Third-party verification outranks self-report. One callable client reference beats the

@@ -10,7 +10,7 @@ export function Contact() {
   ]
   return (
     <section id="contact" className="border-t-4 border-ink bg-ink">
-      <div className="mx-auto max-w-5xl px-4 py-16 text-paper sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-4xl px-4 py-16 text-paper sm:px-6 sm:py-20">
         <SectionHeader number="08" title="Contact" dark />
         <p className="mt-3 max-w-2xl text-sm text-paper/70">
           {positioning.availability}. One email is enough — no forms, no gate. The subject line is
