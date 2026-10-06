@@ -13,7 +13,7 @@ const accentBg: Record<string, string> = {
 export function Publication() {
   return (
     <section id="publication" className="border-t-4 border-ink bg-paper-2">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
         <SectionHeader number="06" title="Publication" />
         <p className="mt-3 max-w-2xl text-sm text-ink/70">
           One peer-reviewed, Garuda-indexed co-authored article. Kept as a single line — it proves

@@ -84,7 +84,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Work() {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="work" className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
       <SectionHeader number="01" title="Selected work" />
       <p className="mt-3 max-w-2xl text-sm text-ink/70">
         Four projects, ordered by depth: a production platform, a shipped iOS app, a Go learning

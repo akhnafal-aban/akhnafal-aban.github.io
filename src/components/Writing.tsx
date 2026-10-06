@@ -3,7 +3,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 
 export function Writing() {
   return (
-    <section id="writing" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="writing" className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
       <SectionHeader number="03" title="Writing" />
       <p className="mt-3 max-w-2xl text-sm text-ink/70">
         Technical posts in English on real problems from real projects. Writing is the cheapest

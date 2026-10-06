@@ -3,7 +3,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 
 export function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <section id="experience" className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
       <SectionHeader number="05" title="Experience" />
       <ol className="mt-8 space-y-6">
         {roles.map((role) => (

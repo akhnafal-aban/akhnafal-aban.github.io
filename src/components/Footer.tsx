@@ -3,7 +3,7 @@ import { positioning } from '@/data/portfolio'
 export function Footer() {
   return (
     <footer className="bg-ink py-6 text-center text-paper/60">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
         <p className="font-mono text-xs">
           {positioning.name} — {positioning.lane} · {positioning.location}
         </p>
