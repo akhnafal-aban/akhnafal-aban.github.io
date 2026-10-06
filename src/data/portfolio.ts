@@ -29,7 +29,7 @@ export const profile = {
     place: 'Yogyakarta, Indonesia',
     degree: 'Bachelor of Informatics — Faculty of Industrial Technology',
     years: '2022 - Present',
-    gpa: '3.87 / 4.00',
+    gpa: '3.84 / 4.00',
   },
   summary: [
     'Software engineer working across iOS, backend systems, deployment, and server operations. Builds maintainable products across the application lifecycle — SwiftUI on the client, Laravel on the server, Linux underneath.',
