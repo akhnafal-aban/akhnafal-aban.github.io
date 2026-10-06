@@ -1,5 +1,6 @@
 import { cn } from '@/lib/cn'
 import { profile } from '@/data/portfolio'
+import profilePhoto from '@/assets/profile.webp'
 
 export function Hero() {
   return (
@@ -56,6 +57,29 @@ export function Hero() {
           </div>
 
           <div className="md:col-span-4">
+            <div className="mb-6">
+              {/* Photo polaroid */}
+              <div className="relative -rotate-2 border-4 border-ink bg-paper p-2 shadow-brutal-lg sm:-rotate-3">
+                {/* tape */}
+                <span
+                  aria-hidden
+                  className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-3 bg-acid/80 border-2 border-ink shadow-brutal-sm"
+                />
+                <img
+                  src={profilePhoto}
+                  alt="Noor Akhnafal Aban"
+                  width={800}
+                  height={800}
+                  loading="eager"
+                  decoding="async"
+                  className="block aspect-square w-full bg-paper-2 object-cover"
+                />
+                <p className="mt-2 border-t-2 border-ink/20 pt-2 text-center font-display text-[11px] font-bold uppercase tracking-widest text-ink">
+                  Noor · Jakarta
+                </p>
+              </div>
+            </div>
+
             <div className="relative rotate-2 border-4 border-ink bg-punch p-5 shadow-brutal-lg">
               <p className="font-display text-xs font-bold uppercase tracking-widest text-paper">
                 Currently
