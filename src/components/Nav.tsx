@@ -41,7 +41,7 @@ export function Nav() {
             Résumé ↓
           </a>
           <a
-            href={`mailto:${positioning.email}?subject=Backend%20role%20-%20from%20your%20portfolio`}
+            href={`mailto:${positioning.email}?subject=From%20your%20portfolio`}
             className="border-2 border-ink bg-ink px-3 py-1 font-display text-xs font-black uppercase tracking-tight text-paper shadow-brutal-sm transition-transform hover:-translate-y-0.5 hover:shadow-brutal"
           >
             Email

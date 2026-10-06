@@ -3,7 +3,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 
 export function Contact() {
   const links = [
-    { label: 'Email', value: positioning.email, href: `mailto:${positioning.email}?subject=Backend%20role%20-%20from%20your%20portfolio` },
+    { label: 'Email', value: positioning.email, href: `mailto:${positioning.email}?subject=From%20your%20portfolio` },
     { label: 'GitHub', value: 'akhnafal-aban', href: positioning.links.github, external: true },
     { label: 'LinkedIn', value: 'akhnaf-aban', href: positioning.links.linkedin, external: true },
     { label: 'Résumé', value: 'Download PDF', href: positioning.resumeUrl, download: true },

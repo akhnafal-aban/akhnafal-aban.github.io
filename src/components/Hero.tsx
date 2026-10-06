@@ -37,7 +37,7 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={`mailto:${positioning.email}?subject=Backend%20role%20-%20from%20your%20portfolio`}
+                href={`mailto:${positioning.email}?subject=From%20your%20portfolio`}
                 className={cn(
                   'inline-flex items-center gap-2 border-2 border-ink bg-acid px-5 py-2.5 font-display text-sm font-black uppercase tracking-tight shadow-brutal-sm',
                   'transition-transform hover:-translate-y-0.5 hover:shadow-brutal',

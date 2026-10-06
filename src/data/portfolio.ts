@@ -32,12 +32,12 @@ export type Project = {
 
 export const positioning = {
   name: 'Noor Akhnafal Aban',
-  lane: 'Backend Engineer — PHP/Laravel → Go',
+  lane: 'Software Engineer — iOS & Backend',
   oneLiner:
-    'Final-year engineer in Jakarta. Shipped a production platform for a paying business, run my own Linux servers, and build native iOS on the side.',
+    'Engineer in Jakarta. Shipped a production platform for a paying business, run my own Linux servers, and build native iOS apps at the Apple Developer Academy.',
   location: 'Jakarta, Indonesia',
   graduation: '2026',
-  availability: 'Open to backend roles; full-time available',
+  availability: 'Open to iOS and backend roles; full-time available',
   email: 'akhnafal03@gmail.com',
   // [PLACEHOLDER] must match CV exactly — red-team found CV used +62 812-4193-5780
   phone: '+62 812-4193-5780',
