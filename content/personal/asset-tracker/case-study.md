@@ -154,7 +154,7 @@ Beberapa screenshot asli aplikasi, diambil dari simulator dengan backend Go loka
 | UI 5 — Settings | ![UI 5](./media/ui-05-settings.png) | Halaman pengaturan |
 | UI 6 — Bitcoin | ![UI 6](./media/ui-06-bitcoin.png) | Tab harga Bitcoin via WebSocket — saat screenshot, feed belum mengirim tick pertama (state awal prototipe) |
 
-### Catatan layout: tumpuan pada Stack dan List
+### Stack dan List
 
 Semua layout di Asset Tracker dibangun dari kotak-kotak dasar yang sama. Berikut rangkuman pola yang paling banyak dipakai, dengan kode dari project ini.
 
@@ -254,18 +254,10 @@ Tantangan 1: Konvensi nama dari dua bahasa yang berbeda
 - Solusi: dua pengaturan simetris di `JSONEncoder`/`JSONDecoder` — `keyDecodingStrategy = .convertFromSnakeCase` saat membaca, `keyEncodingStrategy = .convertToSnakeCase` saat mengirim. Mapping nama ditangani satu kali di `Api.swift`, bukan per struct.
 - Hasil: komunikasi bolak-balik API berjalan tanpa satu pun `CodingKeys` manual.
 
-Tantangan 2 (opsional): Aplikasi hanya bisa jalan kalau backend hidup
-
-- Masalah: semua data diambil dari `localhost:8080` — kalau server Go tidak berjalan, aplikasi menampilkan state kosong tanpa penjelasan.
-- Analisis: karena project-nya belajar, ini disengaja — "server mati = aplikasi kosong" adalah umpan balik yang jujur untuk memastikan aku benar-benar menguji jalur API sebelum melihat UI.
-- Solusi: menjalankan backend Go lokal (`go run ./cmd/api`), memastikan endpoint merespons, baru meluncurkan aplikasi di simulator yang jaringan localhost-nya setara dengan host Mac.
-- Hasil: dashboard menampilkan nilai portofolio yang dihitung dari data asli endpoint, bukan angka statis.
-
 ## 7. Hasil
 
 Yang terverifikasi dari alur lengkap yang berjalan:
 
-- Backend Go (std lib `net/http` + SQLite) berjalan lokal di port 8080 dengan endpoint CRUD aset.
 - Aplikasi iOS berhasil mengonsumsi `GET /assets` — total nilai portofolio di dashboard dihitung dari data API, daftar aset di tab Assets terisi, dan form `POST /assets` mengirim data ke server.
 - Layering `handler → service → repository` di sisi backend dengan rapi, dan lapisan `Api` tipis di sisi iOS sebagai satu pintu networking.
 - Tab Bitcoin masih menampilkan nilai default (belum ada tick masuk) — feed WebSocket belum terselesaikan, ini status jujur dari prototipe.
