@@ -1,235 +1,129 @@
-# Noor Akhnafal Aban
+# iOS Developer Portfolio — Portfolio Brief
 
-**Software Engineer — iOS & Backend · Jakarta, Indonesia**
+## Tujuan
 
-> PPT-scroll portfolio · written for HR & Technical Leads · 3–5 min read · last updated 2026-10-26
-> One linear story: **two iOS projects, in depth, one by one** — not many projects, shallow.
+Buat portofolio berbentuk PPT-scroll untuk HR dan Technical Lead, dengan estimasi waktu baca 3–5 menit. Gunakan alur cerita linear yang membahas selected iOS projects secara mendalam, satu per satu, bukan menampilkan banyak project dengan penjelasan dangkal.
 
-<details>
-<summary>📋 Cara mengisi canvas ini (untuk kamu, hilangkan nanti)</summary>
+## Format dan Alur
 
-- `📥 INPUT` — slot menunggu isian kamu. Ganti teksnya, hapus markernya.
-- `✅` — fakta terverifikasi (dari repo GitHub & situs lama). Boleh dipertahankan.
-- Setiap garis `---` = batas satu slide (PPT-scroll, scroll vertikal).
-- Screenshot & video: simpan di folder `media/<project>/`, path sudah ditentukan di tabel.
+Setiap project ditampilkan sebagai case study dengan urutan berikut:
 
-Konten publik pakai Bahasa Inggris. Kalau mau semua Bahasa Indonesia, bilang saja.
-</details>
+1. Masalah — konteks, kebutuhan pengguna, dan masalah yang ingin diselesaikan.
+2. Tech Stack — teknologi dan framework yang digunakan beserta alasan pemilihannya.
+3. Arsitektur — gambaran komponen utama dan cara komponen saling berinteraksi.
+4. Code Utama — cuplikan kode penting yang menunjukkan keputusan atau kemampuan teknis.
+5. UI Utama — 3–4 screenshot asli aplikasi dengan keterangan singkat.
+6. Tantangan Teknis — 1–2 masalah paling sulit, proses diagnosis, dan solusi yang diterapkan.
+7. Hasil — fitur yang selesai, dampak, hasil pengujian, atau metrik yang tersedia.
+8. Pelajaran — hal yang dipelajari dan hal yang akan ditingkatkan berikutnya.
 
----
+## Bukti Pendukung
 
-## Hi — I'm Noor. I build things that run.
+Sediakan area placeholder berikut untuk setiap project. Ganti placeholder dengan aset atau tautan asli setelah tersedia.
 
-- **iOS** — SwiftUI, SwiftData, CloudKit, Foundation Models, Vision. Currently Junior iOS Developer at **Apple Developer Academy @ UC Jakarta**.
-- **Backend** — Laravel, MySQL, Redis, Linux. One production gym-management platform (Really Sport Center) running on my own servers, maintained over SSH.
-- **Research** — published topic-modeling paper, *Rabit: Jurnal Teknologi & Sistem Informasi* 11(1), 2026. GEMASTIK 2025 national round, top 6.
-- **This page** — 2 deep-dive case studies, 3–5 minutes. Scroll.
+- Video demo: rekaman aplikasi berdurasi 15–30 detik, ditampilkan looping di dalam frame device. Rekaman iOS Simulator diperbolehkan.
+- TestFlight: tautan instalasi jika aplikasi tersedia untuk diuji.
+- GitHub: tautan repository jika aman untuk dipublikasikan.
+- Screenshot UI: 3–4 screenshot asli yang menonjolkan fitur utama.
 
----
+Jangan mengarang tautan atau hasil. Jika suatu bukti belum tersedia, biarkan sebagai placeholder atau hilangkan saat publikasi.
 
-## A resume lists. This tells the story of two apps, end to end.
+## Selected iOS Projects
 
-1. **AkhnaFin** — personal finance capture: five input paths into one pipeline. Flagship, solo. ✅
-2. **BreathingApp** — breathing & movement iOS app, Apple Developer Academy Challenge 1. Team-built. ✅
+Duplikasi template case study di bawah untuk setiap project yang dipilih.
 
-Each case study follows the same arc: **Problem → Tech Stack → Architecture → Core Code → UI → Hardest Challenges → Results → Lessons.**
+### [Nama Project]
 
----
+Ringkasan: [Jelaskan aplikasi dan nilai utamanya dalam 1–2 kalimat.]
+Peran: [Kontribusi dan tanggung jawab pribadi.]
+Status: [Prototype / In Development / Released]
+Tech Stack: [Swift, SwiftUI, UIKit, Core Data, API, dan lain-lain yang benar-benar digunakan.]
 
-# Case Study 1 · AkhnaFin
+#### 1. Masalah
 
-| | |
-|---|---|
-| **Repo** | [akhnafal-aban/AkhnaFin](https://github.com/akhnafal-aban/AkhnaFin) (public) ✅ |
-| **Platform** | iOS (iPhone) |
-| **Year** | 2026 |
-| **Role** | Solo developer ✅ |
-| **Tagline** | Personal finance capture — five input paths (Siri, natural language, voice, receipt OCR, manual) funnel into one **parse → draft → confirm** pipeline. ✅ |
+[Tuliskan masalah pengguna, konteks, dan tujuan project.]
 
-## Problem
+#### 2. Tech Stack
 
-> 📥 INPUT — 2–3 kalimat. Jawab:
-> - Siapa user-nya dan apa yang bikin frustrasi di app keuangan yang ada?
-> - Kenapa harus lima jalur input, bukan satu?
-> - Apa momen "kenapa app ini harus ada"?
+- [Teknologi 1]: [Alasan digunakan.]
+- [Teknologi 2]: [Alasan digunakan.]
+- [Teknologi 3]: [Alasan digunakan.]
 
-## Tech Stack
+#### 3. Arsitektur
 
-- Swift · SwiftUI ✅
-- SwiftData (persistence) · CloudKit (sync) ✅
-- Foundation Models (on-device parsing) ✅
-- Vision (receipt OCR) ✅
-- 📥 INPUT — ada lagi? (WidgetKit, Charts, App Intents…)
+[Masukkan diagram arsitektur atau gambaran aliran data dan komponen utama.]
 
-## Architecture
+<!-- PLACEHOLDER CANVAS: Diagram arsitektur project -->
 
-```mermaid
-flowchart LR
-    A[Siri] --> P[Parse pipeline]
-    B[Voice] --> P
-    C[Receipt OCR] --> P
-    D[Manual] --> P
-    E[Natural language] --> P
-    P --> F[Draft]
-    F --> G[Confirm]
-    G --> H[(SwiftData + CloudKit)]
-```
+#### 4. Code Utama
 
-> ✅ dibuat dari deskripsi repo. 📥 INPUT — refine jadi modul Swift aslinya (nama file/actor/key type).
-
-## Core Code
+Jelaskan bagian kode yang paling representatif dan mengapa implementasinya penting.
 
 ```swift
-// 📥 INPUT — paste 10–20 baris paling mewakili. Pilihan bagus:
-// 1) state machine parse → draft → confirm, atau
-// 2) prompt struct yang dikirim ke Foundation Models,
-// 3) konfigurasi CloudKit sync.
-// Technical Lead baca ini untuk menilai cara kamu berpikir, bukan volumenya.
+// PLACEHOLDER: Tempelkan cuplikan kode Swift yang relevan di sini.
 ```
 
-## UI — 3–4 screenshots asli
+Penjelasan: [Jelaskan keputusan teknis, alur, atau trade-off pada cuplikan kode.]
 
-| # | Screenshot | Caption | File |
-|---|---|---|---|
-| 1 | 📥 | Halaman capture — 5 jalur input | `media/akhnafin/ui-1.png` |
-| 2 | 📥 | Hasil parse → draft | `media/akhnafin/ui-2.png` |
-| 3 | 📥 | Konfirmasi / edit | `media/akhnafin/ui-3.png` |
-| 4 | 📥 | Insight atau home | `media/akhnafin/ui-4.png` |
+#### 5. UI Utama
 
-## Hardest Challenges — 1–2
+Tampilkan 3–4 screenshot asli aplikasi. Ganti path gambar di bawah setelah aset tersedia.
 
-### Challenge 1 · 📥 INPUT (judul)
-
-> **Masalah:** 📥
-> **Solusi:** 📥
->
-> *(Saran yang sering terjadi, pakai kalau benar: akurasi parse input natural-language yang berantakan — format rupiah, nama merchant, hasil ASR — bagaimana kamu menormalkannya?)*
-
-### Challenge 2 · 📥 INPUT (judul)
-
-> **Masalah:** 📥
-> **Solusi:** 📥
->
-> *(Saran: konsistensi data offline-first dengan CloudKit — konflik sinkronisasi. Kalau tidak terjadi, tulis apa yang benar-benar tersulit.)*
-
-## Results
-
-| Metrik | Angka |
-|---|---|
-| 📥 INPUT | 📥 |
-
-> 📥 INPUT — sudah dipakai berapa user? akurasi parse? crash-free rate? review TestFlight? Tidak harus angka besar; jujur lebih kuat.
-
-## Lessons
-
-- 📥 INPUT — 2–3 baris.
-- 📥 INPUT
-
----
-
-# Case Study 2 · BreathingApp
-
-| | |
-|---|---|
-| **Repo** | [akhnafal-aban/BreathingApp](https://github.com/akhnafal-aban/BreathingApp) (public) ✅ |
-| **Platform** | iOS |
-| **Year** | 2026 |
-| **Role** | Team (Apple Developer Academy Challenge 1) ✅ |
-| **Tagline** | Breathing & movement app — Apple Developer Academy Challenge 1. ✅ |
-
-## Problem
-
-> 📥 INPUT — apa masalah kesehatan/wellness yang app ini jawab? kenapa bentuknya breathing + movement?
-
-## Tech Stack
-
-> 📥 INPUT — SwiftUI? HealthKit? RealityKit? CoreAnimation?
-
-## Architecture
-
-```mermaid
-flowchart LR
-    A[📥 input module] --> B[📥]
-    B --> C[📥]
-```
-
-> 📥 INPUT — gambar alur data aslinya.
-
-## Core Code
-
-```swift
-// 📥 INPUT — 10–20 baris: animasi napas, sinkronisasi HealthKit, atau scheduler sesi.
-```
-
-## UI — 3–4 screenshots asli
-
-| # | Screenshot | Caption | File |
-|---|---|---|---|
-| 1 | 📥 | 📥 | `media/breathing-app/ui-1.png` |
-| 2 | 📥 | 📥 | `media/breathing-app/ui-2.png` |
-| 3 | 📥 | 📥 | `media/breathing-app/ui-3.png` |
-| 4 | 📥 | 📥 | `media/breathing-app/ui-4.png` |
-
-## Hardest Challenge — 1
-
-> **Masalah:** 📥
-> **Solusi:** 📥
-
-## Results
-
-> 📥 INPUT
-
-## Lessons
-
-- 📥 INPUT
-
----
-
-## Supporting Evidence — canvas (prioritas)
-
-> 📥 Setiap proyek butuh 3 bukti di bawah. Slot path sudah disiapkan — tinggal isi.
-
-### AkhnaFin
-
-| Bukti | Status | Slot |
+| Screenshot | Placeholder aset | Keterangan |
 |---|---|---|
-| Demo video 15–30 detik, loop dalam frame device (rekaman simulator OK) | ⏳ belum diisi | `media/akhnafin/demo.mp4` |
-| Link TestFlight (jika app bisa diinstall) | ⏳ belum diisi | paste URL — |
-| Link GitHub (jika repo aman dipublikasikan) | ✅ sudah public | github.com/akhnafal-aban/AkhnaFin |
+| UI 1 | ![UI 1](./assets/[project-slug]/ui-01.png) | [Fitur yang ditampilkan] |
+| UI 2 | ![UI 2](./assets/[project-slug]/ui-02.png) | [Fitur yang ditampilkan] |
+| UI 3 | ![UI 3](./assets/[project-slug]/ui-03.png) | [Fitur yang ditampilkan] |
+| UI 4 (opsional) | ![UI 4](./assets/[project-slug]/ui-04.png) | [Fitur yang ditampilkan] |
 
-### BreathingApp
+#### 6. Tantangan Teknis dan Solusi
 
-| Bukti | Status | Slot |
-|---|---|---|
-| Demo video 15–30 detik, loop dalam frame device (rekaman simulator OK) | ⏳ belum diisi | `media/breathing-app/demo.mp4` |
-| Link TestFlight (jika app bisa diinstall) | ⏳ belum diisi | paste URL — |
-| Link GitHub (jika repo aman dipublikasikan) | ✅ sudah public | github.com/akhnafal-aban/BreathingApp |
+Tantangan 1: [Nama tantangan]
 
----
+- Masalah: [Apa yang gagal atau menjadi kendala?]
+- Analisis: [Bagaimana akar masalah ditemukan?]
+- Solusi: [Apa yang diubah dan mengapa?]
+- Hasil: [Bagaimana solusi diverifikasi?]
 
-## Domain Strategy — satu domain, dedikasi terasa personal
+Tantangan 2 (opsional): [Nama tantangan]
 
-**Domain utama:** `portofolio-aban.my.id` 📥 INPUT (klaim & verifikasi)
+- Masalah: [Jelaskan kendalanya.]
+- Analisis: [Jelaskan proses diagnosis.]
+- Solusi: [Jelaskan implementasi solusi.]
+- Hasil: [Jelaskan hasil verifikasi.]
 
-Setiap perusahaan dapat entry point sendiri — subdomain atau path:
+#### 7. Hasil
 
-| Perusahaan | URL | Varian |
-|---|---|---|
-| JavaMifi | `javamifi.portofolio-aban.my.id` | framing + case study dipilih khusus JavaMifi |
-| 📥 INPUT | `📥.portofolio-aban.my.id` | — |
+[Isi hasil nyata, fitur yang selesai, hasil testing, metrik, atau dampak. Hindari klaim yang belum terverifikasi.]
 
-**Kenapa begini:**
-- **Satu domain, banyak wajah** — tiap subdomain = varian PPT-scroll yang sama, tapi pembuka & case study dikurasi untuk perusahaan itu ("dibuat khusus untuk kalian", terasa personal).
-- **Biaya nol tambahan** — cukup satu domain + wildcard SSL (`*.portofolio-aban.my.id`), tidak beli domain per perusahaan.
-- **Trackable** — analytics per subdomain/path: tahu persis siapa membuka yang mana.
-- Alternatif path: `portofolio-aban.my.id/javamifi` kalau DNS subdomain tidak memungkinkan.
+#### 8. Pelajaran
 
----
+[Isi pelajaran teknis, trade-off, dan hal yang akan ditingkatkan.]
 
-## Contact
+#### Bukti Pendukung
 
-- email / akhnafal03@gmail.com ✅
-- github / [akhnafal-aban](https://github.com/akhnafal-aban) ✅
-- linkedin / [akhnaf-aban](https://www.linkedin.com/in/akhnaf-aban) ✅
+- Video demo 15–30 detik: [PLACEHOLDER — tautan video]
+- TestFlight: [PLACEHOLDER — tautan TestFlight atau N/A]
+- GitHub: [PLACEHOLDER — tautan repository atau N/A]
 
-© 2026 Noor Akhnafal Aban · Jakarta, Indonesia
+<!-- PLACEHOLDER CANVAS: Area video demo dalam frame device, looping 15–30 detik -->
+
+## Strategi Domain
+
+Gunakan satu domain portofolio utama, lalu buat subdomain atau path khusus untuk setiap perusahaan. Contoh:
+
+- javamifi.portofolio-aban.my.id
+- domain-utama-anda.dev/javamifi
+
+Pendekatan ini membuat presentasi terasa personal bagi perusahaan tujuan tanpa perlu membeli domain terpisah untuk setiap perusahaan. Gunakan domain utama dan struktur yang bisa digunakan kembali.
+
+## Checklist Sebelum Publikasi
+
+- [ ] Waktu baca keseluruhan sekitar 3–5 menit.
+- [ ] Project pilihan dibahas mendalam dan berurutan.
+- [ ] Screenshot berasal dari aplikasi asli.
+- [ ] Cuplikan kode relevan, terbaca, dan aman dibagikan.
+- [ ] Video demo berdurasi 15–30 detik tersedia atau masih ditandai sebagai placeholder.
+- [ ] Tautan TestFlight dan GitHub sudah diverifikasi atau ditandai belum tersedia.
+- [ ] Semua hasil dan klaim teknis sesuai bukti.
+- [ ] Tautan domain khusus perusahaan dapat diakses.
