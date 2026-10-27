@@ -22,7 +22,7 @@ export function EvidenceSlide({ id }: { id?: string }) {
   }
 
   return (
-    <Slide id={id} last>
+    <Slide id={id}>
       <h2 className="m-0 mb-10 text-center text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
         Bukti pendukung untuk proyek ini.
       </h2>

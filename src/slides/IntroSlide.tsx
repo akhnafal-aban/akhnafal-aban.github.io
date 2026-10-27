@@ -41,7 +41,6 @@ export function IntroSlide({ id }: { id?: string }) {
         transition={{ delay: 1, duration: 0.8 }}
         className="absolute inset-x-0 bottom-8 text-center font-mono text-[12px] text-ink-3"
       >
-        3 proyek · sekitar 3 sampai 5 menit · scroll untuk mulai
       </motion.div>
     </Slide>
   )
