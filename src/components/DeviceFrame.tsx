@@ -12,7 +12,13 @@ export function DeviceFrame({ src, alt, caption, width = 200 }: DeviceFrameProps
   return (
     <figure className="m-0">
       <div className="glass rounded-[26px] p-[7px]" style={style}>
-        <img src={src} alt={alt} className="h-full w-full rounded-[20px] object-cover" />
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full rounded-[20px] object-cover"
+        />
       </div>
       {caption ? (
         <figcaption className="mt-2 font-mono text-[11px] text-ink-3">{caption}</figcaption>

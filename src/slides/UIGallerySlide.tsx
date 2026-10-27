@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReducedMotion } from 'motion/react'
 import { DeviceFrame } from '../components/DeviceFrame'
 
-import ui1 from '../../content/personal/asset-tracker/media/ui-01-dashboard.png'
-import ui2 from '../../content/personal/asset-tracker/media/ui-02-assets.png'
-import ui3 from '../../content/personal/asset-tracker/media/ui-03-asset-detail.png'
-import ui4 from '../../content/personal/asset-tracker/media/ui-04-add-asset.png'
-import ui5 from '../../content/personal/asset-tracker/media/ui-05-settings.png'
-import ui6 from '../../content/personal/asset-tracker/media/ui-06-bitcoin.png'
+import ui1 from '../../content/personal/asset-tracker/media/thumbs/ui-01-dashboard.jpg'
+import ui2 from '../../content/personal/asset-tracker/media/thumbs/ui-02-assets.jpg'
+import ui3 from '../../content/personal/asset-tracker/media/thumbs/ui-03-asset-detail.jpg'
+import ui4 from '../../content/personal/asset-tracker/media/thumbs/ui-04-add-asset.jpg'
+import ui5 from '../../content/personal/asset-tracker/media/thumbs/ui-05-settings.jpg'
+import ui6 from '../../content/personal/asset-tracker/media/thumbs/ui-06-bitcoin.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,6 +38,7 @@ export function UIGallerySlide({ id }: { id?: string }) {
       const dots = gsap.utils.toArray<HTMLElement>('.g-dot')
       const counterEl = counter.current
       const dist = () => Math.max(trackEl.scrollWidth - window.innerWidth, 0)
+      let lastActive = -1
 
       const tween = gsap.to(trackEl, {
         x: () => -dist(),
@@ -63,11 +64,15 @@ export function UIGallerySlide({ id }: { id?: string }) {
             const p = Math.max(0, Math.min(1, self.progress))
             const peak = Math.sin(p * Math.PI)
             gsap.set(el, { scale: 0.84 + 0.16 * peak, opacity: 0.38 + 0.62 * peak })
-            gsap.set(el.querySelector('.g-cap'), { opacity: 0.25 + 0.75 * peak })
-            if (peak > 0.92 && counterEl) {
-              counterEl.textContent = `${String(i + 1).padStart(2, '0')} / ${String(frames.length).padStart(2, '0')}`
+            if (peak > 0.92 && lastActive !== i) {
+              lastActive = i
+              if (counterEl) {
+                counterEl.textContent = `${String(i + 1).padStart(2, '0')} / ${String(frames.length).padStart(2, '0')}`
+              }
+              dots.forEach((d, di) => {
+                gsap.set(d, { opacity: di === i ? 1 : 0.28 })
+              })
             }
-            dots.forEach((d, di) => gsap.set(d, { opacity: di === i && peak > 0.9 ? 1 : 0.28 }))
           },
         })
       })
