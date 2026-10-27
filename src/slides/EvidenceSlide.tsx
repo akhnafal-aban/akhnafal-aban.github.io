@@ -3,11 +3,6 @@ import { Slide } from '../components/Slide'
 
 const rows = [
   {
-    label: 'Video demo',
-    value: 'PLACEHOLDER',
-    note: 'rekaman simulator asli berdurasi 15 sampai 30 detik akan dipasang di sini',
-  },
-  {
     label: 'TestFlight',
     value: 'N/A',
     note: 'prototipe pembelajaran, tidak didistribusikan',
