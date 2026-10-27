@@ -19,79 +19,102 @@ type Block = {
 
 const blocks: Block[] = [
   {
-    file: 'Screens/Main/Dashboard/DashboardView.swift · baris 23 sampai 55',
-    label: 'Tulang punggung dashboard: ScrollView berisi VStack',
-    text: 'Semua bagian dashboard tersusun dalam VStack vertikal dengan jarak antar blok 20 poin. Kartu total nilai memakai VStack kedua agar label dan angka rata kiri. Chart menggambar dua mark sekaligus: LineMark untuk garis dan AreaMark sebagai bayangan di bawahnya, keduanya membaca data dari array yang sama supaya posisinya selalu sinkron.',
+    file: 'App/AssetTrackerApp.swift · App/AppRootView.swift',
+    label: 'Aplikasi dimulai dari satu layar berisi empat tab',
+    text: 'AssetTrackerApp adalah pintu masuk aplikasi. Kerjanya hanya satu: menampilkan AppRootView sebagai layar pertama, sambil menyuntikkan AppSettings supaya pengaturan mata uang bisa dibaca dari layar mana pun. AppRootView berisi TabView dengan empat tab, dan setiap tab menunjuk satu view fitur. Pola ini membuat masing-masing fitur berdiri sendiri, ditambah atau diubah tanpa menyentuh fitur lain.',
     code: (
       <>
-        <span className={kw}>var</span> body: <span className={kw}>some</span> <span className={typ}>View</span> {'{'}
-        {'\n'}    <span className={typ}>NavigationStack</span> {'{'}
-        {'\n'}        <span className={typ}>ScrollView</span> {'{'}
-        {'\n'}            <span className={typ}>VStack</span>(spacing: <span className={str}>20</span>) {'{'}
-        {'\n'}                <span className={typ}>VStack</span>(alignment: .leading, spacing: <span className={str}>8</span>) {'{'}
-        {'\n'}                    <span className={typ}>Text</span>(<span className={str}>"Total Portfolio Value"</span>)
-        {'\n'}                    <span className={typ}>Text</span>(viewModel.totalValue, format: .currency(code: appSettings.selectedCurrency))
-        {'\n'}                {'}'}
-        {'\n'}                <span className={typ}>Chart</span> {'{'}
-        {'\n'}                    <span className={typ}>ForEach</span>(performanceData, id: \.month) {'{'} item <span className={kw}>in</span>
-        {'\n'}                        <span className={typ}>LineMark</span>(x: .value(<span className={str}>"Month"</span>, item.month), y: .value(<span className={str}>"Value"</span>, item.value))
-        {'\n'}                            .interpolationMethod(.catmullRom)
-        {'\n'}                        <span className={typ}>AreaMark</span>(x: .value(<span className={str}>"Month"</span>, item.month), y: .value(<span className={str}>"Value"</span>, item.value))
-        {'\n'}                    {'}'}
+        <span className={typ}>AssetTrackerApp.swift</span>
+        {'\n'}<span className={kw}>@main</span>
+        {'\n'}<span className={kw}>struct</span> <span className={typ}>AssetTrackerApp</span>: <span className={typ}>App</span> {'{'}
+        {'\n'}    <span className={kw}>var</span> body: <span className={kw}>some</span> <span className={typ}>Scene</span> {'{'}
+        {'\n'}        <span className={typ}>WindowGroup</span> {'{'}
+        {'\n'}            <span className={typ}>AppRootView</span>().environment(appSettings)
+        {'\n'}        {'}'}
+        {'\n'}    {'}'}
+        {'\n'}{'}'}
+        {'\n'}
+        {'\n'}<span className={typ}>AppRootView.swift</span>
+        {'\n'}    <span className={kw}>var</span> body: <span className={kw}>some</span> <span className={typ}>View</span> {'{'}
+        {'\n'}        <span className={typ}>TabView</span> {'{'}
+        {'\n'}            <span className={typ}>Tab</span>(<span className={str}>"Dashboard"</span>, systemImage: <span className={str}>"chart.pie.fill"</span>) {'{'} <span className={typ}>DashboardView</span>() {'}'}
+        {'\n'}            <span className={typ}>Tab</span>(<span className={str}>"Assets"</span>, systemImage: <span className={str}>"list.bullet.rectangle.portrait"</span>) {'{'} <span className={typ}>AssetView</span>() {'}'}
+        {'\n'}            <span className={typ}>Tab</span>(<span className={str}>"Settings"</span>, systemImage: <span className={str}>"gearshape"</span>) {'{'} <span className={typ}>SettingsView</span>() {'}'}
+        {'\n'}            <span className={typ}>Tab</span>(<span className={str}>"Bitcoin"</span>, systemImage: <span className={str}>"bitcoinsign.circle.fill"</span>) {'{'} <span className={typ}>CryptoDashboardView</span>() {'}'}
+        {'\n'}        {'}'}
+        {'\n'}    {'}'}
+      </>
+    ),
+  },
+  {
+    file: 'Screens/Main/Assets/AssetView.swift · AssetViewModel.swift',
+    label: 'MVVM dalam satu fitur: daftar aset',
+    text: 'AssetView tidak tahu cara mengambil data dari server. Kerjanya hanya menampilkan daftar, lalu saat layar muncul ia memanggil getAssets() lewat .task. Pekerjaan jaringan ada di AssetViewModel: kelas ini ditandai @Observable, memanggil Api.send, dan menyimpan hasilnya ke property assets. Begitu property itu berubah, SwiftUI otomatis menggambar ulang daftarnya. Di sinilah pemisahan MVVM terlihat: view mengurus tampilan, view model mengurus data, dan keduanya bicara lewat satu property.',
+    code: (
+      <>
+        <span className={typ}>AssetViewModel.swift</span>
+        {'\n'}<span className={kw}>@Observable</span>
+        {'\n'}<span className={kw}>final class</span> <span className={typ}>AssetViewModel</span> {'{'}
+        {'\n'}    <span className={kw}>var</span> assets: [<span className={typ}>Asset</span>] = []
+        {'\n'}
+        {'\n'}    <span className={kw}>func</span> getAssets() <span className={kw}>async</span> {'{'}
+        {'\n'}        <span className={kw}>do</span> {'{'}
+        {'\n'}            <span className={kw}>let</span> response = <span className={kw}>try await</span> <span className={typ}>Api</span>.send(
+        {'\n'}                endpoint: <span className={str}>"/assets"</span>,
+        {'\n'}                type: <span className={typ}>AssetResponse</span>.<span className={kw}>self</span>
+        {'\n'}            )
+        {'\n'}            assets = response.data
+        {'\n'}        {'}'} <span className={kw}>catch</span> {'{'}
+        {'\n'}            <span className={typ}>print</span>(error)
+        {'\n'}        {'}'}
+        {'\n'}    {'}'}
+        {'\n'}{'}'}
+        {'\n'}
+        {'\n'}<span className={typ}>AssetView.swift</span>
+        {'\n'}    <span className={kw}>@State private var</span> viewModel = <span className={typ}>AssetViewModel</span>()
+        {'\n'}    ...
+        {'\n'}        <span className={typ}>List</span>(filteredAssets) {'{'} asset <span className={kw}>in</span>
+        {'\n'}            <span className={typ}>NavigationLink</span>(value: asset) {'{'}
+        {'\n'}                <span className={typ}>AssetRowView</span>(asset: asset, categoryName: asset.category?.name)
+        {'\n'}            {'}'}
+        {'\n'}        {'}'}
+        {'\n'}        .task {'{'}
+        {'\n'}            <span className={kw}>await</span> viewModel.getAssets()
+        {'\n'}        {'}'}
+      </>
+    ),
+  },
+  {
+    file: 'Screens/Main/Dashboard/DashboardView.swift · Screens/Components/AssetRowView.swift',
+    label: 'Susunan layar: ScrollView berisi VStack, dan Spacer untuk dua sisi',
+    text: 'Layar yang isinya panjang ditumpuk dalam ScrollView yang berisi satu VStack, jadi urutan blok di kode sama persis dengan urutan di layar, dan jarak antar blok diatur satu nilai spacing. Untuk satu baris yang membutuhkan dua ujung, seperti daftar aset dengan nama di kiri dan nilai di kanan, Spacer mengisi ruang kosong di tengahnya dan mendorong blok kanan sampai ke ujung.',
+    code: (
+      <>
+        <span className={typ}>DashboardView.swift</span>
+        {'\n'}    <span className={kw}>var</span> body: <span className={kw}>some</span> <span className={typ}>View</span> {'{'}
+        {'\n'}        <span className={typ}>NavigationStack</span> {'{'}
+        {'\n'}            <span className={typ}>ScrollView</span> {'{'}
+        {'\n'}                <span className={typ}>VStack</span>(spacing: <span className={str}>20</span>) {'{'}
+        {'\n'}                    <span className={cm}>{'// kartu total nilai'}</span>
+        {'\n'}                    <span className={cm}>{'// chart performance'}</span>
+        {'\n'}                    <span className={cm}>{'// alokasi aset, quick stats, aset terbaru'}</span>
         {'\n'}                {'}'}
         {'\n'}            {'}'}
         {'\n'}        {'}'}
         {'\n'}    {'}'}
-        {'\n'}{'}'}
-      </>
-    ),
-  },
-  {
-    file: 'Screens/Components/AssetRowView.swift · baris 9 sampai 44',
-    label: 'Pola baris daftar: Spacer memisahkan dua sisi',
-    text: 'Setiap baris adalah satu HStack: ikon kategori di kiri, lalu VStack untuk nama dan kategori, lalu Spacer yang mendorong blok kanan ke ujung. Nilai dan perubahannya disimpan di VStack rata kanan. Warna hijau atau merah tidak ditulis manual, melainkan ditentukan oleh property isProfitable, jadi warna selalu mengikuti data.',
-    code: (
-      <>
-        <span className={typ}>HStack</span>(spacing: <span className={str}>12</span>) {'{'}
-        {'\n'}    <span className={typ}>Circle</span>()
-        {'\n'}        .fill(<span className={typ}>Color</span>.accentColor.opacity(<span className={str}>0.1</span>))
-        {'\n'}        .frame(width: <span className={str}>40</span>, height: <span className={str}>40</span>)
-        {'\n'}    <span className={typ}>VStack</span>(alignment: .leading, spacing: <span className={str}>4</span>) {'{'}
-        {'\n'}        <span className={typ}>Text</span>(asset.name)
-        {'\n'}        <span className={typ}>Text</span>(categoryName ?? <span className={str}>"Unknown"</span>)
+        {'\n'}
+        {'\n'}<span className={typ}>AssetRowView.swift</span>
+        {'\n'}    <span className={typ}>HStack</span>(spacing: <span className={str}>12</span>) {'{'}
+        {'\n'}        <span className={typ}>VStack</span>(alignment: .leading, spacing: <span className={str}>4</span>) {'{'}
+        {'\n'}            <span className={typ}>Text</span>(asset.name)
+        {'\n'}            <span className={typ}>Text</span>(categoryName ?? <span className={str}>"Unknown"</span>)
+        {'\n'}        {'}'}
+        {'\n'}        <span className={typ}>Spacer</span>()
+        {'\n'}        <span className={typ}>VStack</span>(alignment: .trailing, spacing: <span className={str}>4</span>) {'{'}
+        {'\n'}            <span className={typ}>Text</span>(asset.currentValue, format: .currency(code: appSettings.selectedCurrency))
+        {'\n'}            <span className={cm}>{'// perubahan nilai, hijau atau merah'}</span>
+        {'\n'}        {'}'}
         {'\n'}    {'}'}
-        {'\n'}    <span className={typ}>Spacer</span>()
-        {'\n'}    <span className={typ}>VStack</span>(alignment: .trailing, spacing: <span className={str}>4</span>) {'{'}
-        {'\n'}        <span className={typ}>Text</span>(asset.currentValue, format: .currency(code: appSettings.selectedCurrency))
-        {'\n'}        <span className={typ}>Text</span>(asset.valueChange, format: .currency(code: <span className={str}>"IDR"</span>).sign(strategy: .always()))
-        {'\n'}            .foregroundStyle(asset.isProfitable ? .green : .red)
-        {'\n'}    {'}'}
-        {'\n'}{'}'}
-      </>
-    ),
-  },
-  {
-    file: 'Screens/Main/Toolbar/AddAssetView.swift · baris 18 sampai 68',
-    label: 'Form dan validasi yang dijamin oleh disabled',
-    text: 'Form memberi dua bagian berlabel tanpa perlu membuat container manual. Input harga memakai TextField versi value dengan format currency, bukan string, sehingga nilainya selalu Double. Validasi sederhana: tombol Save hanya bisa ditekan setelah nama dan harga pembelian terisi, cukup lewat satu baris disabled dengan dua kondisi.',
-    code: (
-      <>
-        <span className={typ}>Form</span> {'{'}
-        {'\n'}    <span className={typ}>Section</span>(<span className={str}>"Basic Information"</span>) {'{'}
-        {'\n'}        <span className={typ}>TextField</span>(<span className={str}>"Asset Name"</span>, text: $name)
-        {'\n'}        <span className={typ}>Picker</span>(<span className={str}>"Category"</span>, selection: $selectedCategoryId) {'{'} <span className={cm}>/* kategori */</span> {'}'}
-        {'\n'}    {'}'}
-        {'\n'}    <span className={typ}>Section</span>(<span className={str}>"Financial Details"</span>) {'{'}
-        {'\n'}        <span className={typ}>TextField</span>(<span className={str}>"Purchase Price"</span>, value: $purchasePrice, format: .currency(code: <span className={str}>"IDR"</span>))
-        {'\n'}        <span className={typ}>DatePicker</span>(<span className={str}>"Purchase Date"</span>, selection: $purchaseDate, displayedComponents: .date)
-        {'\n'}    {'}'}
-        {'\n'}{'}'}
-        {'\n'}.toolbar {'{'}
-        {'\n'}    <span className={typ}>ToolbarItem</span>(placement: .confirmationAction) {'{'}
-        {'\n'}        <span className={typ}>Button</span>(<span className={str}>"Save"</span>) {'{'} <span className={typ}>Task</span> {'{'} <span className={kw}>await</span> viewModel.addAsset(...) {'}'} {'}'}
-        {'\n'}            .disabled(name.isEmpty || purchasePrice == <span className={kw}>nil</span>)
-        {'\n'}    {'}'}
-        {'\n'}{'}'}
       </>
     ),
   },
@@ -136,7 +159,7 @@ export function UiCodeSlide({ id }: { id?: string }) {
       <div id="uicode-intro" className="flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
         <div className="mx-auto w-full text-center">
           <h2 className="m-0 mb-2 text-[clamp(1.8rem,3.6vw,2.9rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-            Kode UI-nya sendiri, dengan komposisi SwiftUI yang sederhana.
+            Cara kode UI aplikasi ini tersusun.
           </h2>
           <p className="m-0 font-mono text-[12px] text-ink-3">
             tiga blok kode, masing-masing muncul bersama penjelasannya seiring scroll
