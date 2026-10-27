@@ -9,12 +9,9 @@ import { UIGallerySlide } from './slides/UIGallerySlide'
 import { TantanganSlide } from './slides/TantanganSlide'
 import { HasilSlide } from './slides/HasilSlide'
 import { EvidenceSlide } from './slides/EvidenceSlide'
-import { ProgressRail } from './components/Glass'
-
 export default function App() {
   return (
     <main>
-      <ProgressRail />
       <IntroSlide id="intro" />
       <IndexSlide id="index" />
       <ProjectCoverSlide id="cover-asset-tracker" />
