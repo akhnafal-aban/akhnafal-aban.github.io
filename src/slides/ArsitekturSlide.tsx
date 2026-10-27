@@ -1,111 +1,124 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { Slide } from '../components/Slide'
-import { Mermaid } from '../components/Mermaid'
 
-const flow = `flowchart LR
-  subgraph Screen[" "]
-    direction TB
-    V1["DashboardView"] --- VM1["DashboardViewModel"]
-    V2["AssetView"] --- VM2["AssetViewModel"]
-    V3["AddAssetView"] --- VM3["AddAssetViewModel"]
-    V4["CryptoDashboardView"] --- VM4["CryptoDashboardViewModel"]
-  end
+const steps = [
+  {
+    no: '01',
+    title: 'View',
+    note: 'SwiftUI menampilkan data dan menangkap aksi pengguna',
+  },
+  {
+    no: '02',
+    title: 'View model',
+    note: '@Observable, memanggil Api dan menyimpan state layar',
+  },
+  {
+    no: '03',
+    title: 'Api',
+    note: 'Satu lapisan networking, dipakai semua layar',
+  },
+  {
+    no: '04',
+    title: 'Server Go',
+    note: 'Backend di mesin lokal yang sama, merespons JSON',
+  },
+]
 
-  VM1 --> A
-  VM2 --> A
-  VM3 --> A
-  VM4 --> A
+const principles = [
+  {
+    title: 'Satu jalur masuk',
+    note: 'Hanya Api.swift yang menyentuh URLSession. Layar mana pun kirim dan terima data lewat pintu yang sama.',
+  },
+  {
+    title: 'View tidak tahu detail jaringan',
+    note: 'View hanya minta ke view model. View model hanya minta ke Api. URL, header, dan method disembunyikan di satu tempat.',
+  },
+  {
+    title: 'Data balik lewat model',
+    note: 'JSON dari server diterjemahkan menjadi struct Swift sebelum sampai di view model. View menerima data yang siap ditampilkan.',
+  },
+]
 
-  A["Api.swift<br/>Core/Network"] -->|"URLSession async"| Srv["Backend Go<br/>:8080"]
-  A -->|"JSON snake_case balik"| M["Model · Decodable<br/>Core/Model"]
-  M --> VM1
-  M --> VM2
-  M --> VM3
-  M --> VM4
-  W["BinanceWebSocketService<br/>Core/Services"] -.-> V4
-  W -.->|"stream harga BTC"| V4`
-
-const tree = `Asset Tracker/
-├─ App/
-│   ├─ AppConfig.swift
-│   └─ AssetTrackerApp.swift
-├─ Core/
-│   ├─ Model/
-│   │   ├─ Asset.swift
-│   │   ├─ AssetCategory.swift
-│   │   ├─ TradePrice.swift
-│   │   ├─ User.swift
-│   │   └─ AppSettings.swift
-│   ├─ Network/
-│   │   └─ Api.swift
-│   └─ Services/
-│       └─ BinanceWebSocketService.swift
-└─ Screens/
-    ├─ Root/
-    │   └─ AppRootView.swift
-    ├─ Main/
-    │   ├─ Dashboard/
-    │   │   ├─ DashboardView.swift
-    │   │   └─ DashboardViewModel.swift
-    │   ├─ Assets/
-    │   │   ├─ AssetView.swift
-    │   │   ├─ AssetViewModel.swift
-    │   │   ├─ AssetDetailView.swift
-    │   │   └─ AssetDetailViewModel.swift
-    │   ├─ Crypto/
-    │   │   ├─ CryptoDashboardView.swift
-    │   │   └─ CryptoDashboardViewModel.swift
-    │   └─ Settings/
-    │       └─ SettingsView.swift
-    ├─ Toolbar/
-    │   ├─ AddAssetView.swift
-    │   └─ AddAssetViewModel.swift
-    └─ Components/
-        ├─ AssetRowView.swift
-        └─ StatCardView.swift`
+const folders = [
+  { lvl: 0, name: 'App/', note: 'entry point + config' },
+  { lvl: 0, name: 'Core/', note: 'tidak kenal UI' },
+  { lvl: 1, name: 'Model/', note: 'struct hasil decode' },
+  { lvl: 1, name: 'Network/', note: 'Api.swift' },
+  { lvl: 1, name: 'Services/', note: 'WebSocket Binance' },
+  { lvl: 0, name: 'Screens/', note: 'semua UI' },
+  { lvl: 1, name: 'Root/, Main/, Toolbar/, Components/', note: 'pasangan view + view model per fitur' },
+]
 
 export function ArsitekturSlide({ id }: { id?: string }) {
   const reduce = useReducedMotion()
-  const reveal = {
-    hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+  const col = {
+    hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const } },
   }
 
   return (
     <Slide id={id}>
-      <h2 className="m-0 mb-2 text-center text-[clamp(1.5rem,3vw,2.2rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
+      <h2 className="m-0 mb-8 text-center text-[clamp(1.5rem,3vw,2.2rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
         Aplikasi ini memakai pola MVVM.
       </h2>
-      <p className="m-0 mb-6 mx-auto max-w-[44rem] text-center text-[14px] leading-[1.5] text-ink-2 md:text-[15px]">
-        Setiap layar memiliki pasangan view dan view model. View model memanggil satu lapisan Api, dan hasilnya kembali sebagai model yang sudah terdecode, sehingga UI tidak menyentuh URLSession secara langsung.
-      </p>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-start">
         <motion.div
-          variants={reveal}
+          variants={col}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="rounded-2xl border border-ink/10 bg-panel p-4 md:p-6"
         >
-          <Mermaid chart={flow} />
-          <p className="m-0 mt-3 font-mono text-[11px] text-ink-3">
-            Empat pasangan view dan view model memanggil Api lewat URLSession; data balik mengalir lewat model.
-          </p>
+          <p className="m-0 mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Aliran data</p>
+          <ol className="m-0 list-none p-0">
+            {steps.map((s) => (
+              <li key={s.no} className="flex gap-3 border-t border-ink/10 py-3">
+                <span className="font-mono text-[12px] text-ios-blue">{s.no}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="m-0 text-[14px] font-medium text-ink">{s.title}</p>
+                  <p className="m-0 mt-1 text-[12px] leading-[1.45] text-ink-3">{s.note}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </motion.div>
 
         <motion.div
-          variants={reveal}
+          variants={col}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <p className="m-0 mb-3 font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">
-            Struktur folder
-          </p>
-          <pre className="m-0 overflow-x-auto rounded-2xl border border-ink/10 bg-panel p-4 font-mono text-[11px] leading-[1.5] text-ink-2 md:text-[11.5px]">
-            {tree}
-          </pre>
+          <p className="m-0 mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Tiga hal yang dipertahankan</p>
+          <div className="flex flex-col gap-5">
+            {principles.map((p) => (
+              <div key={p.title} className="border-l-2 border-ios-blue/40 pl-4">
+                <p className="m-0 text-[14px] font-medium text-ink">{p.title}</p>
+                <p className="m-0 mt-1 text-[12.5px] leading-[1.55] text-ink-2">{p.note}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          variants={col}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <p className="m-0 mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Struktur folder</p>
+          <ul className="m-0 list-none p-0">
+            {folders.map((f) => (
+              <li
+                key={f.name}
+                className="flex items-baseline justify-between gap-3 border-t border-ink/10 py-2.5"
+                style={{ paddingLeft: f.lvl * 18 }}
+              >
+                <span className="font-mono text-[12.5px] text-ink">{f.name}</span>
+                <span className="font-mono text-[11px] text-ink-3 text-right">{f.note}</span>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </Slide>
