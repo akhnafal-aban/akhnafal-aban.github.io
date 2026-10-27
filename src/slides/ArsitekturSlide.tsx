@@ -35,11 +35,12 @@ export function ArsitekturSlide({ id }: { id?: string }) {
   return (
     <Slide id={id}>
       <h2 className="m-0 mb-2 text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-        MVVM. Tiga huruf, satu arah aliran data.
+        Aplikasi ini memakai pola MVVM.
       </h2>
       <p className="m-0 mb-10 max-w-[40rem] text-[15px] leading-[1.55] text-ink-2 md:text-[17px]">
-        View memanggil ViewModel, ViewModel memanggil satu lapisan Api, dan data balik lewat model
-        yang terdecode. UI tidak pernah menyentuh URLSession langsung.
+        Setiap layar memanggil view model untuk mengambil data, view model meneruskan ke satu lapisan
+        Api yang menjadi satu-satunya tempat yang menyentuh URLSession, lalu hasilnya kembali sebagai
+        model yang sudah terdecode. UI tidak perlu tahu detail jaringannya.
       </p>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

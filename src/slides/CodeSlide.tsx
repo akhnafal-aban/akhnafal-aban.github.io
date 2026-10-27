@@ -14,7 +14,7 @@ const block = [
   },
   {
     label: '2 · Api.request',
-    text: 'Satu fungsi untuk semua request. BaseURL, header Content-Type, dan method selalu seragam lewat AppConfig. URLSession.shared.data(for:) versi async dan await menghapus closure bersarang; error mengalir lewat throws.',
+    text: 'Semua request lewat satu fungsi ini, jadi base URL, header Content-Type, dan method selalu seragam. URLSession.shared.data(for:) versi async dan await juga menghapus closure bersarang, dengan error yang mengalir lewat throws.',
   },
   {
     label: '3 · Decode',
@@ -22,7 +22,7 @@ const block = [
   },
   {
     label: '4 · Encode',
-    text: 'Arah sebaliknya saat mengirim. ConvertToSnakeCase membuat struct Swift masuk ke format yang disetujui server. Dua strategi ini simetris, satu konvensi bolak-balik.',
+    text: 'Saat mengirim data arahnya terbalik: encoder memakai convertToSnakeCase supaya struct Swift sampai ke server dalam format yang disepakati. Kedua strategi ini simetris, jadi satu konvensi dipertahankan bolak-balik.',
   },
 ]
 
@@ -40,10 +40,10 @@ export function CodeSlide({ id }: { id?: string }) {
       <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)]">
         <div>
           <h2 className="m-0 mb-1 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f2f2f2]">
-            Api.swift, ditulis manual.
+            Api.swift: lapisan jaringan yang saya tulis sendiri, tanpa library.
           </h2>
           <p className="m-0 mb-8 font-mono text-[12px] text-[#8e8e93]">
-            Satu pintu networking, tanpa library. Empat blok di bawah.
+            Empat blok utamanya, beserta penjelasan singkat di sebelah kanan.
           </p>
 
           <pre className="m-0 overflow-x-auto rounded-2xl border border-white/10 bg-[#161616] p-6 font-mono text-[12.5px] leading-[1.7] md:text-[13.5px]">

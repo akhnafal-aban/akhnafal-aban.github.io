@@ -27,7 +27,7 @@ export function IntroSlide({ id }: { id?: string }) {
         </h1>
 
         <motion.p variants={line} className="mt-7 max-w-[32ch] text-[clamp(1.15rem,2.4vw,1.6rem)] leading-snug text-ink-2">
-          Software engineer iOS dan backend.
+          Software engineer dengan fokus di iOS dan backend.
         </motion.p>
 
         <motion.p variants={line} className="mt-2 font-mono text-[13px] text-ink-3">
@@ -41,7 +41,7 @@ export function IntroSlide({ id }: { id?: string }) {
         transition={{ delay: 1, duration: 0.8 }}
         className="absolute bottom-8 left-6 font-mono text-[12px] text-ink-3 sm:left-12 lg:left-20"
       >
-        3 proyek · 3 sampai 5 menit · scroll untuk mulai
+        3 proyek · sekitar 3 sampai 5 menit · scroll untuk mulai
       </motion.div>
     </Slide>
   )

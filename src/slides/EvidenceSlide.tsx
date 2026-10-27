@@ -26,7 +26,7 @@ export function EvidenceSlide({ id }: { id?: string }) {
   return (
     <Slide id={id} last>
       <h2 className="m-0 mb-10 max-w-[24rem] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
-        Bukti pendukung.
+        Bukti pendukung untuk proyek ini.
       </h2>
 
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">

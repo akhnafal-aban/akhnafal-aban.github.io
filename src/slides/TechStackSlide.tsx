@@ -30,7 +30,7 @@ export function TechStackSlide({ id }: { id?: string }) {
   return (
     <Slide id={id}>
       <h2 className="m-0 mb-8 text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-        Empat pilihan, masing-masing ada alasannya.
+        Empat framework utama dalam proyek ini, beserta alasan pemilihannya.
       </h2>
       <div className="flex flex-col">
         {stack.map((s) => (
@@ -48,7 +48,7 @@ export function TechStackSlide({ id }: { id?: string }) {
         ))}
       </div>
       <p className="mt-6 font-mono text-[12px] text-ink-3">
-        Catatan: prototipe ini sengaja minim dependensi. Empat library di atas sudah cukup.
+        Saya sengaja tidak menambah dependensi lain untuk prototipe ini.
       </p>
     </Slide>
   )

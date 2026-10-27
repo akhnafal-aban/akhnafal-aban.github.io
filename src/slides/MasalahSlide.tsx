@@ -2,9 +2,9 @@ import { motion, useReducedMotion } from 'motion/react'
 import { Slide, EASE } from '../components/Slide'
 
 const lines = [
-  'Kebanyakan aplikasi bisnis menyimpan datanya di server. Jembatan dari server itu ke aplikasi iOS adalah API.',
-  'Saya biasa di sisi yang membuat API. Kekosongan saya ada di seberangnya: mengambil data lewat API, memakainya, dan menampilkannya di layar.',
-  'Asset Tracker mengisi kekosongan itu. Backend Go di mesin lokal, dikonsumsi lewat URLSession, dirender di SwiftUI. Satu loop penuh dari database sampai layar.',
+  'Hampir semua aplikasi bisnis menyimpan datanya di server, dan satu-satunya jembatan dari server itu ke aplikasi iOS adalah API. Karena itu, kemampuan membaca dan mengirim data lewat API menjadi hal dasar untuk developer iOS.',
+  'Latar belakang saya di backend, jadi saya lebih sering berada di sisi yang membuat API. Asset Tracker saya bangun untuk menutup kekosongan di sisi sebaliknya, tempat setiap request harus benar-benar diuji sebelum dipercaya.',
+  'Aplikasinya mengambil data lewat URLSession dan menampilkannya di SwiftUI, sedangkan backend Go berjalan di mesin lokal yang sama. Hasilnya satu loop penuh yang saya jalani sendiri, dari database sampai layar.',
 ]
 
 export function MasalahSlide({ id }: { id?: string }) {
@@ -27,9 +27,7 @@ export function MasalahSlide({ id }: { id?: string }) {
           01 · Masalah
         </p>
         <h2 className="m-0 mb-10 max-w-[42rem] text-[clamp(1.7rem,3.4vw,2.7rem)] font-semibold leading-[1.15] tracking-[-0.03em] [text-wrap:balance]">
-          Saya biasa membuat API.
-          <br />
-          Sekarang konsumsinya dari iOS.
+          Saya terbiasa membuat API, dan belum pernah memakai API itu dari aplikasi iOS.
         </h2>
 
         <motion.div

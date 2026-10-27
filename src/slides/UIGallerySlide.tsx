@@ -14,12 +14,12 @@ import ui6 from '../../content/personal/asset-tracker/media/ui-06-bitcoin.png'
 gsap.registerPlugin(ScrollTrigger)
 
 const shots = [
-  { src: ui1, alt: 'Dashboard Asset Tracker', caption: 'Dashboard · total dihitung live dari GET /assets' },
-  { src: ui2, alt: 'Daftar aset', caption: 'Assets · tujuh aset dari API, dengan pencarian' },
-  { src: ui3, alt: 'Detail aset MacBook Pro M4', caption: 'Detail · harga beli, nilai kini, total return' },
-  { src: ui4, alt: 'Form tambah aset', caption: 'Tambah · Save aktif setelah kolom wajib terisi' },
-  { src: ui5, alt: 'Halaman settings', caption: 'Settings · pilihan mata uang dan tampilan' },
-  { src: ui6, alt: 'Tab harga Bitcoin', caption: 'Bitcoin · feed WebSocket, belum menerima tick' },
+  { src: ui1, alt: 'Dashboard Asset Tracker', caption: 'Dashboard, total nilai dihitung langsung dari GET /assets' },
+  { src: ui2, alt: 'Daftar aset', caption: 'Daftar aset dari API, lengkap dengan pencarian' },
+  { src: ui3, alt: 'Detail aset MacBook Pro M4', caption: 'Detail aset: harga beli, nilai saat ini, dan total return' },
+  { src: ui4, alt: 'Form tambah aset', caption: 'Form tambah aset; tombol Save aktif setelah kolom wajib terisi' },
+  { src: ui5, alt: 'Halaman settings', caption: 'Halaman pengaturan, berisi pilihan mata uang dan tampilan' },
+  { src: ui6, alt: 'Tab harga Bitcoin', caption: 'Halaman harga Bitcoin; feed WebSocket belum menerima data' },
 ]
 
 export function UIGallerySlide({ id }: { id?: string }) {
@@ -55,10 +55,10 @@ export function UIGallerySlide({ id }: { id?: string }) {
           <div className="mb-6 mt-10 w-full px-6 sm:px-12 lg:px-20">
             <div className="mb-8 flex items-end justify-between gap-6">
               <h2 className="m-0 max-w-[22rem] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
-                Enam layar, satu aplikasi yang sama.
+                Enam layar dari aplikasi yang sama.
               </h2>
               <p className="m-0 hidden font-mono text-[12px] text-ink-3 md:block">
-                geser ke samping mengikuti scroll
+                layar bergeser ke samping mengikuti scroll
               </p>
             </div>
 
