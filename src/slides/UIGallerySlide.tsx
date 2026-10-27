@@ -28,6 +28,7 @@ export function UIGallerySlide({ id }: { id?: string }) {
   const wrap = useRef<HTMLDivElement>(null)
   const track = useRef<HTMLDivElement>(null)
   const counter = useRef<HTMLSpanElement>(null)
+  const bar = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export function UIGallerySlide({ id }: { id?: string }) {
       const frames = gsap.utils.toArray<HTMLElement>('.g-frame')
       const dots = gsap.utils.toArray<HTMLElement>('.g-dot')
       const counterEl = counter.current
+      const barEl = bar.current
       const dist = () => Math.max(trackEl.scrollWidth - window.innerWidth, 0)
       let lastActive = -1
 
@@ -50,10 +52,24 @@ export function UIGallerySlide({ id }: { id?: string }) {
           pin: true,
           scrub: 1,
           invalidateOnRefresh: true,
+          onUpdate(self) {
+            const p = Math.max(0, Math.min(1, self.progress))
+            if (barEl) gsap.set(barEl, { scaleX: p })
+            const idx = Math.min(frames.length - 1, Math.round(p * (frames.length - 1)))
+            if (idx !== lastActive) {
+              lastActive = idx
+              if (counterEl) {
+                counterEl.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(frames.length).padStart(2, '0')}`
+              }
+              dots.forEach((d, di) => {
+                gsap.set(d, { opacity: di === idx ? 1 : 0.28 })
+              })
+            }
+          },
         },
       })
 
-      frames.forEach((el, i) => {
+      frames.forEach((el) => {
         ScrollTrigger.create({
           trigger: el,
           containerAnimation: tween,
@@ -64,15 +80,6 @@ export function UIGallerySlide({ id }: { id?: string }) {
             const p = Math.max(0, Math.min(1, self.progress))
             const peak = Math.sin(p * Math.PI)
             gsap.set(el, { scale: 0.84 + 0.16 * peak, opacity: 0.38 + 0.62 * peak })
-            if (peak > 0.92 && lastActive !== i) {
-              lastActive = i
-              if (counterEl) {
-                counterEl.textContent = `${String(i + 1).padStart(2, '0')} / ${String(frames.length).padStart(2, '0')}`
-              }
-              dots.forEach((d, di) => {
-                gsap.set(d, { opacity: di === i ? 1 : 0.28 })
-              })
-            }
           },
         })
       })
@@ -109,21 +116,28 @@ export function UIGallerySlide({ id }: { id?: string }) {
             </div>
           )}
         </div>
-      </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-3">
-        {reduce ? (
-          <span className="font-mono text-[12px] text-ink-3">01 / 06</span>
-        ) : (
-          <>
-            <span ref={counter} className="font-mono text-[12px] text-ink-3">01 / 06</span>
-            <div className="flex gap-2">
-              {shots.map((s) => (
-                <span key={s.caption} className="g-dot h-[5px] w-[5px] rounded-full bg-ink" />
-              ))}
-            </div>
-          </>
-        )}
+        <div className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-3">
+          {reduce ? (
+            <span className="font-mono text-[12px] text-ink-3">01 / 06</span>
+          ) : (
+            <>
+              <span ref={counter} className="font-mono text-[12px] text-ink-3">01 / 06</span>
+              <div className="flex gap-2">
+                {shots.map((s) => (
+                  <span key={s.caption} className="g-dot h-[5px] w-[5px] rounded-full bg-ink" />
+                ))}
+              </div>
+              <div className="h-[3px] w-56 overflow-hidden rounded-full bg-ink/10">
+                <div
+                  ref={bar}
+                  className="h-full w-full origin-left rounded-full bg-ios-blue"
+                  style={{ transform: 'scaleX(0)' }}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </section>
   )

@@ -59,7 +59,7 @@ export function ArsitekturSlide({ id }: { id?: string }) {
   return (
     <Slide id={id}>
       <h2 className="m-0 mb-8 text-center text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
-        Aplikasi ini memakai pola MVVM.
+        Saya menggunakan Design Pattern MVVM.
       </h2>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
