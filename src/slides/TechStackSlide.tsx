@@ -4,7 +4,7 @@ import { Slide } from '../components/Slide'
 const stack = [
   {
     name: 'SwiftUI',
-    why: 'UI deklaratif dengan state terikat langsung ke data. Iterasi cepat untuk project belajar.',
+    why: 'UI deklaratif dengan state terikat langsung ke data. Framework native terbaru dari apple setelah UIKit',
   },
   {
     name: 'Foundation · URLSession + Codable',
@@ -12,11 +12,11 @@ const stack = [
   },
   {
     name: 'Swift Charts',
-    why: 'Grafik line dan donut di dashboard. Framework bawaan Apple, satu dependensi yang ringan.',
+    why: 'Grafik line dan donut di dashboard. Framework bawaan Apple untuk menampilkan charts di dashboard app ini',
   },
   {
     name: 'Observation · @Observable',
-    why: 'State view model tanpa boilerplate ObservableObject dan @Published.',
+    why: 'State view model tanpa boilerplate ObservableObject dan @Published. Mendukung design pattern MVVM',
   },
 ]
 
@@ -47,9 +47,6 @@ export function TechStackSlide({ id }: { id?: string }) {
           </motion.div>
         ))}
       </div>
-      <p className="mt-6 text-center font-mono text-[12px] text-ink-3">
-        Saya sengaja tidak menambah dependensi lain untuk prototipe ini.
-      </p>
     </Slide>
   )
 }

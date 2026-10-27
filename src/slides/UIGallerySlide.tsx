@@ -28,7 +28,6 @@ export function UIGallerySlide({ id }: { id?: string }) {
   const wrap = useRef<HTMLDivElement>(null)
   const track = useRef<HTMLDivElement>(null)
   const counter = useRef<HTMLSpanElement>(null)
-  const bar = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export function UIGallerySlide({ id }: { id?: string }) {
       const frames = gsap.utils.toArray<HTMLElement>('.g-frame')
       const dots = gsap.utils.toArray<HTMLElement>('.g-dot')
       const counterEl = counter.current
-      const barEl = bar.current
       const dist = () => Math.max(trackEl.scrollWidth - window.innerWidth, 0)
       let lastActive = -1
 
@@ -54,7 +52,6 @@ export function UIGallerySlide({ id }: { id?: string }) {
           invalidateOnRefresh: true,
           onUpdate(self) {
             const p = Math.max(0, Math.min(1, self.progress))
-            if (barEl) gsap.set(barEl, { scaleX: p })
             const idx = Math.min(frames.length - 1, Math.round(p * (frames.length - 1)))
             if (idx !== lastActive) {
               lastActive = idx
@@ -127,13 +124,6 @@ export function UIGallerySlide({ id }: { id?: string }) {
                 {shots.map((s) => (
                   <span key={s.caption} className="g-dot h-[5px] w-[5px] rounded-full bg-ink" />
                 ))}
-              </div>
-              <div className="h-[3px] w-56 overflow-hidden rounded-full bg-ink/10">
-                <div
-                  ref={bar}
-                  className="h-full w-full origin-left rounded-full bg-ios-blue"
-                  style={{ transform: 'scaleX(0)' }}
-                />
               </div>
             </>
           )}
