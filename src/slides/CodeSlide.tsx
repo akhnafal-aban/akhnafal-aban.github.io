@@ -1,9 +1,4 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from 'motion/react'
-
-gsap.registerPlugin(ScrollTrigger)
+import { motion, useReducedMotion } from 'motion/react'
 
 const kw = 'text-[#ff7ab2]'
 const str = 'text-[#fc6a5d]'
@@ -111,74 +106,58 @@ const blocks: Block[] = [
   },
 ]
 
-export function CodeSlide({ id }: { id?: string }) {
-  const wrap = useRef<HTMLDivElement>(null)
+function CodeCard({ b, ci }: { b: Block; ci: number }) {
   const reduce = useReducedMotion()
-
-  useEffect(() => {
-    if (reduce || !wrap.current) return
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>('.code-card')
-      cards.forEach((card, i) => {
-        if (i === cards.length - 1) return
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top top',
-          endTrigger: cards[cards.length - 1],
-          end: 'top top',
-          pin: true,
-          pinSpacing: false,
-        })
-        gsap.to(card, {
-          scale: 0.94,
-          opacity: 0.35,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: cards[i + 1],
-            start: 'top bottom',
-            end: 'top top',
-            scrub: true,
-          },
-        })
-      })
-    }, wrap)
-    return () => ctx.revert()
-  }, [reduce])
-
   return (
-    <section id={id} ref={wrap} className="relative snap-start bg-[#1e1e1e]">
-      <div id="code-intro" className="flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
-        <div className="mx-auto w-full text-center">
-          <h2 className="m-0 mb-2 text-[clamp(1.8rem,3.6vw,2.9rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f2f2f2]">
-            Api.swift: lapisan jaringan yang saya tulis sendiri, tanpa library.
-          </h2>
-          <p className="m-0 font-mono text-[12px] text-[#8e8e93]">
-            empat blok kode, masing-masing muncul bersama penjelasannya seiring scroll
-          </p>
-        </div>
+    <section className="relative min-h-[100dvh] w-full snap-start">
+      <div className="flex min-h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
+        <motion.div
+          initial={reduce ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.975 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="grid w-full grid-cols-1 gap-6 rounded-[26px] border border-white/10 bg-[#161616] p-6 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:gap-10 lg:p-10"
+        >
+          <div className="min-w-0">
+            <p className="m-0 mb-3 truncate font-mono text-[11px] text-[#7f8c98]">{b.file}</p>
+            <pre className="m-0 overflow-x-auto font-mono text-[12px] leading-[1.65] text-[#e6e6e6] md:text-[13px]">
+              <code>{b.code}</code>
+            </pre>
+          </div>
+          <div className="flex flex-col justify-center border-t border-white/10 pt-5 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <p className="m-0 mb-3 font-mono text-[12px] uppercase tracking-[0.12em] text-[#41a1c0]">
+              Blok {ci + 1} dari 4
+            </p>
+            <h3 className="m-0 mb-4 text-[clamp(1.1rem,1.8vw,1.4rem)] font-semibold leading-[1.25] text-[#f2f2f2]">
+              {b.label}
+            </h3>
+            <p className="m-0 text-[14.5px] leading-[1.65] text-[#b8b8bd]">{b.text}</p>
+          </div>
+        </motion.div>
       </div>
+    </section>
+  )
+}
 
-      {blocks.map((b, ci) => (
-        <div key={b.file} className="code-card sticky top-0 flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
-          <div className="grid w-full grid-cols-1 gap-6 rounded-[26px] border border-white/10 bg-[#161616] p-6 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:gap-10 lg:p-10">
-            <div className="min-w-0">
-              <p className="m-0 mb-3 truncate font-mono text-[11px] text-[#7f8c98]">{b.file}</p>
-              <pre className="m-0 overflow-x-auto font-mono text-[12px] leading-[1.65] text-[#e6e6e6] md:text-[13px]">
-                <code>{b.code}</code>
-              </pre>
-            </div>
-            <div className="flex flex-col justify-center border-t border-white/10 pt-5 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-              <p className="m-0 mb-3 font-mono text-[12px] uppercase tracking-[0.12em] text-[#41a1c0]">
-                Blok {ci + 1} dari 4
-              </p>
-              <h3 className="m-0 mb-4 text-[clamp(1.15rem,2vw,1.5rem)] font-semibold leading-[1.25] text-[#f2f2f2]">
-                {b.label}
-              </h3>
-              <p className="m-0 text-[14.5px] leading-[1.65] text-[#b8b8bd]">{b.text}</p>
-            </div>
+export function CodeSlide({ id }: { id?: string }) {
+  return (
+    <div id={id} className="relative bg-[#1e1e1e]">
+      <section className="relative min-h-[100dvh] w-full snap-start">
+        <div id="code-intro" className="flex min-h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
+          <div className="mx-auto w-full text-center">
+            <h2 className="m-0 mb-2 text-[clamp(1.8rem,3.6vw,2.9rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f2f2f2]">
+              Api.swift: lapisan jaringan yang saya tulis sendiri, tanpa library.
+            </h2>
+            <p className="m-0 font-mono text-[12px] text-[#8e8e93]">
+              empat blok kode, masing-masing satu slide, dijelaskan satu per satu
+            </p>
           </div>
         </div>
+      </section>
+
+      {blocks.map((b, ci) => (
+        <CodeCard key={b.file} b={b} ci={ci} />
       ))}
-    </section>
+    </div>
   )
 }
