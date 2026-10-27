@@ -17,8 +17,8 @@ export function IntroSlide({ id }: { id?: string }) {
 
   return (
     <Slide id={id}>
-      <motion.div variants={container} initial="hidden" animate="visible">
-        <h1 className="m-0 flex flex-wrap gap-x-[0.28em] text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-ink">
+      <motion.div variants={container} initial="hidden" animate="visible" className="text-center">
+        <h1 className="m-0 flex flex-wrap justify-center gap-x-[0.28em] text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-ink">
           {nameWords.map((w) => (
             <motion.span key={w} variants={line} className="inline-block">
               {w}
@@ -26,11 +26,11 @@ export function IntroSlide({ id }: { id?: string }) {
           ))}
         </h1>
 
-        <motion.p variants={line} className="mt-7 max-w-[32ch] text-[clamp(1.15rem,2.4vw,1.6rem)] leading-snug text-ink-2">
+        <motion.p variants={line} className="mx-auto mt-7 max-w-[32ch] text-[clamp(1.15rem,2.4vw,1.6rem)] leading-snug text-ink-2">
           Software engineer dengan fokus di iOS dan backend.
         </motion.p>
 
-        <motion.p variants={line} className="mt-2 font-mono text-[13px] text-ink-3">
+        <motion.p variants={line} className="mx-auto mt-2 font-mono text-[13px] text-ink-3">
           iOS Developer, Apple Developer Academy @ UC Jakarta
         </motion.p>
       </motion.div>
@@ -39,7 +39,7 @@ export function IntroSlide({ id }: { id?: string }) {
         initial={reduce ? { opacity: 1 } : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="absolute bottom-8 left-6 font-mono text-[12px] text-ink-3 sm:left-12 lg:left-20"
+        className="absolute inset-x-0 bottom-8 text-center font-mono text-[12px] text-ink-3"
       >
         3 proyek · sekitar 3 sampai 5 menit · scroll untuk mulai
       </motion.div>

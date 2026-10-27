@@ -67,8 +67,8 @@ export function TantanganSlide({ id }: { id?: string }) {
   return (
     <section id={id} ref={wrap} className="relative snap-start">
       <div className="flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
-        <div>
-          <h2 className="m-0 mb-8 max-w-[26rem] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+        <div className="mx-auto text-center">
+          <h2 className="m-0 mb-8 text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
             Berikut dua hal yang paling menantang di proyek ini.
           </h2>
           <p className="m-0 font-mono text-[12px] text-ink-3">kartu berikutnya muncul menimpa kartu ini seiring scroll</p>

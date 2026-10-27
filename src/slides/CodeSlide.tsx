@@ -148,7 +148,7 @@ export function CodeSlide({ id }: { id?: string }) {
   return (
     <section id={id} ref={wrap} className="relative snap-start bg-[#1e1e1e]">
       <div id="code-intro" className="flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
-        <div>
+        <div className="mx-auto w-full text-center">
           <h2 className="m-0 mb-2 text-[clamp(1.8rem,3.6vw,2.9rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f2f2f2]">
             Api.swift: lapisan jaringan yang saya tulis sendiri, tanpa library.
           </h2>

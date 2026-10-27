@@ -18,7 +18,8 @@ export function IndexSlide({ id }: { id?: string }) {
 
   return (
     <Slide id={id}>
-      <h2 className="m-0 mb-10 max-w-[14ch] text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+      <div className="flex w-full flex-col items-center">
+      <h2 className="m-0 mb-10 max-w-[20ch] text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
         Tiga proyek dibahas satu per satu dalam deck ini.
       </h2>
 
@@ -27,7 +28,7 @@ export function IndexSlide({ id }: { id?: string }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
-        className="m-0 flex list-none flex-col gap-1 p-0"
+        className="m-0 flex w-full max-w-2xl list-none flex-col gap-1 p-0"
       >
         {chapters.map((c) => (
           <motion.li
@@ -45,6 +46,7 @@ export function IndexSlide({ id }: { id?: string }) {
           </motion.li>
         ))}
       </motion.ol>
+      </div>
     </Slide>
   )
 }

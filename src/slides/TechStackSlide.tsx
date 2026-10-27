@@ -29,10 +29,10 @@ export function TechStackSlide({ id }: { id?: string }) {
 
   return (
     <Slide id={id}>
-      <h2 className="m-0 mb-8 text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
+      <h2 className="m-0 mb-8 text-center text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
         Empat framework utama dalam proyek ini, beserta alasan pemilihannya.
       </h2>
-      <div className="flex flex-col">
+      <div className="mx-auto flex w-full max-w-3xl flex-col">
         {stack.map((s) => (
           <motion.div
             key={s.name}
@@ -47,7 +47,7 @@ export function TechStackSlide({ id }: { id?: string }) {
           </motion.div>
         ))}
       </div>
-      <p className="mt-6 font-mono text-[12px] text-ink-3">
+      <p className="mt-6 text-center font-mono text-[12px] text-ink-3">
         Saya sengaja tidak menambah dependensi lain untuk prototipe ini.
       </p>
     </Slide>

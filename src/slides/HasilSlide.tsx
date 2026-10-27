@@ -25,11 +25,11 @@ export function HasilSlide({ id }: { id?: string }) {
 
   return (
     <Slide id={id}>
-      <h2 className="m-0 mb-10 max-w-[24rem] text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+      <h2 className="m-0 mb-10 text-center text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
         Hasil yang bisa dibuktikan, dan catatan untuk langkah selanjutnya.
       </h2>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+      <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-10 lg:grid-cols-2">
         <motion.div variants={col} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <p className="m-0 mb-5 font-mono text-[12px] uppercase tracking-[0.14em] text-ios-blue">
             Hasil · terverifikasi
