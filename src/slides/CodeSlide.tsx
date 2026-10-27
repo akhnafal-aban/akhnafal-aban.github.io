@@ -40,7 +40,11 @@ const blocks: Block[] = [
     text: 'Semua request lewat fungsi ini, jadi base URL, header Content-Type, dan method selalu seragam. URLSession.shared.data(for:) versi async dan await menghapus closure bersarang, dan error mengalir lewat throws ke pemanggilnya.',
     code: (
       <>
-        <span className={kw}>static func</span> <span className={pln}>request</span>(endpoint: <span className={typ}>String</span>, method: <span className={typ}>HTTPMethod</span>, body: <span className={typ}>Data?</span> = <span className={kw}>nil</span>) <span className={kw}>async throws</span> -&gt; <span className={typ}>Data</span>
+        <span className={kw}>static func</span> <span className={pln}>request</span>(
+        {'\n'}    endpoint: <span className={typ}>String</span>,
+        {'\n'}    method: <span className={typ}>HTTPMethod</span>,
+        {'\n'}    body: <span className={typ}>Data?</span> = <span className={kw}>nil</span>
+        {'\n'}) <span className={kw}>async throws</span> -&gt; <span className={typ}>Data</span>
         {'\n'}
         {'\n'}    <span className={kw}>var</span> request = <span className={typ}>URLRequest</span>(url: <span className={typ}>URL</span>(string: <span className={str}>"\(AppConfig.baseURL)\(endpoint)"</span>)!)
         {'\n'}    request.httpMethod = method.rawValue
@@ -95,7 +99,11 @@ const blocks: Block[] = [
         {'\n'}        encodedBody = <span className={kw}>try</span> encoder.encode(body)
         {'\n'}    {'}'} <span className={kw}>else</span> {'{'} encodedBody = <span className={kw}>nil</span> {'}'}
         {'\n'}
-        {'\n'}    <span className={kw}>let</span> data = <span className={kw}>try await</span> <span className={pln}>request</span>(endpoint: endpoint, method: method, body: encodedBody)
+        {'\n'}    <span className={kw}>let</span> data = <span className={kw}>try await</span> <span className={pln}>request</span>(
+        {'\n'}        endpoint: endpoint,
+        {'\n'}        method: method,
+        {'\n'}        body: encodedBody
+        {'\n'}    )
         {'\n'}    <span className={kw}>return try</span> <span className={typ}>JSONDecoder</span>().decode(<span className={typ}>T</span>.<span className={kw}>self</span>, from: data)
         {'\n'}{'}'}
       </>
@@ -152,10 +160,10 @@ export function CodeSlide({ id }: { id?: string }) {
 
       {blocks.map((b, ci) => (
         <div key={b.file} className="code-card sticky top-0 flex h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
-          <div className="grid w-full grid-cols-1 gap-6 rounded-[26px] border border-white/10 bg-[#161616] p-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10 lg:p-10">
+          <div className="grid w-full grid-cols-1 gap-6 rounded-[26px] border border-white/10 bg-[#161616] p-6 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:gap-10 lg:p-10">
             <div className="min-w-0">
               <p className="m-0 mb-3 truncate font-mono text-[11px] text-[#7f8c98]">{b.file}</p>
-              <pre className="m-0 overflow-x-auto font-mono text-[12.5px] leading-[1.65] text-[#e6e6e6] md:text-[13.5px]">
+              <pre className="m-0 overflow-x-auto font-mono text-[12px] leading-[1.65] text-[#e6e6e6] md:text-[13px]">
                 <code>{b.code}</code>
               </pre>
             </div>

@@ -38,7 +38,7 @@ export function ProjectCoverSlide({ id }: { id?: string }) {
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2 font-mono text-[12px] text-ink-3">
-            <span className="rounded-full bg-ink/[0.06] px-3 py-1">iOS · Personal</span>
+            <span className="rounded-full bg-ink/[0.06] px-3 py-1">iOSPersonal</span>
             <span className="rounded-full bg-ink/[0.06] px-3 py-1">Prototype</span>
             <span className="rounded-full bg-ink/[0.06] px-3 py-1">Peran: Solo</span>
           </div>
@@ -57,7 +57,7 @@ export function ProjectCoverSlide({ id }: { id?: string }) {
           <div className="w-[104px] shrink-0 md:absolute md:left-[198px] md:top-0 md:w-[160px] md:rotate-3 lg:left-[235px] lg:w-[185px]">
             <DeviceFrame src={assetsScreen} alt="Daftar aset Asset Tracker" />
           </div>
-          <div className="relative w-[112px] shrink-0 md:left-[6px] md:top-[115px] md:w-[195px] lg:left-[8px] lg:top-[130px] lg:w-[225px]">
+          <div className="relative w-[112px] shrink-0 md:left-[-140px] md:top-[115px] md:w-[195px] lg:top-[130px] lg:w-[225px]">
             <DeviceFrame src={dashScreen} alt="Dashboard Asset Tracker" />
           </div>
         </motion.div>
