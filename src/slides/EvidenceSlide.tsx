@@ -1,13 +1,14 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { lazy, Suspense, useRef } from 'react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
 import { Slide } from '../components/Slide'
-import { DeviceFrame } from '../components/DeviceFrame'
-import dashScreen from '../../content/personal/asset-tracker/media/ui-01-dashboard.png'
+
+const LazyTrailer = lazy(() => import('../components/TrailerPlayer'))
 
 const rows = [
   {
     label: 'Video demo',
-    value: 'PLACEHOLDER · 15 sampai 30 detik, loop dalam frame device',
-    note: 'rekaman simulator boleh',
+    value: 'Trailer interaktif, 30 detik, diputar di panel kiri',
+    note: 'diputar otomatis dan loop; rekaman simulator asli akan menggantikan trailer ini',
   },
   {
     label: 'TestFlight',
@@ -16,7 +17,24 @@ const rows = [
   },
 ]
 
+function TrailerPlaceholder() {
+  return (
+    <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-ink/10 bg-[#161616]">
+      <div className="flex items-center gap-3 font-mono text-[12px] text-[#8e8e93]">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M8 5v14l11-7L8 5z" fill="#f2f2f2" />
+          </svg>
+        </span>
+        trailer dimuat saat slide ini didekati
+      </div>
+    </div>
+  )
+}
+
 export function EvidenceSlide({ id }: { id?: string }) {
+  const readerRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(readerRef, { once: true, margin: '900px 0px' })
   const reduce = useReducedMotion()
   const reveal = {
     hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
@@ -35,19 +53,17 @@ export function EvidenceSlide({ id }: { id?: string }) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="relative"
+          className="relative w-full max-w-[600px]"
         >
-          <DeviceFrame
-            src={dashScreen}
-            alt="Dashboard Asset Tracker, dipakai sebagai poster video demo"
-            caption="Poster video demo · media/asset-tracker/demo.mp4"
-            width={220}
-          />
-          <span className="glass absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5v14l11-7L8 5z" fill="#1d1d1f" />
-            </svg>
-          </span>
+          <div ref={readerRef} className="relative">
+            {inView ? (
+              <Suspense fallback={<TrailerPlaceholder />}>
+                <LazyTrailer />
+              </Suspense>
+            ) : (
+              <TrailerPlaceholder />
+            )}
+          </div>
         </motion.div>
 
         <div className="flex w-full max-w-[34rem] flex-col gap-6">
