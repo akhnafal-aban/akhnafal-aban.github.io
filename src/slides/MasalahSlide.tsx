@@ -7,7 +7,7 @@ const lines = [
   'Asset Tracker mengisi kekosongan itu. Backend Go di mesin lokal, dikonsumsi lewat URLSession, dirender di SwiftUI. Satu loop penuh dari database sampai layar.',
 ]
 
-export function MasalahSlide() {
+export function MasalahSlide({ id }: { id?: string }) {
   const reduce = useReducedMotion()
 
   const container = { hidden: {}, visible: { transition: { staggerChildren: 0.14 } } }
@@ -21,7 +21,7 @@ export function MasalahSlide() {
   }
 
   return (
-    <Slide last>
+    <Slide id={id}>
       <div className="max-w-[46rem]">
         <p className="m-0 mb-8 font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">
           01 · Masalah

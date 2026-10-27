@@ -3,7 +3,7 @@ import { Slide, EASE } from '../components/Slide'
 
 const nameWords = ['Noor', 'Akhnafal', 'Aban']
 
-export function IntroSlide() {
+export function IntroSlide({ id }: { id?: string }) {
   const reduce = useReducedMotion()
 
   const container = {
@@ -16,7 +16,7 @@ export function IntroSlide() {
   }
 
   return (
-    <Slide>
+    <Slide id={id}>
       <motion.div variants={container} initial="hidden" animate="visible">
         <h1 className="m-0 flex flex-wrap gap-x-[0.28em] text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-ink">
           {nameWords.map((w) => (

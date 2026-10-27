@@ -7,7 +7,7 @@ const chapters = [
   { n: '03', title: 'AkhnaFin', note: 'SwiftData · CloudKit' },
 ]
 
-export function IndexSlide() {
+export function IndexSlide({ id }: { id?: string }) {
   const reduce = useReducedMotion()
 
   const container = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }
@@ -17,7 +17,7 @@ export function IndexSlide() {
   }
 
   return (
-    <Slide>
+    <Slide id={id}>
       <h2 className="m-0 mb-10 max-w-[14ch] text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
         Tiga proyek, dibahas satu per satu.
       </h2>

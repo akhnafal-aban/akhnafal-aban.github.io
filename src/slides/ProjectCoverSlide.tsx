@@ -5,7 +5,7 @@ import { GlassChip } from '../components/Glass'
 import { DeviceFrame } from '../components/DeviceFrame'
 import dashScreen from '../../content/personal/asset-tracker/media/ui-01-dashboard.png'
 
-export function ProjectCoverSlide() {
+export function ProjectCoverSlide({ id }: { id?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({
@@ -15,7 +15,7 @@ export function ProjectCoverSlide() {
   const revealY = useTransform(scrollYProgress, [0, 1], ['100%', '0%'])
 
   return (
-    <Slide>
+    <Slide id={id}>
       <div ref={ref} className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0 flex-1">
           <div className="mb-5">
