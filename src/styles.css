@@ -65,6 +65,31 @@ body {
     0 2px 8px rgba(29, 29, 31, 0.12);
 }
 
+@media (max-height: 840px) {
+  .idx-card {
+    padding: 14px 18px;
+  }
+  .idx-list {
+    gap: 10px;
+  }
+  .idx-pts li {
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-height: 740px) {
+  .idx-card {
+    padding: 12px 16px;
+  }
+  .idx-pts {
+    margin-top: 6px;
+  }
+  .idx-pts li {
+    font-size: 12px;
+  }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .glass {
     background: #f2f2f7;

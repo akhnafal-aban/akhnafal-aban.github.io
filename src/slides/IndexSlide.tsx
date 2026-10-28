@@ -21,9 +21,9 @@ function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null
           </span>
         )}
       </div>
-      <ul className="m-0 mt-4 flex list-none flex-col gap-2 p-0">
+      <ul className="idx-pts m-0 mt-3 flex list-none flex-col gap-1.5 p-0">
         {p.points.map((pt) => (
-          <li key={pt} className="flex gap-2.5 text-[13.5px] leading-[1.5] text-ink-2">
+          <li key={pt} className="flex gap-2.5 text-[13px] leading-[1.45] text-ink-2">
             <span className="mt-[8px] h-[4px] w-[4px] shrink-0 rounded-full bg-ink-3" />
             {pt}
           </li>
@@ -33,7 +33,7 @@ function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null
   )
 
   const cls =
-    'block w-full rounded-2xl border border-ink/10 bg-panel p-6 text-left md:p-7 ' +
+    'idx-card block w-full rounded-2xl border border-ink/10 bg-panel p-5 text-left md:p-6 ' +
     (p.view ? 'cursor-pointer transition-transform hover:-translate-y-0.5' : '')
 
   return (
@@ -84,22 +84,22 @@ export function IndexSlide({ id, onPick }: IndexSlideProps) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="mx-auto flex w-full max-w-3xl flex-col items-center"
+        className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center"
       >
         <motion.h2
           variants={item}
-          className="m-0 mb-8 text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
+          className="m-0 mb-6 text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
         >
           Jelajahi Proyek Saya
         </motion.h2>
 
-        <motion.div variants={item} className="mb-8">
+        <motion.div variants={item} className="mb-6">
           <LiquidGlassTabs value={kind} onChange={setKind} />
         </motion.div>
 
-        <div className="flex w-full items-start justify-center md:min-h-[584px]">
+        <div className="flex w-full flex-1 items-start justify-center">
           {shown.length > 0 ? (
-            <motion.ul layout className="m-0 flex w-full list-none flex-col gap-4 p-0">
+            <motion.ul layout className="idx-list m-0 flex w-full list-none flex-col gap-3 p-0">
               <AnimatePresence mode="popLayout" initial={false}>
                 {shown.map((p) => (
                   <ProjectCard key={p.no} p={p} reduce={reduce} onPick={onPick} />
@@ -119,7 +119,7 @@ export function IndexSlide({ id, onPick }: IndexSlideProps) {
           )}
         </div>
 
-        <motion.p variants={item} className="m-0 mt-6 font-mono text-[11.5px] text-ink-3">
+        <motion.p variants={item} className="m-0 mt-4 pb-6 font-mono text-[12px] text-ink-2">
           {kind === 'personal' ? 'klik salah satu kartu untuk membaca proyeknya' : 'proyek team menyusul'}
         </motion.p>
       </motion.div>
