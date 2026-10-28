@@ -1,12 +1,5 @@
-import { ProjectCoverSlide } from './slides/ProjectCoverSlide'
-import { MasalahSlide } from './slides/MasalahSlide'
-import { TechStackSlide } from './slides/TechStackSlide'
-import { ArsitekturSlide } from './slides/ArsitekturSlide'
-import { CodeSlide } from './slides/CodeSlide'
-import { UIGallerySlide } from './slides/UIGallerySlide'
-import { UiCodeSlide } from './slides/UiCodeSlide'
-import { EvidenceSlide } from './slides/EvidenceSlide'
 import { Slide } from './components/Slide'
+import { registry } from './projects/registry'
 
 type EndCardProps = {
   title: string
@@ -33,32 +26,14 @@ function EndCard({ title, onBack }: EndCardProps) {
   )
 }
 
-type UiIntroSlideProps = {
-  id?: string
-}
-
-function UiIntroSlide({ id }: UiIntroSlideProps) {
-  return (
-    <Slide id={id}>
-      <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-        <h2 className="m-0 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
-          Enough with the internals. Lemme show you the UI.
-        </h2>
-        <p className="m-0 mt-6 max-w-[46ch] text-[clamp(1rem,1.6vw,1.25rem)] leading-[1.6] text-ink-2">
-          UI-nya masih sederhana, sih. Fokus utamanya di sini adalah belajar UI slicing dengan
-          menerapkan best practices dalam struktur dan implementasi SwiftUI.
-        </p>
-      </div>
-    </Slide>
-  )
-}
-
 type ProjectViewProps = {
   id: string
   onBack: () => void
 }
 
 export function ProjectView({ id, onBack }: ProjectViewProps) {
+  const def = registry[id]
+
   return (
     <main>
       <button
@@ -70,21 +45,13 @@ export function ProjectView({ id, onBack }: ProjectViewProps) {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 5l-7 7 7 7" stroke="#1d1d1f" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        Kembali
+        Daftar proyek
       </button>
 
-      {id === 'asset-tracker' ? (
+      {def ? (
         <>
-          <ProjectCoverSlide id="cover-asset-tracker" />
-          <MasalahSlide id="masalah" />
-          <TechStackSlide id="stack" />
-          <ArsitekturSlide id="arsitektur" />
-          <CodeSlide id="code" />
-          <UiIntroSlide id="ui-intro" />
-          <UIGallerySlide id="ui" />
-          <UiCodeSlide id="ui-code" />
-          <EvidenceSlide id="bukti" />
-          <EndCard title="Asset Tracker" onBack={onBack} />
+          <def.Chapters />
+          <EndCard title={def.title} onBack={onBack} />
         </>
       ) : (
         <Slide>
