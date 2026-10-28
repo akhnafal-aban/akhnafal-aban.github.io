@@ -78,7 +78,7 @@ export function IndexSlide({ id, onPick }: IndexSlideProps) {
   }
 
   return (
-    <Slide id={id}>
+    <Slide id={id} align="start">
       <motion.div
         variants={reveal}
         initial="hidden"
