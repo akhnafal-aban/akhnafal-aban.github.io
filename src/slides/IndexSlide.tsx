@@ -20,7 +20,7 @@ export function IndexSlide({ id }: { id?: string }) {
     <Slide id={id}>
       <div className="flex w-full flex-col items-center">
       <h2 className="m-0 mb-10 max-w-[20ch] text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
-        Tiga proyek dibahas satu per satu dalam deck ini.
+        Jelajahi Proyek Saya
       </h2>
 
       <motion.ol
