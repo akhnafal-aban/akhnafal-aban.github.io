@@ -8,15 +8,11 @@ const stack = [
   },
   {
     name: 'Foundation · URLSession + Codable',
-    why: 'Inti project ini. Sengaja tanpa library networking pihak ketiga, supaya paham apa yang terjadi di balik sebuah fetch.',
+    why: 'Inti project ini. Saya Sengaja tanpa library networking pihak ketiga, supaya paham apa yang terjadi di balik sebuah fetch.',
   },
   {
     name: 'Swift Charts',
     why: 'Grafik line dan donut di dashboard. Framework bawaan Apple untuk menampilkan charts di dashboard app ini',
-  },
-  {
-    name: 'Observation · @Observable',
-    why: 'State view model tanpa boilerplate ObservableObject dan @Published. Mendukung design pattern MVVM',
   },
 ]
 
@@ -30,7 +26,7 @@ export function TechStackSlide({ id }: { id?: string }) {
   return (
     <Slide id={id}>
       <h2 className="m-0 mb-8 text-center text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-        Empat framework utama dalam proyek ini, beserta alasan pemilihannya.
+        Apple Framework yang saya gunakan.
       </h2>
       <div className="mx-auto flex w-full max-w-3xl flex-col">
         {stack.map((s) => (

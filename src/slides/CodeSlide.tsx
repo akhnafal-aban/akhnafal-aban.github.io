@@ -15,8 +15,8 @@ type Block = {
 const blocks: Block[] = [
   {
     file: 'Core/Network/Api.swift · baris 75 sampai 81',
-    label: 'Method HTTP dibatasi enum, bukan string bebas',
-    text: 'Menulis "GET" sebagai string di banyak tempat rawan salah ketik, dan typo semacam itu baru ketahuan saat aplikasi jalan. Enum ini membatasi nilai yang sah ke lima method yang tersedia, lengkap dengan autocomplete dari compiler.',
+    label: 'HTTP Method dengan Type Safety',
+    text: 'HTTP method didefinisikan menggunakan enum agar pemanggil hanya dapat memilih lima case yang tersedia. Pendekatan ini mengurangi risiko typo dari penggunaan string bebas dan memanfaatkan autocomplete di Xcode.',
     code: (
       <>
         <span className={kw}>enum</span> <span className={typ}>HTTPMethod</span>: <span className={typ}>String</span> {'{'}
@@ -31,8 +31,8 @@ const blocks: Block[] = [
   },
   {
     file: 'Core/Network/Api.swift · baris 11 sampai 23',
-    label: 'Satu fungsi untuk semua request keluar',
-    text: 'Semua request lewat fungsi ini, jadi base URL, header Content-Type, dan method selalu seragam. URLSession.shared.data(for:) versi async dan await menghapus closure bersarang, dan error mengalir lewat throws ke pemanggilnya.',
+    label: 'Centralized Request Handling',
+    text: 'Semua HTTP request diproses melalui satu fungsi. Base URL, HTTP method, header Content-Type, dan request body dikelola di satu tempat agar implementasinya konsisten. URLSession menggunakan async/await untuk menangani operasi jaringan, sementara throws meneruskan error ke pemanggil.',
     code: (
       <>
         <span className={kw}>static func</span> <span className={pln}>request</span>(
@@ -53,8 +53,8 @@ const blocks: Block[] = [
   },
   {
     file: 'Core/Network/Api.swift · baris 25 sampai 40',
-    label: 'Decode: satu baris untuk perbedaan nama field',
-    text: 'Backend Go menulis field dalam snake_case seperti current_value, sementara Swift memakai camelCase. ConvertFromSnakeCase menangani perbedaan itu di semua struct sekaligus, jadi tidak perlu CodingKeys manual; tanggal diurus dengan strategi iso8601.',
+    label: 'JSON Decoding & Data Mapping',
+    text: 'Respons JSON di-decode menjadi tipe Swift yang memenuhi Decodable. Strategi convertFromSnakeCase mengonversi key seperti current_value menjadi currentValue, sedangkan strategi iso8601 menangani decoding tanggal. Dengan begitu, field umum tidak perlu dipetakan satu per satu melalui CodingKeys.',
     code: (
       <>
         <span className={kw}>static func</span> <span className={pln}>send</span>&lt;<span className={typ}>T</span>: <span className={typ}>Decodable</span>&gt;(
@@ -75,8 +75,8 @@ const blocks: Block[] = [
   },
   {
     file: 'Core/Network/Api.swift · baris 42 sampai 72',
-    label: 'Encode: arah sebaliknya saat mengirim data',
-    text: 'Ketika mengirim body, encoder menulis convertToSnakeCase supaya struct Swift sampai ke server Go dalam format yang disepakati. Kedua strategi ini simetris, sehingga satu konvensi nama dipertahankan bolak-balik tanpa dipikirkan per field.',
+    label: 'JSON Encoding & Request Serialization',
+    text: 'Sebelum dikirim ke server, JSONEncoder mengubah nama properti camelCase menjadi snake_case dan mengonversi tanggal ke format ISO 8601. Proses ini menjaga format request body tetap sesuai dengan konvensi data yang digunakan backend Go.',
     code: (
       <>
         <span className={kw}>static func</span> <span className={pln}>send</span>&lt;<span className={typ}>T</span>: <span className={typ}>Decodable</span>, <span className={typ}>U</span>: <span className={typ}>Encodable</span>&gt;(
@@ -146,10 +146,10 @@ export function CodeSlide({ id }: { id?: string }) {
         <div id="code-intro" className="flex min-h-[100dvh] items-center px-6 sm:px-12 lg:px-20">
           <div className="mx-auto w-full text-center">
             <h2 className="m-0 mb-2 text-[clamp(1.8rem,3.6vw,2.9rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[#f2f2f2]">
-              Api.swift: lapisan jaringan yang saya tulis sendiri, tanpa library.
+              Api.swift: Networking Layer Built from Scratch
             </h2>
             <p className="m-0 font-mono text-[12px] text-[#8e8e93]">
-              empat blok kode, masing-masing satu slide, dijelaskan satu per satu
+              Lapisan networking yang dibangun menggunakan URLSession dari Foundation, tanpa bergantung pada third-party networking libraries.
             </p>
           </div>
         </div>

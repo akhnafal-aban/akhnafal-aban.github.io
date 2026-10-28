@@ -26,16 +26,16 @@ const steps = [
 
 const principles = [
   {
-    title: 'Satu jalur masuk',
+    title: 'Single Entry Point',
     note: 'Hanya Api.swift yang menyentuh URLSession. Layar mana pun kirim dan terima data lewat pintu yang sama.',
   },
   {
-    title: 'View tidak tahu detail jaringan',
-    note: 'View hanya minta ke view model. View model hanya minta ke Api. URL, header, dan method disembunyikan di satu tempat.',
+    title: 'Networking Abstraction',
+    note: 'View hanya berinteraksi dengan ViewModel. ViewModel meneruskan request ke Api.swift yang mengenkapsulasi URL, header, dan HTTP method.',
   },
   {
-    title: 'Data balik lewat model',
-    note: 'JSON dari server diterjemahkan menjadi struct Swift sebelum sampai di view model. View menerima data yang siap ditampilkan.',
+    title: 'JSON Decoding & Data Modeling',
+    note: 'Respons JSON di-decode menjadi struct Swift melalui Decodable sebelum diteruskan ke ViewModel. View menerima data bertipe kuat yang siap ditampilkan.',
   },
 ]
 
@@ -91,7 +91,7 @@ export function ArsitekturSlide({ id }: { id?: string }) {
           viewport={{ once: true, amount: 0.3 }}
           className="rounded-2xl border border-ink/10 bg-panel p-6"
         >
-          <p className="m-0 mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Tiga hal yang dipertahankan</p>
+          <p className="m-0 mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">Tiga hal Utama</p>
           <div className="flex flex-col gap-5">
             {principles.map((p) => (
               <div key={p.title} className="border-l-2 border-ios-blue/40 pl-4">
