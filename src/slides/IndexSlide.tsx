@@ -77,8 +77,15 @@ export function IndexSlide({ id }: { id?: string }) {
           </AnimatePresence>
         </motion.ul>
 
+        {shown.length === 0 && (
+          <p className="m-0 mt-4 max-w-[30ch] text-center text-[14px] leading-[1.6] text-ink-3">
+            Belum ada proyek team yang dipublikasikan di halaman ini. Kartu akan ditambahkan setelah
+            proyeknya siap ditampilkan.
+          </p>
+        )}
+
         <p className="m-0 mt-6 font-mono text-[11.5px] text-ink-3">
-          {kind === 'personal' ? 'proyek pribadi yang saya kerjakan sendiri' : 'proyek bersama tim di Academy'}
+          {kind === 'personal' ? 'proyek yang saya kerjakan sendiri atau bersama tim kecil' : 'proyek team menyusul'}
         </p>
       </div>
     </Slide>
