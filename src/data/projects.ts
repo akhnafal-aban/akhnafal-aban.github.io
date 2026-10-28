@@ -5,8 +5,7 @@ export type Project = {
   title: string
   kind: ProjectKind
   points: string[]
-  anchor?: string
-  live: boolean
+  view?: string
 }
 
 export const projects: Project[] = [
@@ -14,8 +13,7 @@ export const projects: Project[] = [
     no: '01',
     title: 'Asset Tracker',
     kind: 'personal',
-    anchor: '#cover-asset-tracker',
-    live: true,
+    view: 'asset-tracker',
     points: [
       'Dashboard, model aset dan kategori, pengaturan, dan integrasi API',
       'Mengonsumsi REST API Go buatan sendiri lewat URLSession',
@@ -26,7 +24,6 @@ export const projects: Project[] = [
     no: '02',
     title: 'Breathing App',
     kind: 'personal',
-    live: false,
     points: [
       'Aplikasi napas dan gerak, Apple Developer Academy Challenge 1',
       'Dibangun bersama tim',
@@ -37,7 +34,6 @@ export const projects: Project[] = [
     no: '03',
     title: 'AkhnaFin',
     kind: 'personal',
-    live: false,
     points: [
       'Lima jalur input: Siri, bahasa natural, suara, OCR struk, manual',
       'Semua input menjadi draft yang bisa diedit sebelum disimpan',

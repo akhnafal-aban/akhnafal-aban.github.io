@@ -4,13 +4,18 @@ import { Slide } from '../components/Slide'
 import { LiquidGlassTabs, type ProjectKind } from '../components/LiquidGlassTabs'
 import { projects, type Project } from '../data/projects'
 
-function ProjectCard({ p, reduce }: { p: Project; reduce: boolean | null }) {
+type IndexSlideProps = {
+  id?: string
+  onPick: (view: string) => void
+}
+
+function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null; onPick: (v: string) => void }) {
   const body = (
     <>
       <div className="flex items-baseline gap-4">
         <span className="font-mono text-[13px] text-ios-blue">{p.no}</span>
         <span className="text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.01em]">{p.title}</span>
-        {!p.live && (
+        {!p.view && (
           <span className="ml-auto font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-3">
             konten menyusul
           </span>
@@ -28,32 +33,30 @@ function ProjectCard({ p, reduce }: { p: Project; reduce: boolean | null }) {
   )
 
   const cls =
-    'block w-full rounded-2xl border border-ink/10 bg-panel p-6 text-left no-underline transition-transform md:p-7 ' +
-    (p.live ? 'hover:-translate-y-0.5' : '')
-
-  if (!p.live) {
-    return (
-      <motion.li layout className="list-none">
-        <div className={cls}>{body}</div>
-      </motion.li>
-    )
-  }
+    'block w-full rounded-2xl border border-ink/10 bg-panel p-6 text-left md:p-7 ' +
+    (p.view ? 'cursor-pointer transition-transform hover:-translate-y-0.5' : '')
 
   return (
     <motion.li layout className="list-none">
-      <motion.a
-        href={p.anchor}
-        className={cls}
-        whileHover={reduce ? undefined : { y: -3 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      >
-        {body}
-      </motion.a>
+      {p.view ? (
+        <motion.button
+          type="button"
+          onClick={() => onPick(p.view as string)}
+          className={cls}
+          whileHover={reduce ? undefined : { y: -3 }}
+          whileTap={reduce ? undefined : { scale: 0.99 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+        >
+          {body}
+        </motion.button>
+      ) : (
+        <div className={cls}>{body}</div>
+      )}
     </motion.li>
   )
 }
 
-export function IndexSlide({ id }: { id?: string }) {
+export function IndexSlide({ id, onPick }: IndexSlideProps) {
   const [kind, setKind] = useState<ProjectKind>('personal')
   const reduce = useReducedMotion()
   const shown = projects.filter((p) => p.kind === kind)
@@ -72,7 +75,7 @@ export function IndexSlide({ id }: { id?: string }) {
         <motion.ul layout className="m-0 flex w-full list-none flex-col gap-4 p-0">
           <AnimatePresence mode="popLayout" initial={false}>
             {shown.map((p) => (
-              <ProjectCard key={p.no} p={p} reduce={reduce} />
+              <ProjectCard key={p.no} p={p} reduce={reduce} onPick={onPick} />
             ))}
           </AnimatePresence>
         </motion.ul>
@@ -85,7 +88,7 @@ export function IndexSlide({ id }: { id?: string }) {
         )}
 
         <p className="m-0 mt-6 font-mono text-[11.5px] text-ink-3">
-          {kind === 'personal' ? 'proyek yang saya kerjakan sendiri atau bersama tim kecil' : 'proyek team menyusul'}
+          {kind === 'personal' ? 'klik salah satu kartu untuk membaca proyeknya' : 'proyek team menyusul'}
         </p>
       </div>
     </Slide>
