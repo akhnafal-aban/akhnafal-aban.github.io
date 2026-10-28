@@ -1,0 +1,47 @@
+export type ProjectKind = 'personal' | 'team'
+
+export type Project = {
+  no: string
+  title: string
+  kind: ProjectKind
+  points: string[]
+  anchor?: string
+  live: boolean
+}
+
+export const projects: Project[] = [
+  {
+    no: '01',
+    title: 'Asset Tracker',
+    kind: 'personal',
+    anchor: '#cover-asset-tracker',
+    live: true,
+    points: [
+      'Dashboard, model aset dan kategori, pengaturan, dan integrasi API',
+      'Mengonsumsi REST API Go buatan sendiri lewat URLSession',
+      'MVVM dengan satu lapisan Api',
+    ],
+  },
+  {
+    no: '02',
+    title: 'Breathing App',
+    kind: 'team',
+    live: false,
+    points: [
+      'Aplikasi napas dan gerak, Apple Developer Academy Challenge 1',
+      'Dibangun bersama tim',
+      'SwiftUI',
+    ],
+  },
+  {
+    no: '03',
+    title: 'AkhnaFin',
+    kind: 'personal',
+    live: false,
+    points: [
+      'Lima jalur input: Siri, bahasa natural, suara, OCR struk, manual',
+      'Semua input menjadi draft yang bisa diedit sebelum disimpan',
+      'SwiftData dan CloudKit',
+    ],
+  },
+]

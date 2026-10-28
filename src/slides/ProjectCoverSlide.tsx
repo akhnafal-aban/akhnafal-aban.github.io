@@ -3,9 +3,9 @@ import { useRef } from 'react'
 import { Slide } from '../components/Slide'
 import { GlassChip } from '../components/Glass'
 import { DeviceFrame } from '../components/DeviceFrame'
-import dashScreen from '../../content/personal/asset-tracker/media/ui-01-dashboard.png'
-import assetsScreen from '../../content/personal/asset-tracker/media/ui-02-assets.png'
-import addScreen from '../../content/personal/asset-tracker/media/ui-04-add-asset.png'
+import dashScreen from '../../content/projects/01-asset-tracker/media/ui-01-dashboard.png'
+import assetsScreen from '../../content/projects/01-asset-tracker/media/ui-02-assets.png'
+import addScreen from '../../content/projects/01-asset-tracker/media/ui-04-add-asset.png'
 
 export function ProjectCoverSlide({ id }: { id?: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -40,7 +40,7 @@ export function ProjectCoverSlide({ id }: { id?: string }) {
           <div className="mt-6 flex flex-wrap gap-2 font-mono text-[12px] text-ink-3">
             <span className="rounded-full bg-ink/[0.06] px-3 py-1">iOSPersonal</span>
             <span className="rounded-full bg-ink/[0.06] px-3 py-1">Prototype</span>
-            <span className="rounded-full bg-ink/[0.06] px-3 py-1">Peran: Solo</span>
+            <span className="rounded-full bg-ink/[0.06] px-3 py-1">Personal Project</span>
           </div>
         </div>
 

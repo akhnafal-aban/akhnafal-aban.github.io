@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReducedMotion } from 'motion/react'
 import { DeviceFrame } from '../components/DeviceFrame'
 
-import ui1 from '../../content/personal/asset-tracker/media/thumbs/ui-01-dashboard.jpg'
-import ui2 from '../../content/personal/asset-tracker/media/thumbs/ui-02-assets.jpg'
-import ui3 from '../../content/personal/asset-tracker/media/thumbs/ui-03-asset-detail.jpg'
-import ui4 from '../../content/personal/asset-tracker/media/thumbs/ui-04-add-asset.jpg'
-import ui5 from '../../content/personal/asset-tracker/media/thumbs/ui-05-settings.jpg'
-import ui6 from '../../content/personal/asset-tracker/media/thumbs/ui-06-bitcoin.jpg'
+import ui1 from '../../content/projects/01-asset-tracker/media/thumbs/ui-01-dashboard.jpg'
+import ui2 from '../../content/projects/01-asset-tracker/media/thumbs/ui-02-assets.jpg'
+import ui3 from '../../content/projects/01-asset-tracker/media/thumbs/ui-03-asset-detail.jpg'
+import ui4 from '../../content/projects/01-asset-tracker/media/thumbs/ui-04-add-asset.jpg'
+import ui5 from '../../content/projects/01-asset-tracker/media/thumbs/ui-05-settings.jpg'
+import ui6 from '../../content/projects/01-asset-tracker/media/thumbs/ui-06-bitcoin.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
