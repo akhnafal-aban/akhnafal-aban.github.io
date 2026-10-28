@@ -27,7 +27,8 @@ export function PetCompanion({ context }: PetCompanionProps) {
   const y = useMotionValue(0)
 
   const messages = petMessages[context]
-  const fullText = peekGreet ? 'Kembali nyaa..' : messages[msgIndex % messages.length]
+  const [hint, setHint] = useState<string | null>(null)
+  const fullText = hint ?? (peekGreet ? 'Kembali nyaa..' : messages[msgIndex % messages.length])
 
   // Ganti pesan berkala sesuai konteks.
   useEffect(() => {
@@ -68,6 +69,18 @@ export function PetCompanion({ context }: PetCompanionProps) {
     const t = window.setTimeout(() => setPeekGreet(false), 3600)
     return () => window.clearTimeout(t)
   }, [peekGreet])
+
+  // Petunjuk sekali: kasih tahu bahwa kucing bisa disembunyikan ke tepi.
+  useEffect(() => {
+    const show = window.setTimeout(() => {
+      setHint('Tarik aku ke pinggir kalau mau aku sembunyi nyaa..')
+    }, 7000)
+    const hide = window.setTimeout(() => setHint(null), 13500)
+    return () => {
+      window.clearTimeout(show)
+      window.clearTimeout(hide)
+    }
+  }, [])
 
   const pet = () => {
     setMood('happy')
@@ -151,7 +164,7 @@ export function PetCompanion({ context }: PetCompanionProps) {
       dragElastic={0.12}
       onDragStart={() => setMood('happy')}
       onDragEnd={onDragEnd}
-      className="fixed bottom-5 right-5 z-[60] flex cursor-grab flex-col items-end gap-2 active:cursor-grabbing sm:bottom-6 sm:right-6"
+      className="fixed bottom-5 right-5 z-[60] flex cursor-grab touch-none select-none flex-col items-end gap-2 active:cursor-grabbing sm:bottom-6 sm:right-6"
     >
       <AnimatePresence>
         {mode === 'active' && typed && (
@@ -198,7 +211,8 @@ export function PetCompanion({ context }: PetCompanionProps) {
           ref={catRef}
           type="button"
           aria-label="Elus kucing"
-          className="pointer-events-auto block cursor-grab rounded-2xl border-none bg-transparent p-0 active:cursor-grabbing"
+          className="pointer-events-auto block cursor-grab touch-none select-none rounded-2xl border-none bg-transparent p-0 active:cursor-grabbing"
+          whileHover={reduce ? undefined : { scale: 1.04 }}
           animate={mood === 'happy' && !reduce ? { rotate: [0, -6, 6, -3, 3, 0], y: [0, -3, 0] } : { rotate: 0, y: 0 }}
           transition={{ duration: 0.7 }}
         >
