@@ -15,8 +15,8 @@ type Block = {
 const blocks: Block[] = [
   {
     file: 'App/AssetTrackerApp.swift · App/AppRootView.swift',
-    label: 'Aplikasi dimulai dari satu layar berisi empat tab',
-    text: 'AssetTrackerApp adalah pintu masuk aplikasi. Kerjanya hanya satu: menampilkan AppRootView sebagai layar pertama, sambil menyuntikkan AppSettings supaya pengaturan mata uang bisa dibaca dari layar mana pun. AppRootView berisi TabView dengan empat tab, dan setiap tab menunjuk satu view fitur. Pola ini membuat masing-masing fitur berdiri sendiri, ditambah atau diubah tanpa menyentuh fitur lain.',
+    label: 'App Entry Point & Tab Navigation',
+    text: 'Saat aplikasi dibuka, AssetTrackerApp menampilkan AppRootView sebagai layar pertama. Di sini, AppSettings juga dimasukkan ke environment supaya pengaturan mata uang bisa dipakai dari layar lain. AppRootView mengatur empat tab, sedangkan isi masing-masing tab ditangani oleh view tersendiri. Jadi, kode navigasi tidak bercampur dengan kode untuk menampilkan setiap fitur.',
     code: (
       <>
         <span className={typ}>AssetTrackerApp.swift</span>
@@ -43,8 +43,8 @@ const blocks: Block[] = [
   },
   {
     file: 'Screens/Main/Assets/AssetView.swift · AssetViewModel.swift',
-    label: 'MVVM dalam satu fitur: daftar aset',
-    text: 'AssetView tidak tahu cara mengambil data dari server. Kerjanya hanya menampilkan daftar, lalu saat layar muncul ia memanggil getAssets() lewat .task. Pekerjaan jaringan ada di AssetViewModel: kelas ini ditandai @Observable, memanggil Api.send, dan menyimpan hasilnya ke property assets. Begitu property itu berubah, SwiftUI otomatis menggambar ulang daftarnya. Di sinilah pemisahan MVVM terlihat: view mengurus tampilan, view model mengurus data, dan keduanya bicara lewat satu property.',
+    label: 'MVVM pada Daftar Aset',
+    text: 'Di bagian ini, AssetView fokus menampilkan daftar aset. Saat layar muncul, .task memanggil getAssets() di AssetViewModel. ViewModel yang mengambil data dari server lewat Api.send, lalu menyimpan hasilnya ke property assets. Karena menggunakan @Observable, perubahan data bisa langsung diikuti SwiftUI untuk memperbarui tampilan. Untuk sekarang, error masih saya tangani dengan print, belum ditampilkan sebagai pesan di layar.',
     code: (
       <>
         <span className={typ}>AssetViewModel.swift</span>
@@ -81,8 +81,8 @@ const blocks: Block[] = [
   },
   {
     file: 'Screens/Main/Dashboard/DashboardView.swift · Screens/Components/AssetRowView.swift',
-    label: 'Susunan layar: ScrollView berisi VStack, dan Spacer untuk dua sisi',
-    text: 'Layar yang isinya panjang ditumpuk dalam ScrollView yang berisi satu VStack, jadi urutan blok di kode sama persis dengan urutan di layar, dan jarak antar blok diatur satu nilai spacing. Untuk satu baris yang membutuhkan dua ujung, seperti daftar aset dengan nama di kiri dan nilai di kanan, Spacer mengisi ruang kosong di tengahnya dan mendorong blok kanan sampai ke ujung.',
+    label: 'Layout Composition dengan SwiftUI',
+    text: 'Untuk dashboard yang isinya cukup panjang, saya menggunakan ScrollView dengan VStack untuk menyusun konten dari atas ke bawah. Jarak antarbagian cukup diatur lewat spacing. Sementara itu, di daftar aset, HStack membagi baris menjadi bagian kiri dan kanan. Spacer mengisi ruang kosong di tengah, jadi nama aset tetap di kiri dan nilainya terdorong ke kanan tanpa perlu mengatur posisi secara manual.',
     code: (
       <>
         <span className={typ}>DashboardView.swift</span>
@@ -158,7 +158,6 @@ export function UiCodeSlide({ id }: { id?: string }) {
               Cara kode UI aplikasi ini tersusun.
             </h2>
             <p className="m-0 font-mono text-[12px] text-ink-3">
-              tiga blok kode, masing-masing satu slide, dijelaskan satu per satu
             </p>
           </div>
         </div>
