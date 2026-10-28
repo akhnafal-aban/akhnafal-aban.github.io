@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { Slide } from '../components/Slide'
+import { Slide, EASE } from '../components/Slide'
 import { LiquidGlassTabs, type ProjectKind } from '../components/LiquidGlassTabs'
 import { projects, type Project } from '../data/projects'
 
@@ -37,7 +37,14 @@ function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null
     (p.view ? 'cursor-pointer transition-transform hover:-translate-y-0.5' : '')
 
   return (
-    <motion.li layout className="list-none">
+    <motion.li
+      layout
+      className="list-none"
+      initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+    >
       {p.view ? (
         <motion.button
           type="button"
@@ -61,36 +68,61 @@ export function IndexSlide({ id, onPick }: IndexSlideProps) {
   const reduce = useReducedMotion()
   const shown = projects.filter((p) => p.kind === kind)
 
+  const reveal = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  }
+  const item = {
+    hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  }
+
   return (
     <Slide id={id}>
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
-        <h2 className="m-0 mb-8 text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+      <motion.div
+        variants={reveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="mx-auto flex w-full max-w-3xl flex-col items-center"
+      >
+        <motion.h2
+          variants={item}
+          className="m-0 mb-8 text-center text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
+        >
           Jelajahi Proyek Saya
-        </h2>
+        </motion.h2>
 
-        <div className="mb-10">
+        <motion.div variants={item} className="mb-8">
           <LiquidGlassTabs value={kind} onChange={setKind} />
+        </motion.div>
+
+        <div className="flex w-full items-start justify-center md:min-h-[584px]">
+          {shown.length > 0 ? (
+            <motion.ul layout className="m-0 flex w-full list-none flex-col gap-4 p-0">
+              <AnimatePresence mode="popLayout" initial={false}>
+                {shown.map((p) => (
+                  <ProjectCard key={p.no} p={p} reduce={reduce} onPick={onPick} />
+                ))}
+              </AnimatePresence>
+            </motion.ul>
+          ) : (
+            <motion.p
+              initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="m-0 mt-10 max-w-[30ch] text-center text-[14px] leading-[1.6] text-ink-3"
+            >
+              Belum ada proyek team yang dipublikasikan di halaman ini. Kartu akan ditambahkan setelah
+              proyeknya siap ditampilkan.
+            </motion.p>
+          )}
         </div>
 
-        <motion.ul layout className="m-0 flex w-full list-none flex-col gap-4 p-0">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {shown.map((p) => (
-              <ProjectCard key={p.no} p={p} reduce={reduce} onPick={onPick} />
-            ))}
-          </AnimatePresence>
-        </motion.ul>
-
-        {shown.length === 0 && (
-          <p className="m-0 mt-4 max-w-[30ch] text-center text-[14px] leading-[1.6] text-ink-3">
-            Belum ada proyek team yang dipublikasikan di halaman ini. Kartu akan ditambahkan setelah
-            proyeknya siap ditampilkan.
-          </p>
-        )}
-
-        <p className="m-0 mt-6 font-mono text-[11.5px] text-ink-3">
+        <motion.p variants={item} className="m-0 mt-6 font-mono text-[11.5px] text-ink-3">
           {kind === 'personal' ? 'klik salah satu kartu untuk membaca proyeknya' : 'proyek team menyusul'}
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </Slide>
   )
 }

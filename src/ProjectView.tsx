@@ -50,7 +50,7 @@ export function ProjectView({ id, onBack }: ProjectViewProps) {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 5l-7 7 7 7" stroke="#1d1d1f" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        Daftar proyek
+        Kembali
       </button>
 
       {id === 'asset-tracker' ? (
