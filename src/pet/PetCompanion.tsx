@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from 'motion/react'
 import { PixelCat } from './PixelCat'
 import { petMessages, type PetContext } from './catFrames'
 
@@ -9,16 +9,25 @@ type PetCompanionProps = {
 
 type Heart = { id: number; x: number }
 
+const PEEK_VISIBLE = 36 // piksel kucing yang tetap terlihat saat mengintip
+const CAT_SIZE = 88
+
 export function PetCompanion({ context }: PetCompanionProps) {
   const reduce = useReducedMotion()
+  const [mode, setMode] = useState<'active' | 'peek'>('active')
   const [msgIndex, setMsgIndex] = useState(0)
+  const [peekGreet, setPeekGreet] = useState(false)
   const [typed, setTyped] = useState('')
   const [mood, setMood] = useState<'idle' | 'talk' | 'happy'>('idle')
   const [hearts, setHearts] = useState<Heart[]>([])
   const heartId = useRef(0)
+  const catRef = useRef<HTMLButtonElement>(null)
+
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
 
   const messages = petMessages[context]
-  const fullText = messages[msgIndex % messages.length]
+  const fullText = peekGreet ? 'Kembali nyaa..' : messages[msgIndex % messages.length]
 
   // Ganti pesan berkala sesuai konteks.
   useEffect(() => {
@@ -34,6 +43,7 @@ export function PetCompanion({ context }: PetCompanionProps) {
 
   // Efek ketik per karakter; reduced motion menampilkan langsung.
   useEffect(() => {
+    if (mode !== 'active') return
     if (reduce) {
       setTyped(fullText)
       setMood('idle')
@@ -51,7 +61,13 @@ export function PetCompanion({ context }: PetCompanionProps) {
       }
     }, 26)
     return () => window.clearInterval(typer)
-  }, [fullText, reduce])
+  }, [fullText, reduce, mode])
+
+  useEffect(() => {
+    if (!peekGreet) return
+    const t = window.setTimeout(() => setPeekGreet(false), 3600)
+    return () => window.clearTimeout(t)
+  }, [peekGreet])
 
   const pet = () => {
     setMood('happy')
@@ -63,10 +79,82 @@ export function PetCompanion({ context }: PetCompanionProps) {
     window.setTimeout(() => setMood('idle'), 3000)
   }
 
+  const springBack = () => {
+    if (reduce) {
+      x.set(0)
+      y.set(0)
+    } else {
+      animate(x, 0, { type: 'spring', stiffness: 260, damping: 26 })
+      animate(y, 0, { type: 'spring', stiffness: 260, damping: 26 })
+    }
+    setMode('active')
+    setPeekGreet(true)
+    setMood('happy')
+    window.setTimeout(() => setMood('idle'), 1500)
+  }
+
+  const onDragEnd = (_: unknown, info: { offset: { x: number; y: number } }) => {
+    const cat = catRef.current?.getBoundingClientRect()
+    if (!cat) return
+    const W = window.innerWidth
+    const H = window.innerHeight
+    const moved = Math.hypot(info.offset.x, info.offset.y)
+
+    setMood('idle')
+
+    const snapTo = (targetLeft?: number, targetTop?: number) => {
+      const x0 = x.get()
+      const y0 = y.get()
+      const dx = targetLeft !== undefined ? targetLeft - cat.left : 0
+      const dy = targetTop !== undefined ? targetTop - cat.top : 0
+      if (reduce) {
+        x.set(x0 + dx)
+        y.set(y0 + dy)
+      } else {
+        animate(x, x0 + dx, { type: 'spring', stiffness: 300, damping: 30 })
+        animate(y, y0 + dy, { type: 'spring', stiffness: 300, damping: 30 })
+      }
+      setMode('peek')
+      setTyped('')
+      setMood('idle')
+    }
+
+    // Digeser melewati tepi: kucing mengintip dan diam.
+    if (cat.left < -30) {
+      snapTo(-(CAT_SIZE - PEEK_VISIBLE))
+      return
+    }
+    if (cat.right > W + 30) {
+      snapTo(W - PEEK_VISIBLE)
+      return
+    }
+    if (cat.bottom > H + 30) {
+      snapTo(undefined, H - 30)
+      return
+    }
+
+    // Gerakan kecil dianggap klik.
+    if (moved < 8) {
+      if (mode === 'peek') {
+        springBack()
+      } else {
+        pet()
+      }
+    }
+  }
+
   return (
-    <div className="pointer-events-none fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2 sm:bottom-6 sm:right-6">
+    <motion.div
+      style={{ x, y }}
+      drag
+      dragMomentum={false}
+      dragElastic={0.12}
+      onDragStart={() => setMood('happy')}
+      onDragEnd={onDragEnd}
+      className="fixed bottom-5 right-5 z-[60] flex cursor-grab flex-col items-end gap-2 active:cursor-grabbing sm:bottom-6 sm:right-6"
+    >
       <AnimatePresence>
-        {typed && (
+        {mode === 'active' && typed && (
           <motion.div
             key={fullText}
             initial={reduce ? { opacity: 1 } : { opacity: 0, y: 6 }}
@@ -82,7 +170,15 @@ export function PetCompanion({ context }: PetCompanionProps) {
         )}
       </AnimatePresence>
 
-      <div className="relative">
+      <motion.div
+        animate={
+          mode === 'active' && mood !== 'happy' && !reduce
+            ? { y: [0, -3, 0] }
+            : { y: 0 }
+        }
+        transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+        className="relative"
+      >
         <AnimatePresence>
           {hearts.map((h) => (
             <motion.span
@@ -99,16 +195,16 @@ export function PetCompanion({ context }: PetCompanionProps) {
         </AnimatePresence>
 
         <motion.button
+          ref={catRef}
           type="button"
-          onClick={pet}
           aria-label="Elus kucing"
-          className="pointer-events-auto block cursor-pointer rounded-2xl border-none bg-transparent p-0"
+          className="pointer-events-auto block cursor-grab rounded-2xl border-none bg-transparent p-0 active:cursor-grabbing"
           animate={mood === 'happy' && !reduce ? { rotate: [0, -6, 6, -3, 3, 0], y: [0, -3, 0] } : { rotate: 0, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <PixelCat mood={mood} size={88} />
+          <PixelCat mood={mode === 'peek' ? 'idle' : mood} size={CAT_SIZE} />
         </motion.button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
