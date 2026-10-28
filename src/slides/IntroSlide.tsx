@@ -18,6 +18,9 @@ export function IntroSlide({ id }: { id?: string }) {
   return (
     <Slide id={id}>
       <motion.div variants={container} initial="hidden" animate="visible" className="text-center">
+        <motion.p variants={line} className="m-0 mb-5 font-mono text-[15px] text-ink-3">
+          Hi!
+        </motion.p>
         <h1 className="m-0 flex flex-wrap justify-center gap-x-[0.28em] text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-ink">
           {nameWords.map((w) => (
             <motion.span key={w} variants={line} className="inline-block">
