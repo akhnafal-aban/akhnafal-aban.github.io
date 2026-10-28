@@ -25,9 +25,8 @@ export const projects: Project[] = [
     title: 'Breathing App',
     kind: 'personal',
     points: [
-      'Aplikasi napas dan gerak, Apple Developer Academy Challenge 1',
-      'Dibangun bersama tim',
-      'SwiftUI',
+      'Aplikasi panduan pernafasan melalui time-count, Apple Developer Academy Challenge 1',
+      'Aplikasi iOS pertama saya.'
     ],
   },
   {
@@ -35,7 +34,7 @@ export const projects: Project[] = [
     title: 'AkhnaFin',
     kind: 'personal',
     points: [
-      'Lima jalur input: Siri, bahasa natural, suara, OCR struk, manual',
+      'Lima jalur input pencatatan: Siri, bahasa natural, suara, OCR struk, manual',
       'Semua input menjadi draft yang bisa diedit sebelum disimpan',
       'SwiftData dan CloudKit',
     ],

@@ -113,8 +113,7 @@ export function IndexSlide({ id, onPick }: IndexSlideProps) {
               transition={{ duration: 0.4 }}
               className="m-0 mt-10 max-w-[30ch] text-center text-[14px] leading-[1.6] text-ink-3"
             >
-              Belum ada proyek team yang dipublikasikan di halaman ini. Kartu akan ditambahkan setelah
-              proyeknya siap ditampilkan.
+              Coming Soon..
             </motion.p>
           )}
         </div>
