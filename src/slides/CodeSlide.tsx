@@ -16,7 +16,7 @@ const blocks: Block[] = [
   {
     file: 'Core/Network/Api.swift · baris 75 sampai 81',
     label: 'HTTP Method dengan Type Safety',
-    text: 'HTTP method didefinisikan menggunakan enum agar pemanggil hanya dapat memilih lima case yang tersedia. Pendekatan ini mengurangi risiko typo dari penggunaan string bebas dan memanfaatkan autocomplete di Xcode.',
+    text: 'HTTP method didefinisikan menggunakan enum agar pemanggil hanya dapat memilih lima case yang tersedia. Pendekatan ini mengurangi risiko typo dari penggunaan string bebas dan memanfaatkan autocomplete di Xcode. Saya suka style pendefinisian ini karena lebih rapi.',
     code: (
       <>
         <span className={kw}>enum</span> <span className={typ}>HTTPMethod</span>: <span className={typ}>String</span> {'{'}
@@ -32,7 +32,7 @@ const blocks: Block[] = [
   {
     file: 'Core/Network/Api.swift · baris 11 sampai 23',
     label: 'Centralized Request Handling',
-    text: 'Semua HTTP request diproses melalui satu fungsi. Base URL, HTTP method, header Content-Type, dan request body dikelola di satu tempat agar implementasinya konsisten. URLSession menggunakan async/await untuk menangani operasi jaringan, sementara throws meneruskan error ke pemanggil.',
+    text: 'Semua HTTP request diproses melalui satu fungsi. Base URL, HTTP method, header Content-Type, dan request body dikelola di satu tempat agar implementasinya konsisten. URLSession menggunakan async/await untuk menangani operasi jaringan, sementara throws meneruskan error ke pemanggil. Lewat bagian ini, saya mulai memahami sisi lain dari komunikasi API, yaitu bagaimana aplikasi di frontend mengirim request dan menangani respons dari server.',
     code: (
       <>
         <span className={kw}>static func</span> <span className={pln}>request</span>(
@@ -76,7 +76,7 @@ const blocks: Block[] = [
   {
     file: 'Core/Network/Api.swift · baris 42 sampai 72',
     label: 'JSON Encoding & Request Serialization',
-    text: 'Sebelum dikirim ke server, JSONEncoder mengubah nama properti camelCase menjadi snake_case dan mengonversi tanggal ke format ISO 8601. Proses ini menjaga format request body tetap sesuai dengan konvensi data yang digunakan backend Go.',
+    text: 'Bedanya dengan fungsi send sebelumnya, versi ini juga menangani proses encoding data sebelum dikirim ke server. JSONEncoder mengubah nama properti camelCase menjadi snake_case dan mengonversi tanggal ke format ISO 8601 agar format request body sesuai dengan konvensi yang digunakan backend.',
     code: (
       <>
         <span className={kw}>static func</span> <span className={pln}>send</span>&lt;<span className={typ}>T</span>: <span className={typ}>Decodable</span>, <span className={typ}>U</span>: <span className={typ}>Encodable</span>&gt;(
