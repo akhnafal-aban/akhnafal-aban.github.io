@@ -274,6 +274,6 @@ Yang terverifikasi dari alur lengkap yang berjalan:
 ## Bukti Pendukung
 
 - Video demo 15–30 detik: [PLACEHOLDER — tautan video]
-- TestFlight: N/A (prototype pembelajaran, tidak didistribusikan)
+- TestFlight: https://testflight.apple.com/join/w9My8GDY
 - GitHub: https://github.com/akhnafal-aban/Asset-Tracker (klien iOS) · https://github.com/akhnafal-aban/asset-tracker-be (backend Go)
 - Screenshot UI: 6 screenshot asli terlampir di bagian UI Utama

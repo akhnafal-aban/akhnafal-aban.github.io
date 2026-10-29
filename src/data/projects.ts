@@ -24,6 +24,7 @@ export const projects: Project[] = [
     no: '02',
     title: 'Breathing App',
     kind: 'personal',
+    view: 'breathing-app',
     points: [
       'Aplikasi panduan pernafasan melalui time-count, Apple Developer Academy Challenge 1',
       'Aplikasi iOS pertama saya.'

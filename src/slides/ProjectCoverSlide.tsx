@@ -34,7 +34,7 @@ export function ProjectCoverSlide({ id }: { id?: string }) {
           </div>
 
           <p className="mt-6 max-w-[36ch] text-[clamp(1rem,1.6vw,1.25rem)] leading-snug text-ink-2">
-            Aplikasi pelacak aset yang saya bangun untuk belajar mengonsumsi REST API dari sisi iOS, dengan backend Go yang saya tulis sendiri.
+            Aplikasi pelacak aset yang saya bangun untuk belajar mengonsumsi REST API dari sisi iOS, dengan backend Go.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2 font-mono text-[12px] text-ink-3">

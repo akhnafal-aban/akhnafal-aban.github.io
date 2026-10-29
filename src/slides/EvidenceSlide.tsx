@@ -1,11 +1,12 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { Slide } from '../components/Slide'
 
-const rows = [
+const rows: { label: string; value: string; href?: string; note: string }[] = [
   {
     label: 'TestFlight',
-    value: 'N/A',
-    note: 'prototipe pembelajaran, tidak didistribusikan',
+    value: 'testflight.apple.com/join/w9My8GDY',
+    href: 'https://testflight.apple.com/join/w9My8GDY',
+    note: 'undangan untuk mencoba versi beta aplikasi iOS',
   },
 ]
 
@@ -34,7 +35,18 @@ export function EvidenceSlide({ id }: { id?: string }) {
           >
             <div className="flex items-baseline justify-between gap-4">
               <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">{r.label}</span>
-              <span className="text-right font-mono text-[13px] text-ink">{r.value}</span>
+              {r.href ? (
+                <a
+                  href={r.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-right font-mono text-[13px] text-ios-blue no-underline transition-opacity hover:underline"
+                >
+                  {r.value}
+                </a>
+              ) : (
+                <span className="text-right font-mono text-[13px] text-ink">{r.value}</span>
+              )}
             </div>
             <p className="m-0 mt-2 text-[13px] text-ink-3">{r.note}</p>
           </motion.div>
