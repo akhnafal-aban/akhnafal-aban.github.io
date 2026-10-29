@@ -26,7 +26,7 @@ export const projects: Project[] = [
     kind: 'personal',
     view: 'breathing-app',
     points: [
-      'Aplikasi panduan pernafasan melalui time-count, Apple Developer Academy Challenge 1',
+      'Aplikasi panduan pernafasan melalui CountDown, Apple Developer Academy Challenge 1',
       'Aplikasi iOS pertama saya.'
     ],
   },

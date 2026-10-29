@@ -1,6 +1,7 @@
 import { BreathingAppCover } from './BreathingAppCover'
 import { Slide } from '../components/Slide'
 import { CodeCard } from '../slides/CodeCard'
+import { GallerySlide } from '../slides/GallerySlide'
 import { motion, useReducedMotion } from 'motion/react'
 
 const kw = 'text-[#a12ba6]'
@@ -53,8 +54,8 @@ const stack = [
 
 const masalahLines = [
   'Breathing App adalah project iOS pertama saya, dibuat untuk Apple Developer Academy Challenge 1. Sebelum ini saya belum pernah menulis satu baris SwiftUI pun.',
-  'Fokus utamanya bukan fitur, tapi belajar fondasinya: bagaimana menyusun tampilan dengan VStack, bagaimana state bekerja, dan bagaimana satu template view bisa dipakai berulang kali dengan input berbeda.',
-  'Hasilnya sebuah aplikasi panduan napas 4-7-8 yang bisa dipakai dari awal sampai akhir, dari memilih perasaan sampai menyelesaikan satu siklus latihan.',
+  'Saya belajar bagaimana menyusun tampilan dengan VStack, bagaimana state bekerja, dan bagaimana satu template view bisa dipakai berulang kali dengan input berbeda.',
+  'Hasilnya sebuah aplikasi panduan napas 4-7-8, dari memilih perasaan sampai menyelesaikan satu siklus latihan.',
 ]
 
 const codeBlocks = [
@@ -328,36 +329,7 @@ function UiIntroSlide({ id }: BACProps) {
 }
 
 function UiGallery({ id }: BACProps) {
-  return (
-    <section id={id} className="relative min-h-[100dvh] w-full snap-start overflow-hidden">
-      <div className="relative">
-        <div className="flex h-[100dvh] items-center">
-          <div
-            className="flex items-start will-change-transform"
-            style={{ gap: 90, paddingLeft: 'calc(50vw - 150px)', paddingRight: 'calc(50vw - 150px)' }}
-          >
-            {shots.map((s) => (
-              <div key={s.caption} className="shrink-0" style={{ width: 300 }}>
-                <div className="glass rounded-[26px] p-[7px]" style={{ width: 300, aspectRatio: '402 / 874' }}>
-                  <img src={s.src} alt={s.alt} loading="lazy" decoding="async"
-                    className="h-full w-full rounded-[20px] object-cover" />
-                </div>
-                <p className="m-0 mt-4 font-mono text-[13px] leading-[1.5] text-ink-3">{s.caption}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-3">
-          <span className="font-mono text-[12px] text-ink-3">01 / 10</span>
-          <div className="flex gap-2">
-            {shots.map((s) => (
-              <span key={s.caption} className="h-[5px] w-[5px] rounded-full bg-ink" />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+  return <GallerySlide id={id} shots={shots} />
 }
 
 const bacEvidence = [
