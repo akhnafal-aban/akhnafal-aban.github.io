@@ -40,4 +40,33 @@ export const projects: Project[] = [
       'SwiftData dan CloudKit',
     ],
   },
+  {
+    no: '04',
+    title: 'GayaGerakSeru',
+    kind: 'team',
+    points: [
+      'Simulasi fisika gesekan dengan RealityKit untuk edukasi',
+      'Objek meluncur di bidang miring dengan tingkat kekasaran yang bisa diatur',
+      'Apple Developer Academy Challenge 2',
+    ],
+  },
+  {
+    no: '05',
+    title: 'Arrive',
+    kind: 'team',
+    points: [
+      'Apple Developer Academy Challenge 5',
+      'Kolaborasi tim',
+    ],
+  },
+  {
+    no: '06',
+    title: 'BiteBeat',
+    kind: 'team',
+    points: [
+      'Menganalisis musik dan merekomendasikan pasangan makanan menggunakan Apple Intelligence',
+      'Foundation Models untuk memetakan kualitas musik ke saran menu',
+      'Apple Developer Academy Challenge 2',
+    ],
+  },
 ]
