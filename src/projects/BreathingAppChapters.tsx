@@ -335,8 +335,9 @@ function UiGallery({ id }: BACProps) {
 const bacEvidence = [
   {
     label: 'TestFlight',
-    value: 'N/A',
-    note: 'project pembelajaran Academy, tidak didistribusikan',
+    value: 'https://testflight.apple.com/join/FWfHjQwH',
+    note: 'tersedia untuk penguji via TestFlight',
+    link: 'https://testflight.apple.com/join/FWfHjQwH',
   },
 ]
 
@@ -357,7 +358,20 @@ function BuktiSlide({ id }: BACProps) {
             className="border-t border-ink/10 pt-5">
             <div className="flex items-baseline justify-between gap-4">
               <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">{r.label}</span>
-              <span className="text-right font-mono text-[13px] text-ink">{r.value}</span>
+              <span className="text-right">
+                {r.link ? (
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-mono text-[13px] text-ios-blue no-underline"
+                  >
+                    {r.value}
+                  </a>
+                ) : (
+                  <span className="font-mono text-[13px] text-ink">{r.value}</span>
+                )}
+              </span>
             </div>
             <p className="m-0 mt-2 text-[13px] text-ink-3">{r.note}</p>
           </motion.div>
