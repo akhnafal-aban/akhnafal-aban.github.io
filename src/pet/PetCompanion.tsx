@@ -101,6 +101,18 @@ export function PetCompanion({ context }: PetCompanionProps) {
     }
   }, [mode])
 
+  // Saat menyembunyikan diri, sesekali mengintip lebih jauh
+  // supada kelihatan bahwa dia bisa diklik.
+  useEffect(() => {
+    if (mode !== 'peek' || reduce) return
+    const nudge = window.setInterval(() => {
+      const x0 = x.get()
+      animate(x, [x0, x0 - 14, x0], { duration: 0.7, ease: 'easeInOut' })
+    }, 6000)
+    return () => window.clearInterval(nudge)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, reduce])
+
   const pet = () => {
     setMood('happy')
     const newHearts = [0, 1, 2].map((i) => ({ id: heartId.current++, x: -12 + i * 12 }))
@@ -116,8 +128,9 @@ export function PetCompanion({ context }: PetCompanionProps) {
       x.set(0)
       y.set(0)
     } else {
-      animate(x, 0, { type: 'spring', stiffness: 260, damping: 26 })
-      animate(y, 0, { type: 'spring', stiffness: 260, damping: 26 })
+      // Memantul ringan saat muncul, biar terasa hidup.
+      animate(x, 0, { type: 'spring', stiffness: 300, damping: 16 })
+      animate(y, 0, { type: 'spring', stiffness: 300, damping: 16 })
     }
     setMode('active')
     setGreetText(firstSummon.current ? 'Halo nyaa! Klik aku kalau mau diajak ngobrol..' : 'Kembali nyaa..')
