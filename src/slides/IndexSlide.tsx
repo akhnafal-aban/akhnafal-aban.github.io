@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import {
+  ChartLineUp, Wind, Lightning, Atom, AirplaneTakeoff, MusicNote,
+  HourglassMedium, type Icon,
+} from '@phosphor-icons/react'
 import { Slide, EASE } from '../components/Slide'
 import { LiquidGlassTabs, type ProjectKind } from '../components/LiquidGlassTabs'
 import { projects, type Project } from '../data/projects'
@@ -9,22 +13,58 @@ type IndexSlideProps = {
   onPick: (view: string) => void
 }
 
+const iconMap: Record<string, Icon> = {
+  ChartLineUp,
+  Wind,
+  Lightning,
+  Atom,
+  AirplaneTakeoff,
+  MusicNote,
+}
+
+function getIcon(name: string): Icon {
+  return iconMap[name] ?? ChartLineUp
+}
+
 function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null; onPick: (v: string) => void }) {
+  const IconComp = getIcon(p.icon)
+  const isLive = Boolean(p.view)
+
   const body = (
     <>
-      <div className="flex items-baseline gap-4">
-        <span className="font-mono text-[13px] text-ios-blue">{p.no}</span>
-        <span className="text-[clamp(1.2rem,2vw,1.5rem)] font-semibold tracking-[-0.01em]">{p.title}</span>
-        {!p.view && (
-          <span className="ml-auto font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-3">
-            konten menyusul
+      <div className="flex items-center gap-4">
+        <span
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-300"
+          style={{ backgroundColor: isLive ? `${p.accent}14` : '#6e6e7314' }}
+        >
+          <IconComp
+            size={19}
+            weight="duotone"
+            color={isLive ? p.accent : '#6e6e73'}
+            className="transition-transform duration-300 group-hover:scale-110"
+          />
+        </span>
+        <div className="min-w-0 flex-1">
+          <span className="text-[clamp(1.1rem,1.8vw,1.35rem)] font-semibold tracking-[-0.01em] text-ink">
+            {p.title}
+          </span>
+          <span className="ml-2 font-mono text-[11px] text-ink-3">{p.no}</span>
+        </div>
+        {!isLive && (
+          <span className="flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold text-[#8b8b90]"
+            style={{ backgroundColor: '#6e6e730d', border: '1px dashed #8b8b9050' }}>
+            <HourglassMedium size={13} weight="fill" color="#8b8b90" />
+            Coming Soon
           </span>
         )}
       </div>
-      <ul className="idx-pts m-0 mt-3 flex list-none flex-col gap-1.5 p-0">
+      <ul className="idx-pts m-0 mt-3 flex list-none flex-col gap-1.5 pl-[52px]">
         {p.points.map((pt) => (
           <li key={pt} className="flex gap-2.5 text-[13px] leading-[1.45] text-ink-2">
-            <span className="mt-[8px] h-[4px] w-[4px] shrink-0 rounded-full bg-ink-3" />
+            <span
+              className="mt-[8px] h-[4px] w-[4px] shrink-0 rounded-full transition-colors duration-300"
+              style={{ backgroundColor: isLive ? `${p.accent}60` : '#6e6e7360' }}
+            />
             {pt}
           </li>
         ))}
@@ -32,9 +72,8 @@ function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null
     </>
   )
 
-  const cls =
-    'idx-card block w-full rounded-2xl border border-ink/10 bg-panel p-5 text-left md:p-6 ' +
-    (p.view ? 'cursor-pointer transition-transform hover:-translate-y-0.5' : '')
+  const baseCls =
+    'idx-card group relative block w-full overflow-hidden rounded-2xl border bg-panel p-5 text-left transition-all duration-300 md:p-6 '
 
   return (
     <motion.li
@@ -45,19 +84,47 @@ function ProjectCard({ p, reduce, onPick }: { p: Project; reduce: boolean | null
       exit={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
     >
-      {p.view ? (
+      {isLive ? (
         <motion.button
           type="button"
           onClick={() => onPick(p.view as string)}
-          className={cls}
+          className={baseCls}
+          style={{
+            borderColor: 'rgba(29,29,31,0.08)',
+            cursor: 'pointer',
+          }}
           whileHover={reduce ? undefined : { y: -3 }}
           whileTap={reduce ? undefined : { scale: 0.99 }}
           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          onHoverStart={() => {}}
         >
+          <span
+            className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 transition-transform duration-400 group-hover:scale-x-100"
+            style={{ backgroundColor: p.accent, borderRadius: '2px 2px 0 0' }}
+          />
+          <span
+            className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ boxShadow: `0 4px 24px ${p.accent}18, inset 0 0 0 1px ${p.accent}25` }}
+          />
           {body}
         </motion.button>
       ) : (
-        <div className={cls}>{body}</div>
+        <div
+          className={baseCls}
+          style={{
+            borderColor: 'rgba(29,29,31,0.06)',
+            borderStyle: 'dashed',
+            backgroundColor: 'rgba(255,255,255,0.5)',
+          }}
+        >
+          <span
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px]"
+            style={{
+              background: `repeating-linear-gradient(90deg, ${p.accent}30 0, ${p.accent}30 6px, transparent 6px, transparent 12px)`,
+            }}
+          />
+          <div style={{ opacity: 0.75 }}>{body}</div>
+        </div>
       )}
     </motion.li>
   )

@@ -364,7 +364,7 @@ function BuktiSlide({ id }: BACProps) {
                     href={r.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-mono text-[13px] text-ios-blue no-underline"
+                    className="font-mono text-[13px] text-ios-blue no-underline [overflow-wrap:anywhere]"
                   >
                     {r.value}
                   </a>

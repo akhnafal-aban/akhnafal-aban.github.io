@@ -33,14 +33,14 @@ export function EvidenceSlide({ id }: { id?: string }) {
             viewport={{ once: true, amount: 0.4 }}
             className="border-t border-ink/10 pt-5"
           >
-            <div className="flex items-baseline justify-between gap-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">{r.label}</span>
               {r.href ? (
                 <a
                   href={r.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-right font-mono text-[13px] text-ios-blue no-underline transition-opacity hover:underline"
+                  className="text-right font-mono text-[13px] text-ios-blue no-underline transition-opacity hover:underline [overflow-wrap:anywhere]"
                 >
                   {r.value}
                 </a>

@@ -6,6 +6,8 @@ export type Project = {
   kind: ProjectKind
   points: string[]
   view?: string
+  accent: string
+  icon: string
 }
 
 export const projects: Project[] = [
@@ -14,10 +16,12 @@ export const projects: Project[] = [
     title: 'Asset Tracker',
     kind: 'personal',
     view: 'asset-tracker',
+    accent: '#10b981',
+    icon: 'ChartLineUp',
     points: [
-      'Aplikasi pelacak aset dengan Dashboard, kategori aset, manajemen pengguna, dan pengaturan',
-      'Lapisan networking sendiri untuk integrasi API Asset, AssetCategory, dan User',
-      'Arsitektur MVVM',
+      'Dashboard, model aset dan kategori, pengaturan, dan integrasi API',
+      'Mengonsumsi REST API Go buatan sendiri lewat URLSession',
+      'MVVM dengan satu lapisan Api',
     ],
   },
   {
@@ -25,48 +29,59 @@ export const projects: Project[] = [
     title: 'Breathing App',
     kind: 'personal',
     view: 'breathing-app',
+    accent: '#06b6d4',
+    icon: 'Wind',
     points: [
-      'Sesi pernapasan berbasis timer dengan state machine empat fase',
-      'Animasi hitung mundur, pelacakan siklus, dan transisi antar fase yang otomatis',
-      'Proyek iOS pertama saya, dibuat untuk Apple Developer Academy Challenge 1',
+      'Aplikasi panduan pernafasan melalui CountDown, Apple Developer Academy Challenge 1',
+      'Aplikasi iOS pertama saya.'
     ],
   },
   {
     no: '03',
     title: 'AkhnaFin',
     kind: 'personal',
+    view: 'akhnafin',
+    accent: '#0a84ff',
+    icon: 'Lightning',
     points: [
-      'Pencatatan pengeluaran lewat App Intents/Siri, bahasa natural dengan Foundation Models, suara dengan Speech, OCR struk dengan Vision, dan entri massal',
-      'Arsitektur modular dengan Swift package lokal (AkhnaFinKit), empat modul dipisahkan oleh protokol',
+      'Lima jalur input pencatatan: Siri, bahasa natural, suara, OCR struk, manual',
+      'Semua input menjadi draft yang bisa diedit sebelum disimpan',
       'SwiftData dan CloudKit',
     ],
-    view: 'akhnafin',
   },
   {
     no: '04',
     title: 'GayaGerakSeru',
     kind: 'team',
+    accent: '#a78bfa',
+    icon: 'Atom',
     points: [
-      'Simulasi gesekan interaktif memakai physics materials dari RealityKit',
-      'Bidang miring dan permukaan dengan kekasaran yang bisa diatur',
+      'Simulasi fisika gesekan dengan RealityKit untuk edukasi',
+      'Objek meluncur di bidang miring dengan tingkat kekasaran yang bisa diatur',
+      'Apple Developer Academy Challenge 2',
     ],
   },
   {
     no: '05',
     title: 'Arrive',
     kind: 'team',
+    accent: '#fb923c',
+    icon: 'AirplaneTakeoff',
     points: [
-      'Membangun komponen inti wayfinding AR: ARTrackingService, route renderer beranimasi, konfigurasi penanda stasiun, dan registry tujuan',
-      'Navigasi indoor di Stasiun Sudirman',
+      'Apple Developer Academy Challenge 5',
+      'Kolaborasi tim',
     ],
   },
   {
     no: '06',
     title: 'BiteBeat',
     kind: 'team',
+    accent: '#f472b6',
+    icon: 'MusicNote',
     points: [
-      'Pencarian makanan berbasis lokasi dengan model SwiftData, Core Location, dan nearby search dari MapKit',
-      'State pemilihan makanan dipusatkan, memisahkan pengelolaan state dari komponen UI',
+      'Menganalisis musik dan merekomendasikan pasangan makanan menggunakan Apple Intelligence',
+      'Foundation Models untuk memetakan kualitas musik ke saran menu',
+      'Apple Developer Academy Challenge 2',
     ],
   },
 ]

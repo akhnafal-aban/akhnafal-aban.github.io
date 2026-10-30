@@ -1,0 +1,51 @@
+[      42ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[    3259ms] ReferenceError: useState is not defined
+    at GallerySlide (http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334415387:19:34)
+    at Object.react_stack_bottom_frame (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:14139:12)
+    at renderWithHooks (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:4397:19)
+    at updateFunctionComponent (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:5772:16)
+    at beginWork (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:6388:20)
+    at runWithFiberInDEV (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:941:66)
+    at performUnitOfWork (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9145:92)
+    at workLoopSync (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9041:37)
+    at renderRootSync (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9025:6)
+    at performWorkOnRoot (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:8712:27)
+[    3258ms] [WARNING] %s
+
+%s
+ An error occurred in the <GallerySlide> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5174/@vite/client:367
+[    5435ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[    6499ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[   23370ms] ReferenceError: useState is not defined
+    at GallerySlide (http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334437409:19:34)
+    at Object.react_stack_bottom_frame (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:14139:12)
+    at renderWithHooks (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:4397:19)
+    at updateFunctionComponent (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:5772:16)
+    at beginWork (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:6388:20)
+    at runWithFiberInDEV (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:941:66)
+    at performUnitOfWork (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9145:92)
+    at workLoopSync (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9041:37)
+    at renderRootSync (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:9025:6)
+    at performWorkOnRoot (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:8712:27)
+[   23370ms] [WARNING] %s
+
+%s
+ An error occurred in the <GallerySlide> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5174/@vite/client:367
+[   60383ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334478987:0
+[   60384ms] [ERROR] [vite] Failed to reload /src/slides/GallerySlide.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5174/@vite/client:367
+[   62065ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334478987:0
+[   66552ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334484776:0
+[   69008ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334487352:0
+[   78039ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334487352:0
+[   78376ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5174/src/slides/GallerySlide.tsx?t=1793334487352:0
+[   92538ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[   98513ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[   99504ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  109153ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  110109ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  115663ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  116625ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  133423ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  134549ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801

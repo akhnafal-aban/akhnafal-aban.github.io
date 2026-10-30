@@ -25,8 +25,10 @@ export function GallerySlide({ id, shots }: GallerySlideProps) {
   const counter = useRef<HTMLSpanElement>(null)
   const reduce = useReducedMotion()
 
+  const simple = reduce
+
   useEffect(() => {
-    if (reduce || !wrap.current || !track.current) return
+    if (simple || !wrap.current || !track.current) return
     const ctx = gsap.context(() => {
       const trackEl = track.current!
       const frames = gsap.utils.toArray<HTMLElement>('.g-frame')
@@ -77,16 +79,16 @@ export function GallerySlide({ id, shots }: GallerySlideProps) {
       })
     }, wrap)
     return () => ctx.revert()
-  }, [reduce, shots])
+  }, [simple, shots])
 
   return (
     <section id={id} className="relative min-h-[100dvh] w-full snap-start overflow-hidden">
       <div ref={wrap} className="relative">
         <div className="flex h-[100dvh] items-center">
-          {reduce ? (
-            <div className="flex gap-8 overflow-x-auto px-6 pb-6">
+          {simple ? (
+            <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {shots.map((s) => (
-                <div key={s.caption} className="shrink-0 opacity-100">
+                <div key={s.caption} className="w-[220px] shrink-0 snap-center">
                   <DeviceFrame src={s.src} alt={s.alt} caption={s.caption} width={220} />
                 </div>
               ))}
@@ -110,7 +112,7 @@ export function GallerySlide({ id, shots }: GallerySlideProps) {
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-7 z-10 flex flex-col items-center gap-3">
-          {reduce ? (
+          {simple ? (
             <span className="font-mono text-[12px] text-ink-3">
               01 / {String(shots.length).padStart(2, '0')}
             </span>

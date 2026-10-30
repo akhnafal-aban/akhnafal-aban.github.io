@@ -1,0 +1,114 @@
+- generic [ref=f32e2]:
+  - main [ref=f32e400]:
+    - button "Kembali ke daftar proyek" [ref=f32e401]
+    - generic [ref=f32e406]:
+      - generic [ref=f32e407]:
+        - generic [ref=f32e408]: CASE STUDY 03 OF 03
+        - heading "AkhnaFin" [level=2] [ref=f32e411]
+        - paragraph [ref=f32e412]: Aplikasi keuangan personal untuk mempersingkat pencatatan pengeluaran. Cukup satu kalimat atau satu foto resi.
+        - generic [ref=f32e413]:
+          - generic [ref=f32e414]: iOS · Personal
+          - generic [ref=f32e415]: SwiftUI
+          - generic [ref=f32e416]: SwiftData · CloudKit
+      - generic [ref=f32e417]:
+        - figure [ref=f32e419]:
+          - img "QuickAdd text entry" [ref=f32e421]
+        - figure [ref=f32e423]:
+          - img "Form manual" [ref=f32e425]
+        - figure [ref=f32e427]:
+          - img "Dashboard AkhnaFin" [ref=f32e429]
+    - generic [ref=f32e432]:
+      - paragraph [ref=f32e433]: 03 · Masalah
+      - generic [ref=f32e434]:
+        - paragraph [ref=f32e435]: Saya sering malas kalau harus membuka aplikasi keuangan, pilih kategori, ketik nominal, lalu simpan. Prosesnya terasa panjang untuk sesuatu yang seharusnya cuma butuh lima detik.
+        - paragraph [ref=f32e436]: AkhnaFin saya buat sebagai aplikasi personal untuk mempersingkat proses pencatatan itu. Cukup ketik satu kalimat seperti "kopi 25rb tadi pagi", atau foto resi belanja, dan aplikasi mengubahnya menjadi transaksi yang siap dikonfirmasi.
+        - paragraph [ref=f32e437]: Dengan catatan yang terkumpul rapi, pengelolaan dan evaluasi pengeluaran bisa dilakukan tanpa perlu mengingat semuanya di kepala.
+    - generic [ref=f32e439]:
+      - heading "Dua cara mencatat dalam hitungan detik." [level=2] [ref=f32e440]
+      - paragraph [ref=f32e441]: rekaman asli dari perangkat
+      - generic [ref=f32e442]:
+        - generic [ref=f32e443]:
+          - generic "Demo mencatat pengeluaran lewat teks" [ref=f32e445]
+          - paragraph [ref=f32e446]: "Catat lewat teks: ketik satu kalimat, draft langsung muncul"
+        - generic [ref=f32e447]:
+          - generic "Demo mencatat pengeluaran lewat foto resi" [ref=f32e449]
+          - paragraph [ref=f32e450]: "Catat lewat resi: foto struk belanja, data terisi otomatis"
+    - generic [ref=f32e452]:
+      - heading "Bagaimana AI membantu pencatatan saya." [level=2] [ref=f32e453]
+      - paragraph [ref=f32e454]: parsing lewat GLM di W&B Inference
+      - generic [ref=f32e455]:
+        - generic [ref=f32e456]:
+          - generic [ref=f32e457]: Satu kalimat cukup
+          - generic [ref=f32e458]: "Ketik \"makan siang 35rb di warteg\" dalam bahasa Indonesia dan model GLM via W&B Inference menguraikannya menjadi nominal, merchant, dan perkiraan kategori. Karena parsing lewat LLM, bahasa bebas: campur Indonesia dan English pun terbaca."
+        - generic [ref=f32e459]:
+          - generic [ref=f32e460]: Foto resi langsung jadi draft
+          - generic [ref=f32e461]: Ambil foto resi belanja, Vision membaca teksnya, lalu hasilnya masuk ke pipeline yang sama. Nominal, tanggal, dan nama toko diekstrak otomatis.
+        - generic [ref=f32e462]:
+          - generic [ref=f32e463]: Selalu draft, tidak pernah auto-save
+          - generic [ref=f32e464]: Apa pun jalur inputnya, hasilnya selalu berupa draft yang bisa diedit sebelum disimpan. Tidak ada data yang masuk tanpa persetujuan saya.
+    - generic [ref=f32e467]:
+      - generic [ref=f32e469]:
+        - generic [ref=f32e470]:
+          - figure [ref=f32e471]:
+            - img "Dashboard AkhnaFin" [ref=f32e473]
+          - paragraph [ref=f32e474]: Dashboard dengan ringkasan periode dan hutang
+        - generic [ref=f32e475]:
+          - figure [ref=f32e476]:
+            - img "QuickAdd text entry" [ref=f32e478]
+          - paragraph [ref=f32e479]: QuickAdd untuk mencatat lewat kalimat
+        - generic [ref=f32e480]:
+          - figure [ref=f32e481]:
+            - img "Form manual" [ref=f32e483]
+          - paragraph [ref=f32e484]: Form manual dengan nominal, kategori, dan tanggal
+        - generic [ref=f32e485]:
+          - figure [ref=f32e486]:
+            - img "Daftar transaksi" [ref=f32e488]
+          - paragraph [ref=f32e489]: Daftar transaksi per periode
+        - generic [ref=f32e490]:
+          - figure [ref=f32e491]:
+            - img "Pengaturan" [ref=f32e493]
+          - paragraph [ref=f32e494]: Pengaturan aplikasi
+      - generic: 01 / 05
+    - generic [ref=f32e496]:
+      - heading "Modular lewat package lokal." [level=2] [ref=f32e497]
+      - paragraph [ref=f32e498]: logika di package, UI di app target
+      - generic [ref=f32e499]:
+        - generic [ref=f32e500]:
+          - generic [ref=f32e501]: Empat modul dalam satu package
+          - generic [ref=f32e502]: AkhnaFinKit berisi AkhnaFinCore untuk model dan enum, ServiceInterfaces untuk protokol dan mock, Persistence untuk repository, dan Services untuk implementasi konkret.
+        - generic [ref=f32e503]:
+          - generic [ref=f32e504]: App target hanya UI
+          - generic [ref=f32e505]: Semua logika hidup di package. App target hanya menyusun antarmuka dan melakukan wiring dependensi lewat composition root.
+        - generic [ref=f32e506]:
+          - generic [ref=f32e507]: Test cepat tanpa simulator
+          - generic [ref=f32e508]: Karena logika terpisah dari UI, semua unit test bisa dijalankan lewat swift test dalam hitungan detik, tanpa perlu membuka simulator.
+    - generic [ref=f32e510]:
+      - heading "Dikembangkan dengan bantuan AI." [level=2] [ref=f32e511]
+      - paragraph [ref=f32e512]: jujur soal prosesnya
+      - generic [ref=f32e513]:
+        - generic [ref=f32e514]:
+          - generic [ref=f32e515]: Dikembangkan dengan OpenChamber
+          - generic [ref=f32e516]: Sesi pengembangan berjalan lewat OpenChamber, agent yang membaca kode, menulis test, dan melakukan refactoring. Saya yang menentukan arsitektur dan kriteria terima; eksekusi detailnya banyak dibantu agent.
+        - generic [ref=f32e517]:
+          - generic [ref=f32e518]: Jejak sesi terdokumentasi
+          - generic [ref=f32e519]: Setiap sesi tercatat di folder Docs dengan ringkasan teknis, keputusan yang diambil, dan referensi dokumentasi Apple yang dipakai. Progress bisa ditelusuri dari commit pertama sampai fitur terakhir.
+        - generic [ref=f32e520]:
+          - generic [ref=f32e521]: Verifikasi tetap manual
+          - generic [ref=f32e522]: 39 unit test hijau dan dua fitur inti diuji langsung di perangkat. Agent mempercepat penulisan, tapi keputusan akhir dan pengujian tetap saya yang lakukan.
+    - generic [ref=f32e524]:
+      - heading "Bukti pendukung untuk proyek ini." [level=2] [ref=f32e525]
+      - generic [ref=f32e526]:
+        - generic [ref=f32e527]:
+          - generic [ref=f32e528]: TestFlight
+          - link "https://testflight.apple.com/join/jK1Jf6zw" [ref=f32e531] [cursor=pointer]:
+            - /url: https://testflight.apple.com/join/jK1Jf6zw
+          - paragraph [ref=f32e532]: tersedia untuk penguji via TestFlight
+        - generic [ref=f32e533]:
+          - generic [ref=f32e534]: GitHub
+          - link "AkhnaFin · iOS" [ref=f32e537] [cursor=pointer]:
+            - /url: https://github.com/akhnafal-aban/AkhnaFin
+    - generic [ref=f32e540]:
+      - heading "Selesai membaca AkhnaFin." [level=2] [ref=f32e541]
+      - paragraph [ref=f32e542]: proyek lain menyusul
+      - button "Kembali ke daftar proyek" [ref=f32e543]
+  - button "Elus kucing" [ref=f32e71]

@@ -1,0 +1,38 @@
+- generic [ref=f32e2]:
+  - main [ref=f32e3]:
+    - generic [ref=f32e6]:
+      - paragraph [ref=f32e7]: Hello! Salam Kenal. Nama saya-
+      - heading "Noor Akhnafal Aban" [level=1] [ref=f32e8]:
+        - generic [ref=f32e9]: Noor
+        - generic [ref=f32e10]: Akhnafal
+        - generic [ref=f32e11]: Aban
+      - paragraph [ref=f32e12]: Software engineer dengan fokus di iOS dan backend.
+      - paragraph [ref=f32e13]: iOS Developer, Apple Developer Academy @ UC Jakarta
+    - generic [ref=f32e16]:
+      - heading "Jelajahi Proyek Saya" [level=2] [ref=f32e17]
+      - tablist "Filter proyek" [ref=f32e19]:
+        - tab "Personal" [selected] [ref=f32e20]
+        - tab "Team" [ref=f32e22]
+      - list [ref=f32e24]:
+        - listitem [ref=f32e25]:
+          - button "Asset Tracker01 Dashboard, model aset dan kategori, pengaturan, dan integrasi API Mengonsumsi REST API Go buatan sendiri lewat URLSession MVVM dengan satu lapisan Api" [ref=f32e26] [cursor=pointer]:
+            - generic [ref=f32e27]: Asset Tracker01
+            - list [ref=f32e33]:
+              - listitem [ref=f32e34]: Dashboard, model aset dan kategori, pengaturan, dan integrasi API
+              - listitem [ref=f32e36]: Mengonsumsi REST API Go buatan sendiri lewat URLSession
+              - listitem [ref=f32e38]: MVVM dengan satu lapisan Api
+        - listitem [ref=f32e40]:
+          - button "Breathing App02 Aplikasi panduan pernafasan melalui CountDown, Apple Developer Academy Challenge 1 Aplikasi iOS pertama saya." [ref=f32e41] [cursor=pointer]:
+            - generic [ref=f32e42]: Breathing App02
+            - list [ref=f32e48]:
+              - listitem [ref=f32e49]: Aplikasi panduan pernafasan melalui CountDown, Apple Developer Academy Challenge 1
+              - listitem [ref=f32e51]: Aplikasi iOS pertama saya.
+        - listitem [ref=f32e53]:
+          - 'button "AkhnaFin03 Lima jalur input pencatatan: Siri, bahasa natural, suara, OCR struk, manual Semua input menjadi draft yang bisa diedit sebelum disimpan SwiftData dan CloudKit" [ref=f32e54] [cursor=pointer]':
+            - generic [ref=f32e55]: AkhnaFin03
+            - list [ref=f32e61]:
+              - listitem [ref=f32e62]: "Lima jalur input pencatatan: Siri, bahasa natural, suara, OCR struk, manual"
+              - listitem [ref=f32e64]: Semua input menjadi draft yang bisa diedit sebelum disimpan
+              - listitem [ref=f32e66]: SwiftData dan CloudKit
+      - paragraph [ref=f32e68]: klik salah satu kartu untuk membaca proyeknya
+  - button "Elus kucing" [ref=f32e71]

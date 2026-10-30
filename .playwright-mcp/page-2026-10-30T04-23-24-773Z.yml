@@ -1,0 +1,45 @@
+- generic [ref=e2]:
+  - main [ref=e3]:
+    - generic [ref=e6]:
+      - paragraph [ref=e7]: Hello! Salam Kenal. Nama saya-
+      - heading "Noor Akhnafal Aban" [level=1] [ref=e8]:
+        - generic [ref=e9]: Noor
+        - generic [ref=e10]: Akhnafal
+        - generic [ref=e11]: Aban
+      - paragraph [ref=e12]: Software engineer dengan fokus di iOS dan backend.
+      - paragraph [ref=e13]: iOS Developer, Apple Developer Academy @ UC Jakarta
+    - generic [ref=e16]:
+      - heading "Jelajahi Proyek Saya" [level=2] [ref=e17]
+      - tablist "Filter proyek" [ref=e19]:
+        - tab "Personal" [selected] [ref=e20]
+        - tab "Team" [ref=e22]
+      - list [ref=e24]:
+        - listitem [ref=e25]:
+          - button "01 Asset Tracker Aplikasi pelacak aset dengan Dashboard, kategori aset, manajemen pengguna, dan pengaturan Lapisan networking sendiri untuk integrasi API Asset, AssetCategory, dan User Arsitektur MVVM" [ref=e26] [cursor=pointer]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: "01"
+              - generic [ref=e29]: Asset Tracker
+            - list [ref=e30]:
+              - listitem [ref=e31]: Aplikasi pelacak aset dengan Dashboard, kategori aset, manajemen pengguna, dan pengaturan
+              - listitem [ref=e33]: Lapisan networking sendiri untuk integrasi API Asset, AssetCategory, dan User
+              - listitem [ref=e35]: Arsitektur MVVM
+        - listitem [ref=e37]:
+          - button "02 Breathing App Sesi pernapasan berbasis timer dengan state machine empat fase Animasi hitung mundur, pelacakan siklus, dan transisi antar fase yang otomatis Proyek iOS pertama saya, dibuat untuk Apple Developer Academy Challenge 1" [ref=e38] [cursor=pointer]:
+            - generic [ref=e39]:
+              - generic [ref=e40]: "02"
+              - generic [ref=e41]: Breathing App
+            - list [ref=e42]:
+              - listitem [ref=e43]: Sesi pernapasan berbasis timer dengan state machine empat fase
+              - listitem [ref=e45]: Animasi hitung mundur, pelacakan siklus, dan transisi antar fase yang otomatis
+              - listitem [ref=e47]: Proyek iOS pertama saya, dibuat untuk Apple Developer Academy Challenge 1
+        - listitem [ref=e49]:
+          - button "03 AkhnaFin Pencatatan pengeluaran lewat App Intents/Siri, bahasa natural dengan Foundation Models, suara dengan Speech, OCR struk dengan Vision, dan entri massal Arsitektur modular dengan Swift package lokal (AkhnaFinKit), empat modul dipisahkan oleh protokol SwiftData dan CloudKit" [ref=e50] [cursor=pointer]:
+            - generic [ref=e51]:
+              - generic [ref=e52]: "03"
+              - generic [ref=e53]: AkhnaFin
+            - list [ref=e54]:
+              - listitem [ref=e55]: Pencatatan pengeluaran lewat App Intents/Siri, bahasa natural dengan Foundation Models, suara dengan Speech, OCR struk dengan Vision, dan entri massal
+              - listitem [ref=e57]: Arsitektur modular dengan Swift package lokal (AkhnaFinKit), empat modul dipisahkan oleh protokol
+              - listitem [ref=e59]: SwiftData dan CloudKit
+      - paragraph [ref=e61]: klik salah satu kartu untuk membaca proyeknya
+  - button "Elus kucing" [ref=e64]

@@ -40,12 +40,12 @@ export function ProjectView({ id, onBack }: ProjectViewProps) {
         type="button"
         onClick={onBack}
         aria-label="Kembali ke daftar proyek"
-        className="glass fixed left-5 top-5 z-50 flex items-center gap-2 rounded-full px-4 py-2 text-[13px] font-medium text-ink"
+        className="glass fixed left-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full text-ink sm:left-5 sm:top-5 sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-2 sm:text-[13px] sm:font-medium"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 5l-7 7 7 7" stroke="#1d1d1f" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        Daftar proyek
+        <span className="hidden sm:inline">Daftar proyek</span>
       </button>
 
       {def ? (

@@ -1,0 +1,214 @@
+- generic [ref=e2]:
+  - main [ref=e66]:
+    - button "Kembali ke daftar proyek" [ref=e67]: Daftar proyek
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]: CASE STUDY 01 OF 03
+        - heading "Asset Tracker" [level=2] [ref=e77]
+        - paragraph [ref=e78]: Aplikasi pelacak aset yang saya bangun untuk belajar mengonsumsi REST API dari sisi iOS, dengan backend Go.
+        - generic [ref=e79]:
+          - generic [ref=e80]: iOSPersonal
+          - generic [ref=e81]: Prototype
+          - generic [ref=e82]: Personal Project
+      - generic [ref=e83]:
+        - figure [ref=e85]:
+          - img "Form tambah aset Asset Tracker" [ref=e87]
+        - figure [ref=e89]:
+          - img "Daftar aset Asset Tracker" [ref=e91]
+        - figure [ref=e93]:
+          - img "Dashboard Asset Tracker" [ref=e95]
+    - generic [ref=e98]:
+      - paragraph [ref=e99]: 01 · Masalah
+      - generic [ref=e100]:
+        - paragraph [ref=e101]: Banyak aplikasi bisnis mengambil dan mengirim data melalui API. Karena itu, developer iOS perlu memahami cara berkomunikasi dengan server dan menangani data yang diterima.
+        - paragraph [ref=e102]: Saya sendiri lebih sering bekerja di backend, termasuk membuat API. Lewat Asset Tracker, saya ingin mencoba sisi lainnya, yaitu menggunakan API dari aplikasi iOS dan memastikan proses pertukaran datanya berjalan dengan benar.
+        - paragraph [ref=e103]: Aplikasi ini menggunakan URLSession untuk mengambil data dan SwiftUI untuk menampilkannya. Backend-nya saya buat menggunakan Go dan jalankan secara lokal. Dengan setup ini, saya bisa menguji sendiri seluruh prosesnya, mulai dari database hingga data ditampilkan di aplikasi.
+    - generic [ref=e105]:
+      - heading "Apple Framework yang saya gunakan." [level=2] [ref=e106]
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]: SwiftUI
+          - generic [ref=e110]: UI deklaratif dengan state terikat langsung ke data. Framework native terbaru dari apple setelah UIKit
+        - generic [ref=e111]:
+          - generic [ref=e112]: Foundation · URLSession + Codable
+          - generic [ref=e113]: Inti project ini. Saya Sengaja tanpa library networking pihak ketiga, supaya paham apa yang terjadi di balik sebuah fetch.
+        - generic [ref=e114]:
+          - generic [ref=e115]: Swift Charts
+          - generic [ref=e116]: Grafik line dan donut di dashboard. Framework bawaan Apple untuk menampilkan charts di dashboard app ini
+    - generic [ref=e118]:
+      - heading "Saya menggunakan Design Pattern MVVM." [level=2] [ref=e119]
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - paragraph [ref=e122]: Aliran data
+          - list [ref=e123]:
+            - listitem [ref=e124]:
+              - generic [ref=e125]: "01"
+              - generic [ref=e126]:
+                - paragraph [ref=e127]: View
+                - paragraph [ref=e128]: SwiftUI menampilkan data dan menangkap aksi pengguna
+            - listitem [ref=e129]:
+              - generic [ref=e130]: "02"
+              - generic [ref=e131]:
+                - paragraph [ref=e132]: View model
+                - paragraph [ref=e133]: "@Observable, memanggil Api dan menyimpan state layar"
+            - listitem [ref=e134]:
+              - generic [ref=e135]: "03"
+              - generic [ref=e136]:
+                - paragraph [ref=e137]: Api
+                - paragraph [ref=e138]: Satu lapisan networking, dipakai semua layar
+            - listitem [ref=e139]:
+              - generic [ref=e140]: "04"
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: Server Go
+                - paragraph [ref=e143]: Backend di mesin lokal yang sama, merespons JSON
+        - generic [ref=e144]:
+          - paragraph [ref=e145]: Tiga hal Utama
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - paragraph [ref=e148]: Single Entry Point
+              - paragraph [ref=e149]: Hanya Api.swift yang menyentuh URLSession. Layar mana pun kirim dan terima data lewat pintu yang sama.
+            - generic [ref=e150]:
+              - paragraph [ref=e151]: Networking Abstraction
+              - paragraph [ref=e152]: View hanya berinteraksi dengan ViewModel. ViewModel meneruskan request ke Api.swift yang mengenkapsulasi URL, header, dan HTTP method.
+            - generic [ref=e153]:
+              - paragraph [ref=e154]: JSON Decoding & Data Modeling
+              - paragraph [ref=e155]: Respons JSON di-decode menjadi struct Swift melalui Decodable sebelum diteruskan ke ViewModel. View menerima data bertipe kuat yang siap ditampilkan.
+        - generic [ref=e156]:
+          - paragraph [ref=e157]: Struktur folder
+          - list [ref=e158]:
+            - listitem [ref=e159]:
+              - generic [ref=e160]: App/
+              - generic [ref=e161]: entry point + config
+            - listitem [ref=e162]:
+              - generic [ref=e163]: Core/
+              - generic [ref=e164]: tidak kenal UI
+            - listitem [ref=e165]:
+              - generic [ref=e166]: Model/
+              - generic [ref=e167]: struct hasil decode
+            - listitem [ref=e168]:
+              - generic [ref=e169]: Network/
+              - generic [ref=e170]: Api.swift
+            - listitem [ref=e171]:
+              - generic [ref=e172]: Services/
+              - generic [ref=e173]: WebSocket Binance
+            - listitem [ref=e174]:
+              - generic [ref=e175]: Screens/
+              - generic [ref=e176]: semua UI
+            - listitem [ref=e177]:
+              - generic [ref=e178]: Root/, Main/, Toolbar/, Components/
+              - generic [ref=e179]: pasangan view + view model per fitur
+    - generic [ref=e180]:
+      - generic [ref=e183]:
+        - 'heading "Api.swift: Networking Layer Built from Scratch" [level=2] [ref=e184]'
+        - paragraph [ref=e185]: Lapisan networking yang dibangun menggunakan URLSession dari Foundation, tanpa bergantung pada third-party networking libraries.
+      - generic [ref=e188]:
+        - generic [ref=e189]:
+          - paragraph [ref=e190]: Core/Network/Api.swift · baris 75 sampai 81
+          - code [ref=e192]: "enum HTTPMethod: String { case get = \"GET\" case post = \"POST\" case put = \"PUT\" case patch = \"PATCH\" case delete = \"DELETE\" }"
+        - generic [ref=e193]:
+          - paragraph [ref=e194]: Blok 1 dari 4
+          - heading "HTTP Method dengan Type Safety" [level=3] [ref=e195]
+          - paragraph [ref=e196]: HTTP method didefinisikan menggunakan enum agar pemanggil hanya dapat memilih lima case yang tersedia. Pendekatan ini mengurangi risiko typo dari penggunaan string bebas dan memanfaatkan autocomplete di Xcode. Saya suka style pendefinisian ini karena lebih rapi.
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - paragraph [ref=e201]: Core/Network/Api.swift · baris 11 sampai 23
+          - code [ref=e203]: "static func request( endpoint: String, method: HTTPMethod, body: Data? = nil ) async throws -> Data var request = URLRequest(url: URL(string: \"\\(AppConfig.baseURL)\\(endpoint)\")!) request.httpMethod = method.rawValue request.setValue(\"application/json\", forHTTPHeaderField: \"Content-Type\") request.httpBody = body let (data, _) = try await URLSession.shared.data(for: request) return data"
+        - generic [ref=e204]:
+          - paragraph [ref=e205]: Blok 2 dari 4
+          - heading "Centralized Request Handling" [level=3] [ref=e206]
+          - paragraph [ref=e207]: Semua HTTP request diproses melalui satu fungsi. Base URL, HTTP method, header Content-Type, dan request body dikelola di satu tempat agar implementasinya konsisten. URLSession menggunakan async/await untuk menangani operasi jaringan, sementara throws meneruskan error ke pemanggil. Lewat bagian ini, saya mulai memahami sisi lain dari komunikasi API, yaitu bagaimana aplikasi di frontend mengirim request dan menangani respons dari server.
+      - generic [ref=e210]:
+        - generic [ref=e211]:
+          - paragraph [ref=e212]: Core/Network/Api.swift · baris 25 sampai 40
+          - code [ref=e214]: "static func send<T: Decodable>( endpoint: String, method: HTTPMethod = .get, type: T.Type ) async throws -> T { let data = try await request(endpoint: endpoint, method: method) let decoder = JSONDecoder() decoder.keyDecodingStrategy = .convertFromSnakeCase decoder.dateDecodingStrategy = .iso8601 return try decoder.decode(T.self, from: data) }"
+        - generic [ref=e215]:
+          - paragraph [ref=e216]: Blok 3 dari 4
+          - heading "JSON Decoding & Data Mapping" [level=3] [ref=e217]
+          - paragraph [ref=e218]: Respons JSON di-decode menjadi tipe Swift yang memenuhi Decodable. Strategi convertFromSnakeCase mengonversi key seperti current_value menjadi currentValue, sedangkan strategi iso8601 menangani decoding tanggal. Dengan begitu, field umum tidak perlu dipetakan satu per satu melalui CodingKeys.
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - paragraph [ref=e223]: Core/Network/Api.swift · baris 42 sampai 72
+          - code [ref=e225]: "static func send<T: Decodable, U: Encodable>( endpoint: String, method: HTTPMethod = .get, body: U? = nil, type: T.Type ) async throws -> T { let encodedBody: Data? if let body { let encoder = JSONEncoder() encoder.keyEncodingStrategy = .convertToSnakeCase encoder.dateEncodingStrategy = .iso8601 encodedBody = try encoder.encode(body) } else { encodedBody = nil } let data = try await request( endpoint: endpoint, method: method, body: encodedBody ) return try JSONDecoder().decode(T.self, from: data) }"
+        - generic [ref=e226]:
+          - paragraph [ref=e227]: Blok 4 dari 4
+          - heading "JSON Encoding & Request Serialization" [level=3] [ref=e228]
+          - paragraph [ref=e229]: Bedanya dengan fungsi send sebelumnya, versi ini juga menangani proses encoding data sebelum dikirim ke server. JSONEncoder mengubah nama properti camelCase menjadi snake_case dan mengonversi tanggal ke format ISO 8601 agar format request body sesuai dengan konvensi yang digunakan backend.
+    - generic [ref=e232]:
+      - heading "Enough with the internals. Lemme show you the UI." [level=2] [ref=e233]
+      - paragraph [ref=e234]: UI-nya masih sederhana, sih. Fokus utamanya di sini adalah belajar UI slicing dengan menerapkan best practices dalam struktur dan implementasi SwiftUI.
+    - generic [ref=e237]:
+      - generic [ref=e239]:
+        - generic [ref=e240]:
+          - figure [ref=e241]:
+            - img "Dashboard Asset Tracker" [ref=e243]
+          - paragraph [ref=e244]: Dashboard, total nilai dihitung langsung dari GET /assets
+        - generic [ref=e245]:
+          - figure [ref=e246]:
+            - img "Daftar aset" [ref=e248]
+          - paragraph [ref=e249]: Daftar aset dari API, lengkap dengan pencarian
+        - generic [ref=e250]:
+          - figure [ref=e251]:
+            - img "Detail aset MacBook Pro M4" [ref=e253]
+          - paragraph [ref=e254]: "Detail aset: harga beli, nilai saat ini, dan total return"
+        - generic [ref=e255]:
+          - figure [ref=e256]:
+            - img "Form tambah aset" [ref=e258]
+          - paragraph [ref=e259]: Form tambah aset; tombol Save aktif setelah kolom wajib terisi
+        - generic [ref=e260]:
+          - figure [ref=e261]:
+            - img "Halaman settings" [ref=e263]
+          - paragraph [ref=e264]: Halaman pengaturan, berisi pilihan mata uang dan tampilan
+        - generic [ref=e265]:
+          - figure [ref=e266]:
+            - img "Tab harga Bitcoin" [ref=e268]
+          - paragraph [ref=e269]: Halaman harga Bitcoin; feed WebSocket belum menerima data
+      - generic: 01 / 06
+    - generic [ref=e270]:
+      - generic [ref=e273]:
+        - heading "Cara kode UI aplikasi ini tersusun." [level=2] [ref=e274]
+        - paragraph
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - paragraph [ref=e279]: App/AssetTrackerApp.swift · App/AppRootView.swift
+          - code [ref=e281]: "AssetTrackerApp.swift @main struct AssetTrackerApp: App { var body: some Scene { WindowGroup { AppRootView().environment(appSettings) } } } AppRootView.swift var body: some View { TabView { Tab(\"Dashboard\", systemImage: \"chart.pie.fill\") { DashboardView() } Tab(\"Assets\", systemImage: \"list.bullet.rectangle.portrait\") { AssetView() } Tab(\"Settings\", systemImage: \"gearshape\") { SettingsView() } Tab(\"Bitcoin\", systemImage: \"bitcoinsign.circle.fill\") { CryptoDashboardView() } } }"
+        - generic [ref=e282]:
+          - paragraph [ref=e283]: Blok 1 dari 3
+          - heading "App Entry Point & Tab Navigation" [level=3] [ref=e284]
+          - paragraph [ref=e285]: Saat aplikasi dibuka, AssetTrackerApp menampilkan AppRootView sebagai layar pertama. Di sini, AppSettings juga dimasukkan ke environment supaya pengaturan mata uang bisa dipakai dari layar lain. AppRootView mengatur empat tab, sedangkan isi masing-masing tab ditangani oleh view tersendiri. Jadi, kode navigasi tidak bercampur dengan kode untuk menampilkan setiap fitur.
+      - generic [ref=e288]:
+        - generic [ref=e289]:
+          - paragraph [ref=e290]: Screens/Main/Assets/AssetView.swift · AssetViewModel.swift
+          - code [ref=e292]: "AssetViewModel.swift @Observable final class AssetViewModel { var assets: [Asset] = [] func getAssets() async { do { let response = try await Api.send( endpoint: \"/assets\", type: AssetResponse.self ) assets = response.data } catch { print(error) } } } AssetView.swift @State private var viewModel = AssetViewModel() ... List(filteredAssets) { asset in NavigationLink(value: asset) { AssetRowView(asset: asset, categoryName: asset.category?.name) } } .task { await viewModel.getAssets() }"
+        - generic [ref=e293]:
+          - paragraph [ref=e294]: Blok 2 dari 3
+          - heading "MVVM pada Daftar Aset" [level=3] [ref=e295]
+          - paragraph [ref=e296]: Di bagian ini, AssetView fokus menampilkan daftar aset. Saat layar muncul, .task memanggil getAssets() di AssetViewModel. ViewModel yang mengambil data dari server lewat Api.send, lalu menyimpan hasilnya ke property assets. Karena menggunakan @Observable, perubahan data bisa langsung diikuti SwiftUI untuk memperbarui tampilan. Untuk sekarang, error masih saya tangani dengan print, belum ditampilkan sebagai pesan di layar.
+      - generic [ref=e299]:
+        - generic [ref=e300]:
+          - paragraph [ref=e301]: Screens/Main/Dashboard/DashboardView.swift · Screens/Components/AssetRowView.swift
+          - code [ref=e303]: "DashboardView.swift var body: some View { NavigationStack { ScrollView { VStack(spacing: 20) { // kartu total nilai // chart performance // alokasi aset, quick stats, aset terbaru } } } } AssetRowView.swift HStack(spacing: 12) { VStack(alignment: .leading, spacing: 4) { Text(asset.name) Text(categoryName ?? \"Unknown\") } Spacer() VStack(alignment: .trailing, spacing: 4) { Text(asset.currentValue, format: .currency(code: appSettings.selectedCurrency)) // perubahan nilai, hijau atau merah } }"
+        - generic [ref=e304]:
+          - paragraph [ref=e305]: Blok 3 dari 3
+          - heading "Layout Composition dengan SwiftUI" [level=3] [ref=e306]
+          - paragraph [ref=e307]: Untuk dashboard yang isinya cukup panjang, saya menggunakan ScrollView dengan VStack untuk menyusun konten dari atas ke bawah. Jarak antarbagian cukup diatur lewat spacing. Sementara itu, di daftar aset, HStack membagi baris menjadi bagian kiri dan kanan. Spacer mengisi ruang kosong di tengah, jadi nama aset tetap di kiri dan nilainya terdorong ke kanan tanpa perlu mengatur posisi secara manual.
+    - generic [ref=e309]:
+      - heading "Bukti pendukung untuk proyek ini." [level=2] [ref=e310]
+      - generic [ref=e311]:
+        - generic [ref=e312]:
+          - generic [ref=e313]:
+            - generic [ref=e314]: TestFlight
+            - link "testflight.apple.com/join/w9My8GDY" [ref=e315] [cursor=pointer]:
+              - /url: https://testflight.apple.com/join/w9My8GDY
+          - paragraph [ref=e316]: undangan untuk mencoba versi beta aplikasi iOS
+        - generic [ref=e317]:
+          - paragraph [ref=e318]: GitHub
+          - generic [ref=e319]:
+            - link "Asset-Tracker · iOS" [ref=e320] [cursor=pointer]:
+              - /url: https://github.com/akhnafal-aban/Asset-Tracker
+            - link "asset-tracker-be · Go" [ref=e321] [cursor=pointer]:
+              - /url: https://github.com/akhnafal-aban/asset-tracker-be
+    - generic [ref=e324]:
+      - heading "Selesai membaca Asset Tracker." [level=2] [ref=e325]
+      - paragraph [ref=e326]: proyek lain menyusul
+      - button "Kembali ke daftar proyek" [ref=e327]
+  - button "Elus kucing" [ref=e64]

@@ -63,15 +63,15 @@ export function ProjectCover({ id, caseLabel, title, subtitle, metas, images }: 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-          className="relative mt-6 flex items-start gap-4 md:mt-0 md:block md:h-[540px] md:w-[400px] md:shrink-0 lg:h-[600px] lg:w-[470px]"
+          className="cover-phones relative mt-6 flex items-start gap-2 md:mt-0 md:block md:h-[540px] md:w-[400px] md:shrink-0 lg:h-[600px] lg:w-[470px]"
         >
-          <div className="w-[104px] shrink-0 md:absolute md:right-[190px] md:top-[52px] md:w-[168px] md:-rotate-6 lg:right-[225px] lg:top-[60px] lg:w-[195px]">
+          <div className="w-[28%] shrink-0 md:absolute md:right-[190px] md:top-[52px] md:w-[168px] md:-rotate-6 lg:right-[225px] lg:top-[60px] lg:w-[195px]">
             <DeviceFrame src={images.backLeft.src} alt={images.backLeft.alt} />
           </div>
-          <div className="w-[104px] shrink-0 md:absolute md:left-[198px] md:top-0 md:w-[160px] md:rotate-3 lg:left-[235px] lg:w-[185px]">
+          <div className="w-[28%] shrink-0 md:absolute md:left-[198px] md:top-0 md:w-[160px] md:rotate-3 lg:left-[235px] lg:w-[185px]">
             <DeviceFrame src={images.backRight.src} alt={images.backRight.alt} />
           </div>
-          <div className="relative w-[112px] shrink-0 md:-left-[28px] md:top-[115px] md:w-[195px] lg:-left-[46px] lg:top-[130px] lg:w-[225px]">
+          <div className="relative w-[36%] shrink-0 md:-left-[28px] md:top-[115px] md:w-[195px] lg:-left-[46px] lg:top-[130px] lg:w-[225px]">
             <DeviceFrame src={images.front.src} alt={images.front.alt} />
           </div>
         </motion.div>

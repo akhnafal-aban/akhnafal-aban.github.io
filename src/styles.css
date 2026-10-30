@@ -21,6 +21,24 @@ html {
   }
 }
 
+/* Mobile: beberapa slide lebih tinggi dari layar. Snap wajib bikin
+   scroll bagian tengah slide tersentak-sentak, jadi biarkan scroll
+   natural di layar kecil. Desktop tetap memakai snap. */
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+/* Frame HP di halaman cover disebut ukurannya lewat wrapper persentase.
+   Tanpa ini, lebar tetap 200px dari DeviceFrame dan meluber ke luar
+   wrapper di mobile. */
+@media (max-width: 767px) {
+  .cover-phones .glass {
+    max-width: 100%;
+  }
+}
+
 body {
   margin: 0;
   background: var(--color-canvas);

@@ -238,7 +238,7 @@ function BuktiSlide({ id }: ACProps) {
               href="https://testflight.apple.com/join/jK1Jf6zw"
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-[13px] text-ios-blue no-underline"
+              className="font-mono text-[13px] text-ios-blue no-underline [overflow-wrap:anywhere]"
             >
               https://testflight.apple.com/join/jK1Jf6zw
             </a>

@@ -12,7 +12,7 @@ export function DemoVideo({ src, poster, caption, alt }: DemoVideoProps) {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="glass rounded-[26px] p-[7px]" style={{ width: 210, aspectRatio: '402 / 874' }}>
+      <div className="glass rounded-[26px] p-[7px]" style={{ width: 'min(210px, 45vw)', aspectRatio: '402 / 874' }}>
         <video
           ref={videoRef}
           src={src}
