@@ -2,3 +2,4 @@
 [    8767ms] [WARNING] Invalid scope @ http://localhost:5174/@vite/client:367
 [   26432ms] [WARNING] Invalid scope @ http://localhost:5174/@vite/client:367
 [   45001ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
+[  349522ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=92d5a034:15801
