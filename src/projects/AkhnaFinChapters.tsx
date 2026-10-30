@@ -32,7 +32,7 @@ const masalahLines = [
 const aiPoints = [
   {
     title: 'Satu kalimat cukup',
-    note: 'Ketik "makan siang 35rb di warteg" dan Foundation Models di perangkat menguraikannya menjadi nominal, merchant, dan perkiraan kategori. Tidak perlu server, tidak perlu API key.',
+    note: 'Ketik "makan siang 35rb di warteg" dalam bahasa Indonesia dan model GLM via W&B Inference menguraikannya menjadi nominal, merchant, dan perkiraan kategori. Karena parsing lewat LLM, bahasa bebas: campur Indonesia dan English pun terbaca.',
   },
   {
     title: 'Foto resi langsung jadi draft',
@@ -147,7 +147,7 @@ function AiSlide({ id }: ACProps) {
         Bagaimana AI membantu pencatatan saya.
       </h2>
       <p className="m-0 mb-12 text-center font-mono text-[12px] text-ink-3">
-        semua pemrosesan terjadi di perangkat
+        parsing lewat GLM di W&B Inference
       </p>
       <div className="mx-auto flex w-full max-w-3xl flex-col">
         {aiPoints.map((p) => (

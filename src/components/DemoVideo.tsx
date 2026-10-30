@@ -17,6 +17,7 @@ export function DemoVideo({ src, poster, caption, alt }: DemoVideoProps) {
           ref={videoRef}
           src={src}
           poster={poster}
+          autoPlay
           muted
           loop
           playsInline
