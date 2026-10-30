@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import { AssetTrackerChapters } from './AssetTrackerChapters'
 import { BreathingAppChapters } from './BreathingAppChapters'
+import { AkhnaFinChapters } from './AkhnaFinChapters'
 
 export type ProjectDef = {
   title: string
@@ -17,5 +18,9 @@ export const registry: Record<string, ProjectDef> = {
   'breathing-app': {
     title: 'Breathing App',
     Chapters: BreathingAppChapters,
+  },
+  'akhnafin': {
+    title: 'AkhnaFin',
+    Chapters: AkhnaFinChapters,
   },
 }

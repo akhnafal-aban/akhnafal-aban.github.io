@@ -39,6 +39,7 @@ export const projects: Project[] = [
       'Semua input menjadi draft yang bisa diedit sebelum disimpan',
       'SwiftData dan CloudKit',
     ],
+    view: 'akhnafin',
   },
   {
     no: '04',
