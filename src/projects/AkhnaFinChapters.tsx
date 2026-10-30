@@ -231,6 +231,23 @@ function BuktiSlide({ id }: ACProps) {
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }}
           className="border-t border-ink/10 pt-5">
           <div className="flex items-baseline justify-between gap-4">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">TestFlight</span>
+          </div>
+          <div className="mt-2">
+            <a
+              href="https://testflight.apple.com/join/jK1Jf6zw"
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-[13px] text-ios-blue no-underline"
+            >
+              https://testflight.apple.com/join/jK1Jf6zw
+            </a>
+          </div>
+          <p className="m-0 mt-2 text-[13px] text-ink-3">tersedia untuk penguji via TestFlight</p>
+        </motion.div>
+        <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }}
+          className="border-t border-ink/10 pt-5">
+          <div className="flex items-baseline justify-between gap-4">
             <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-3">GitHub</span>
           </div>
           <div className="mt-3 flex flex-wrap gap-3">
